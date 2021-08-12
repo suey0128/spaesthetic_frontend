@@ -1,9 +1,16 @@
 import '../assets/App.css';
 import Header from './Header';
 import HomePage from './homepage/HomePage'
-import BusinessDetail from'./BusinessDetail'
-import CCCurrentCollabList from './shared_components/CCCurrentCollabList'
-import CCProfile from './ccprofile/CCProfile'
+import BusinessDetail from'./business/BusinessDetail'
+import CCCurrentCollabList from './cc/CCCurrentCollabList'
+import CCProfile from './cc/CCProfile'
+import CampaginDetail from './CampaginDetail'
+import CCDetail from './cc/CCDetail'
+import BusinessCurrentCampaignList from './business/BusinessCurrentCampaignList'
+import BusinessProfile from './business/BusinessProfile'
+import NewCampaignForm from './forms_and_cards/NewCampaignForm'
+import Footer from './Footer'
+
 
 function App() {
   return (
@@ -18,6 +25,18 @@ function App() {
       <CCCurrentCollabList />
 
       <CCProfile />
+
+      <CampaginDetail />
+
+      <CCDetail />
+
+      <BusinessCurrentCampaignList />
+
+      <BusinessProfile />
+
+      <NewCampaignForm />
+
+      <Footer />
 
     </div>
   );

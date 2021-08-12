@@ -1,4 +1,4 @@
-import CampaignCard from "../shared_components/CampaignCard";
+import CampaignCard from "../forms_and_cards/CampaignCard";
 
 function CCProfileApplied() {
     return (

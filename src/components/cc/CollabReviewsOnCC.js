@@ -1,4 +1,4 @@
-import CollabReviewCard from './CollabReviewCard'
+import CollabReviewCard from '../forms_and_cards/CollabReviewCard'
 
 function CollabReviewsOnCC() {
     return (

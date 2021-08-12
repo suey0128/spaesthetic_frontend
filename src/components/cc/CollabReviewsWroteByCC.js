@@ -1,5 +1,5 @@
-import CollabReviewCard from '../shared_components/CollabReviewCard'
-import ReviewForm from '../shared_components/ReviewForm'
+import CollabReviewCard from '../forms_and_cards/CollabReviewCard'
+import ReviewForm from '../forms_and_cards/ReviewForm'
 
 function CollabReviewsWroteByCC() {
     return (

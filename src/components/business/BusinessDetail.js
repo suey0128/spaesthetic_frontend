@@ -1,6 +1,6 @@
-import BusinessCurrentCampaignList from "./shared_components/BusinessCurrentCampaignList";
-import BusinessPastCampaignList from './shared_components/BusinessPastCampaignList';
-import CollabReviewsOnBusiness from "./shared_components/CollabReviewsOnBusiness"
+import BusinessCurrentCampaignList from "./BusinessCurrentCampaignList";
+import BusinessPastCampaignList from './BusinessPastCampaignList';
+import CollabReviewsOnBusiness from "./CollabReviewsOnBusiness"
 
 function BusinessDetail() {
     return (

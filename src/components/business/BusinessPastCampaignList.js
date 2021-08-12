@@ -1,4 +1,4 @@
-import CampaignCard from "./CampaignCard"
+import CampaignCard from "../forms_and_cards/CampaignCard";
 
 function BusinessPastCampaignList() {
     return (
