@@ -19,9 +19,33 @@ import {
   Switch, 
   Route
 } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from "react";
 
 
 function App() {
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
+
+  useEffect(() => {
+    // auto-login
+    // fetch('/users/1',
+    fetch("http://localhost:3000/me", 
+    {
+      credentials: "include"
+    }
+    ).then((r) => {  //get '/me/' => 'users#show' in routes.rb
+      if (r.ok) {
+        r.json().then((userData) => {
+          dispatch({ type: "SET_CURRENT_USER", playload: userData})
+        });
+      }
+    });
+  }, []);
+
+  console.log("currentUerInApp", currentUser)
+
   return (
     <div className="App">
       <Router>

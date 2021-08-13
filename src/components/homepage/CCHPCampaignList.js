@@ -12,21 +12,21 @@ function CCHPCampaignList() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // auto-login
-    fetch("http://localhost:3000/campaigns", 
-    // {
-    //   credentials: "include"
-    // }
-    ).then((r) => {  
-      if (r.ok) {
-        r.json().then((campaigns) => {
-        console.log(campaigns)
-        dispatch({ type: "SET_CAMPAIGN_ARR", playload: campaigns})
-        });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   // auto-login
+  //   fetch("http://localhost:3000/campaigns", 
+  //   // {
+  //   //   credentials: "include"
+  //   // }
+  //   ).then((r) => {  
+  //     if (r.ok) {
+  //       r.json().then((campaigns) => {
+  //       console.log(campaigns)
+  //       dispatch({ type: "SET_CAMPAIGN_ARR", playload: campaigns})
+  //       });
+  //     }
+  //   });
+  // }, []);
 
   console.log("campaignArr",campaignArr)
 

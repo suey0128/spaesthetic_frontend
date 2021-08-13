@@ -3,5 +3,6 @@ import businessReducer from "./businessReducer";
 import ccReducer from "./ccReducer";
 import campaignReducer from "./campaignReducer";
 import otherReducer from "./otherReducer";
+import userReducer from "./userReducer";
 
-export default combineReducers({ businessReducer, ccReducer, campaignReducer, otherReducer })
+export default combineReducers({ businessReducer, ccReducer, campaignReducer, otherReducer, userReducer })

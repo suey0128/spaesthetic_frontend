@@ -52,47 +52,50 @@ export default function BusinessSignUp() {
   const [password, passwordSetter] = useState("")
   const [passwordConfirmation, passwordConfirmationSetter] = useState("")
 
-  const currentBusiness = useSelector((state) => state.businessReducer.currentBusiness);
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
   
   async function handleSubmit(e){
     e.preventDefault()
     //create new user instance.
-    const user = { 
+    const signUpUser = { 
+      user: {
         username,
-        name: businessName,        
         password,
         password_confirmation: passwordConfirmation,
-        email,
+        email
+      },
+      business: {
+        name: businessName,
         business_type: "",
         logo: "",
         description: "",
         address: "",
         city: "",
         state: "",
-        zip: "",
+        zip: "00000",
         country: "",
         website: ""
+      }
     }
-    console.log(user)
-    const res = await fetch(`/businesses`,{
+    const res = await fetch(`/users`,{
         method: 'POST',
         // credentials: "include",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(signUpUser)
     });
     const userData = await res.json();
     if(res.ok){
         console.log(userData)
-        dispatch({ type: "SET_CURRENT_BUSINESS", playload: userData})
+        dispatch({ type: "SET_CURRENT_USER", playload: userData})
         history.push('/businessprofile')
     } else {
         alert(userData.errors)
     }
 };
 
-// console.log(currentBusiness)
+console.log(currentUser)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -228,7 +231,7 @@ export default function BusinessSignUp() {
                 label="Password Confirmation"
                 type="passwordConfirmation"
                 id="passwordConfirmation"
-                autoComplete="passwordConfirmation"
+                autoComplete="current-password"
                 value={passwordConfirmation}
                 onChange={(e)=>passwordConfirmationSetter(e.target.value)}
               />
