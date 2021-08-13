@@ -3,10 +3,20 @@ import ReactDOM from 'react-dom';
 import './assets/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from "redux";
+import rootReducer from "./redux/reducers/rootReducer";
+import { Provider } from "react-redux";
+
+
+const store = createStore(rootReducer);
+// console.log(store.getState().campaignReducer.campaignArr);
+// console.log(store.dispatch({ type: "SET_CAMPAIGN_ARR", playload:  "campaigns"}))
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

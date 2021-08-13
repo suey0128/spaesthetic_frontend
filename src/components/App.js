@@ -1,5 +1,8 @@
 import '../assets/App.css';
 import Header from './Header';
+import BusinessSignUp from './business/BusinessSignUp'
+import CCSignUp from './cc/CCSignUp'
+import Login from './Login';
 import HomePage from './homepage/HomePage'
 import BusinessDetail from'./business/BusinessDetail'
 import CCCurrentCollabList from './cc/CCCurrentCollabList'
@@ -11,33 +14,74 @@ import BusinessProfile from './business/BusinessProfile'
 import NewCampaignForm from './forms_and_cards/NewCampaignForm'
 import Footer from './Footer'
 
+import { 
+  BrowserRouter as Router,
+  Switch, 
+  Route
+} from "react-router-dom";
+
 
 function App() {
   return (
     <div className="App">
-      <h2>Hello</h2>
-      <Header />
+      <Router>
+        <Header />
 
-      <HomePage />
+        <Switch>
 
-      <BusinessDetail />
+          <Route exact path="/">
+            <HomePage />
+          </Route>
 
-      <CCCurrentCollabList />
+          <Route path="/businessdetail">
+            <BusinessDetail />
+          </Route>
 
-      <CCProfile />
+          <Route path="/cccurrentcollablist">
+            <CCCurrentCollabList />
+          </Route>
 
-      <CampaginDetail />
+          <Route path="/ccprofile">
+            <CCProfile />
+          </Route>
 
-      <CCDetail />
+          <Route path="/campaigndetail">
+            <CampaginDetail />
+            </Route>
 
-      <BusinessCurrentCampaignList />
+          <Route path="/ccdetail">
+            <CCDetail />
+            </Route>
 
-      <BusinessProfile />
+          <Route path="/businesscurrentcollablist">
+            <BusinessCurrentCampaignList />
+          </Route>
 
-      <NewCampaignForm />
+          <Route path="/businessprofile">
+            <BusinessProfile />
+          </Route>
 
-      <Footer />
+          <Route path="/newcamaignform">
+            <NewCampaignForm />
+          </Route>
 
+          <Route path="/ccsignup">
+            <CCSignUp />
+          </Route>
+
+          <Route path="/businesssign">
+            <BusinessSignUp />
+            </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+        </Switch>
+          
+        <Footer />
+
+      </Router>
     </div>
   );
 }
