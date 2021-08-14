@@ -1,10 +1,15 @@
-import CollabReviewCard from '../forms_and_cards/CollabReviewCard'
+import CollabReviewCard from '../forms_and_cards/CollabReviewCard';
+
+import Grid from '@material-ui/core/Grid';
 
 function CollabReviewsOnCC() {
+
     return (
       <div className="CollabReviewsOnCC">
         <h2>CollabReviewsOnCC</h2>
-        <CollabReviewCard/>
+        <Grid container spacing={1}>
+          <CollabReviewCard/>
+        </Grid>
       </div>
     );
   }

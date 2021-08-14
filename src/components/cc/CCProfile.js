@@ -9,7 +9,7 @@ import CollabReviewsWroteByCC from './CollabReviewsWroteByCC'
 
 function CCProfile() {
     return (
-      <div className="CCProfile">
+      <div className="cc-profile">
         <h2>CCProfile</h2>
         <CCProfileEditForm />
         <NewProfilePicForm />

@@ -61,7 +61,7 @@ function App() {
             <BusinessDetail />
           </Route>
 
-          <Route path="/cccurrentcollablist">
+          <Route path="/cccurrentcollab">
             <CCCurrentCollabList />
           </Route>
 
@@ -77,7 +77,7 @@ function App() {
             <CCDetail />
             </Route>
 
-          <Route path="/businesscurrentcollablist">
+          <Route path="/businesscurrentcampaign">
             <BusinessCurrentCampaignList />
           </Route>
 
@@ -93,7 +93,7 @@ function App() {
             <CCSignUp />
           </Route>
 
-          <Route path="/businesssign">
+          <Route path="/businesssignup">
             <BusinessSignUp />
             </Route>
 

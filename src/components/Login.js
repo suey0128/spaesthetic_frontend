@@ -65,7 +65,7 @@ export default function Login() {
     if(userData.id){
         console.log(userData)
         dispatch({ type: "SET_CURRENT_USER", playload: userData})
-        // history.push('/')
+        history.push('/')
     } else {
         alert(userData.errors)
     }
@@ -132,9 +132,9 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link>
+              </Link> */}
             </Grid>
           </Grid>
         </form>

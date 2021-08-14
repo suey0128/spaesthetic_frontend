@@ -1,10 +1,16 @@
 import CampaignCard from "../forms_and_cards/CampaignCard";
 
+import Grid from '@material-ui/core/Grid';
+
+
 function CCCurrentCollabList() {
+
     return (
-      <div className="CCCurrentCollabList">
+      <div className="cc-current-collab-list">
         <h2>CCCurrentCollabList</h2>
-        <CampaignCard />
+        <Grid container spacing={1}>
+          <CampaignCard />
+        </Grid>
       </div>
     );
   }

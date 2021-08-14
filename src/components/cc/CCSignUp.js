@@ -111,7 +111,7 @@ console.log(currentUser)
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Business Sign up
+          Content Creator Sign up
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>

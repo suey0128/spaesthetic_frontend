@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* background-color:  #f4e7dc; */
+  color: #6289a2
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#logo {
+  font-family: "Montserrat", "sans-serif";
+  font-size: 50px;
+  color: #bcced4
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background: #bcced4;
+  color: black;
+  padding: 10px 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 30px 5%;
+  background-color: #c40405;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-bar {
+  width: 35vw;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.homepage {
+  padding: 30px 5%;
+}
+.cc-profile {
+  padding: 30px 5%;
+}
+
+.cc-current-collab-list {
+  padding: 30px 5%;
+}
+
+.business-curren-campaign-list {
+  padding: 30px 5%;
+}
+
+.business-profile {
+  padding: 30px 5%;
+}
+
+.campaign-card {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.img-in-Campaign-card {
+  width: 30vw;
+  height: 35vh;
+  object-fit: cover;
+}
+
+.info-in-Campaign-card {
+  text-align:left;
+  margin-left: 3vw;
+  width: 45vw;
+}
+
+.buttons-in-Campaign-card {
+  position: relative;
+  right:10px;
+  top:10vh;
+}
+
+.buttons-in-Campaign-card button{
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.container-in-collab-review-paper {
+  padding: 5px 10px;
+}
+
+.upper-in-collab-review-paper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upper-right-in-collab-review-paper {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.name-date-in-collab-review-paper {
+  text-align: right;
+  margin-right: 10px;
+}
+
+.review-content {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.footer {
+  background-color: #c40405;
 }

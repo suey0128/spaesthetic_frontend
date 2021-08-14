@@ -1,13 +1,13 @@
 import BusinessProfileEditForm from '../forms_and_cards/BusinessProfileEditForm'
 import PasswordEditForm from '../forms_and_cards/PasswordEditForm'
 import PaymentEditForm from '../forms_and_cards/PaymentEditForm'
-import BusinessPastCampaignList from './BusinessCurrentCampaignList'
+import BusinessPastCampaignList from './BusinessPastCampaignList'
 import CollabReviewsOnBusiness from './CollabReviewsOnBusiness'
 import CollabReviewsWroteByBusiness from './CollabReviewsWroteByBusiness'
 
 function BusinessProfile() {
     return (
-      <div className="BusinessProfile">
+      <div className="business-profile">
         <h2>BusinessProfile</h2>
         <BusinessProfileEditForm />
         <PasswordEditForm />

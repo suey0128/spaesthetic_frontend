@@ -1,10 +1,13 @@
 import CampaignCard from "../forms_and_cards/CampaignCard";
+import Grid from '@material-ui/core/Grid';
 
 function BusinessCurrentCampaignList() {
     return (
-      <div className="BusinessCurrentCampaignList">
+      <div className="business-curren-campaign-list">
         <h2>BusinessCurrentCampaignList</h2>
-        <CampaignCard />
+        <Grid container spacing={1}>
+          <CampaignCard />
+        </Grid>
       </div>
     );
   }

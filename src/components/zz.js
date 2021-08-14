@@ -1,3 +1,14 @@
+// List wrapper 
+import Grid from '@material-ui/core/Grid';
+
+
+  <Grid container spacing={1}>
+         
+</Grid>
+
+
+// in the card 
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -14,20 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CCCard() {
+const classes = useStyles();
 
-  const classes = useStyles();
-
-    return (
-      <div className="CCCard">
-        <h2>CCCard</h2>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>  
-          papers
-          </Paper>
-        </Grid>
-      </div>
-    );
-  }
-  
-  export default CCCard;
+<Grid item xs={12}>
+<Paper className={classes.paper}>  
+paper
+</Paper>
+</Grid>
