@@ -47,15 +47,16 @@ function ReviewForm() {
 
             <div className="upper-in-collab-review-paper">
               <ReactStars
-              count={5}
-              // value={4.5}
-              onChange={ratingChanged}
-              size={20}
-              isHalf={true}
-              emptyIcon={<i className="far fa-star"></i>}
-              halfIcon={<i className="fa fa-star-half-alt"></i>}
-              fullIcon={<i className="fa fa-star"></i>}
-              activeColor="#ffd700"
+                count={5}
+                value={4.5}
+                onChange={ratingChanged}
+                size={20}
+                isHalf={true}
+                char="♥"
+                emptyIcon={<i className="far fa-star"></i>}
+                halfIcon={<i className="fa fa-star-half-alt"></i>}
+                fullIcon={<i className="fa fa-star"></i>}
+                activeColor="#c40405"
               />
 
               <div className="upper-right-in-collab-review-paper">
@@ -74,7 +75,15 @@ function ReviewForm() {
 
 
               <form className={classes.form} noValidate autoComplete="off">
-                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+                <TextField 
+                    id="outlined-basic" 
+                    label="Your Review Here" 
+                    variant="outlined" 
+                    fullWidth={true}
+                    
+                    />
+
+
               </form>
 
             </div>

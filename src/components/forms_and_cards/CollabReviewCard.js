@@ -40,12 +40,14 @@ function CollabReviewCard() {
               count={5}
               value={4.5}
               onChange={ratingChanged}
+              edit={false}
               size={20}
               isHalf={true}
+              char="♥"
               emptyIcon={<i className="far fa-star"></i>}
               halfIcon={<i className="fa fa-star-half-alt"></i>}
               fullIcon={<i className="fa fa-star"></i>}
-              activeColor="#ffd700"
+              activeColor="#c40405"
               />
 
               <div className="upper-right-in-collab-review-paper">

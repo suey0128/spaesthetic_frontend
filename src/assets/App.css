@@ -38,24 +38,23 @@ button {
   align-items: center;
 }
 
-.homepage {
-  padding: 30px 5%;
-}
-.cc-profile {
+.homepage, .cc-profile, .cc-current-collab-list, .business-profile {
   padding: 30px 5%;
 }
 
-.cc-current-collab-list {
-  padding: 30px 5%;
+
+.profile-info-list {
+  list-style:none;
 }
 
-.business-curren-campaign-list {
-  padding: 30px 5%;
-}
+.profile-btn {
+  display: flex;
+  flex-direction: column;
+}  
+.profile-btn button  {
+  margin-bottom: 5px;
+} 
 
-.business-profile {
-  padding: 30px 5%;
-}
 
 .campaign-card {
   display: flex;

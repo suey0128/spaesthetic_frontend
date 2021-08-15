@@ -8,6 +8,8 @@ import { useSelector} from "react-redux";
 function HomePage() {
   const currentUser = useSelector((state) => state.userReducer.currentUser);
 
+  
+
   const displayHP = (currentUser) =>{
     if (currentUser) {
       if (currentUser.platform_user_type === "ContentCreator") {

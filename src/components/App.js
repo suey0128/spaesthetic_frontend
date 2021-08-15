@@ -12,6 +12,8 @@ import CCDetail from './cc/CCDetail'
 import BusinessCurrentCampaignList from './business/BusinessCurrentCampaignList'
 import BusinessProfile from './business/BusinessProfile'
 import NewCampaignForm from './forms_and_cards/NewCampaignForm'
+import CCProfileEditForm from './cc/CCProfileEditForm'
+import BusinessProfileEditForm from './business/BusinessProfileEditForm'
 import Footer from './Footer'
 
 import { 
@@ -99,6 +101,14 @@ function App() {
 
           <Route path="/login">
             <Login />
+          </Route>
+
+          <Route path="/ccprofileedit">
+            <CCProfileEditForm />
+          </Route>
+
+          <Route path="/businessprofileedit">
+            <BusinessProfileEditForm />
           </Route>
 
         </Switch>
