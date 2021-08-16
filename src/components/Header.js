@@ -57,7 +57,7 @@ function Header() {
           <NavLink to='/businesscurrentcampaign'>                 
             <p>Current campaign</p>
           </NavLink>     
-          <NavLink to='/businesscurrentcampaign'>                 
+          <NavLink to='/campaignform'>                 
             <p>post new campaign</p>
           </NavLink>           
           <button onClick={handleLogout}>logout</button>

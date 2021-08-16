@@ -11,7 +11,7 @@ import CampaginDetail from './CampaginDetail'
 import CCDetail from './cc/CCDetail'
 import BusinessCurrentCampaignList from './business/BusinessCurrentCampaignList'
 import BusinessProfile from './business/BusinessProfile'
-import NewCampaignForm from './forms_and_cards/NewCampaignForm'
+import CampaignForm from './forms_and_cards/CampaignForm'
 import CCProfileEditForm from './cc/CCProfileEditForm'
 import BusinessProfileEditForm from './business/BusinessProfileEditForm'
 import Footer from './Footer'
@@ -87,8 +87,8 @@ function App() {
             <BusinessProfile />
           </Route>
 
-          <Route path="/newcamaignform">
-            <NewCampaignForm />
+          <Route path="/campaignform">
+            <CampaignForm />
           </Route>
 
           <Route path="/ccsignup">

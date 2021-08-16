@@ -29,6 +29,9 @@ button {
   align-items: center;
   padding: 30px 5%;
   background-color: #c40405;
+  position: sticky;
+  z-index: 999;
+  top: 0;
 }
 
 .nav-bar {
@@ -38,7 +41,7 @@ button {
   align-items: center;
 }
 
-.homepage, .cc-profile, .cc-current-collab-list, .business-profile {
+.homepage, .cc-profile, .cc-current-collab-list, .business-profile, .campaign-detail-container, .business-curren-campaign-list {
   padding: 30px 5%;
 }
 
@@ -50,35 +53,37 @@ button {
 .profile-btn {
   display: flex;
   flex-direction: column;
+  width: 200px;
+  /* position: relative;
+  left:100px;
+  top:300px; */
+
 }  
 .profile-btn button  {
   margin-bottom: 5px;
 } 
 
-
-.campaign-card {
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
+.profile-img-and-uploads-btn button{
+  width: 280px;
 }
 
 .img-in-Campaign-card {
-  width: 30vw;
-  height: 35vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .info-in-Campaign-card {
   text-align:left;
-  margin-left: 3vw;
-  width: 45vw;
+  margin-left: 2vw;
+  width: 100%;
 }
 
-.buttons-in-Campaign-card {
+/* .buttons-in-Campaign-card {
   position: relative;
   right:10px;
   top:10vh;
-}
+} */
 
 .buttons-in-Campaign-card button{
   display: block;

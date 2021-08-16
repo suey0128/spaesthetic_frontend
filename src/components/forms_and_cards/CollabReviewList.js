@@ -8,7 +8,7 @@ import Modal from '@material-ui/core/Modal';
 import {useSelector, useDispatch} from 'react-redux' 
 
 
-export default function CollabReviewsWroteByCC() {
+export default function CollabReviewList() {
   const dispatch = useDispatch();
   const openReviewForm = useSelector((state) => state.reviewReducer.openReviewForm)
 
@@ -36,4 +36,3 @@ export default function CollabReviewsWroteByCC() {
       </div>
     );
   }
-  

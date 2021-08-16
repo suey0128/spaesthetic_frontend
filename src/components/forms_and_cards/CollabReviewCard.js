@@ -1,11 +1,15 @@
 
 import ReactStars from "react-rating-stars-component";
+import CollabReviewForm from "./CollabReviewForm";
 import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
+import Modal from '@material-ui/core/Modal';
+
+import {useSelector, useDispatch} from 'react-redux' 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,9 +25,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CollabReviewCard() {
+export default function CollabReviewCard() {
 
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const openReviewForm = useSelector((state) => state.reviewReducer.openReviewForm)
+
+  // const [open, setOpen] = React.useState(false);
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+
+  const handleOpen = () => {
+    dispatch({ type: 'OPEN_REVIEW_FORM', playload: true})
+  };
+
+  console.log('openReviewForm', openReviewForm)
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
@@ -73,10 +91,20 @@ function CollabReviewCard() {
             On to the food. The Food came out fairly fast. 
             </p>
             </div>
+
+            <button onClick={handleOpen}>Edit</button>
           </Paper>
+
+          {/* <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          >
+            <CollabReviewForm />
+          </Modal> */}
+
         </Grid>
       </div>
     );
   }
-  
-  export default CollabReviewCard;

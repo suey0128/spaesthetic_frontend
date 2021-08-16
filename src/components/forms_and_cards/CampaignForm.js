@@ -21,9 +21,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 
-import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewCampaignForm() {
+export default function CampaignForm() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -84,7 +84,7 @@ export default function NewCampaignForm() {
         </Avatar>
 
         <Typography component="h1" variant="h5">
-          New Campaign
+          Campaign
         </Typography>
 
 
