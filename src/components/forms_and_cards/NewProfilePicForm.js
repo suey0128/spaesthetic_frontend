@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 // the fn that position the modal
 function getModalStyle() {
@@ -36,21 +37,44 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function NewProfilePicForm() {
+export default function NewProfilePicForm({ handleClose, currentUser }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const [modalStyle] = React.useState(getModalStyle);
-  const [username, usernameSetter] = useState("")
+  const [url, urlSetter] = useState("")
 
-  const handleSubmit = () => {
+  let userType;
+  currentUser.platform_user_type = "ContentCreator" ? userType = "content_creators" : userType = "businesses"
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    async function updateProfilePic () {
+      const res = await fetch(`/${userType}/${currentUser.platform_user_id}`, {
+        method: 'PATCH',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ profile_pic: url })
+      });
+      if (res.ok) {
+        const updatedCC = await res.json();
+        console.log(updatedCC)
+        dispatch({ type: 'NEED_FETCH_USER' })
+      } else {
+        const err = await res.json()
+        alert(err.errors)
+      };
+    }
+    updateProfilePic();
+    handleClose();
   }
 
   return (
     <div className="NewProfilePicForm">
       <div style={modalStyle} className={classes.paper}>
         <h2 id="simple-modal-title">Updating Your Profile Picture</h2>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate onSubmit={(e)=>{handleSubmit(e)}}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -61,8 +85,8 @@ export default function NewProfilePicForm() {
               name="profilePic"
               autoComplete="profilePic"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={url}
+              onChange={(e)=>urlSetter(e.target.value)}
             />
             <Button
               type="submit"

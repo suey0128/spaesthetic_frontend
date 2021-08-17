@@ -15,7 +15,7 @@ function Header() {
       history.push('/')
     });
   }
-  console.log(currentUser)
+  // console.log(currentUser)
 
 
 

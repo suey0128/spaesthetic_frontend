@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { useState } from 'react'
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'redux'
 
 // the fn that position the modal
 function getModalStyle() {
@@ -36,14 +37,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function NewProfilePicForm() {
+export default function NewProfilePicForm({ currentUser, handleClose }) {
   const classes = useStyles();
 
   const [modalStyle] = React.useState(getModalStyle);
-  const [password, passwordSetter] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("")
 
-  const handleSubmit = () => {
+  console.log(newPassword, newPasswordConfirmation)
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    async function changePD() {
+        const res = await fetch(`/users/${currentUser.id}`, {
+          method: "PATCH",
+          headers: { 'Content-Type': 'application/json'},
+          body: JSON.stringify({ password: newPassword, password_confirmation: newPasswordConfirmation})
+        });
+        if (res.ok) {
+          const userData = await res.json();
+          console.log("dataBackFromPatch",userData)
+          // useDispatch({ type: "SET_CURRENT_USER", playload: userData})
+        } else {
+          const error = await res.json()
+          alert(error.errors)
+        }
+      }
+      changePD();
+      handleClose();
   }
 
   return (
@@ -61,21 +82,21 @@ export default function NewProfilePicForm() {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e)=>passwordSetter(e.target.value)}
+              value={newPassword}
+              onChange={(e)=>setNewPassword(e.target.value)}
             />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
+            name="passwordConfirmation"
+            label="Password Confirmation"
+            type="passwordConfirmation"
+            id="passwordConfirmation"
             autoComplete="current-password"
-            value={password}
-            onChange={(e)=>passwordSetter(e.target.value)}
+            value={newPasswordConfirmation}
+            onChange={(e)=>setNewPasswordConfirmation(e.target.value)}
           />
             <Button
               type="submit"

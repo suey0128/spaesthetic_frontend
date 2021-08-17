@@ -20,25 +20,25 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: 'left',
     color: theme.palette.text.secondary,
+    width:"100%",
   },
 }));
 
-export default function CollabReviewCard() {
+export default function CollabReviewCard({ review }) {
 
   const classes = useStyles();
   const dispatch = useDispatch();
   const openReviewForm = useSelector((state) => state.reviewReducer.openReviewForm)
 
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   const handleOpen = () => {
+    console.log("yo")
     dispatch({ type: 'OPEN_REVIEW_FORM', playload: true})
+  };
+
+  const handleClose = () => {
+    dispatch({type: 'OPEN_REVIEW_FORM', playload: false});
   };
 
   console.log('openReviewForm', openReviewForm)
@@ -47,16 +47,18 @@ export default function CollabReviewCard() {
     console.log(newRating);
   };
 
+  console.log(review)
+
     return (
       <div className="collab-review-card">
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <Paper className={classes.paper}>  
             <div className="container-in-collab-review-paper">
 
             <div className="upper-in-collab-review-paper">
               <ReactStars
               count={5}
-              value={4.5}
+              value={review.rating}
               onChange={ratingChanged}
               edit={false}
               size={20}
@@ -71,38 +73,36 @@ export default function CollabReviewCard() {
               <div className="upper-right-in-collab-review-paper">
 
                 <div className="name-date-in-collab-review-paper">
-                  <p>8/6/2021</p>
-                  <p>Name</p>
+                  <p>{review.date.slice(0,10)}</p>
+                  {review.reviewer ? <p>{review.reviewer.name}</p> : <p>{review.reviewee.name}</p>}
                 </div>
 
                 <div className={classes.root}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                {review.reviewer ? 
+                <Avatar alt={review.reviewer.name} src={review.reviewer.profile_pic} /> 
+                : <Avatar alt={review.reviewee.name} src={review.reviewee.profile_pic} /> 
+                }
                 </div>
               </div>
 
             </div>
             <p className="review-content">
-            review place holder:  haven't reviewed a business in a while because I'm pretty lazy now. But, cashew deserves my time and my review.
-
-            I have nothing but good things to say about this new Thai restaurant. We are visiting from Los Angeles and was staying down the street at Mediterranean inn when my kids and I stumbled upon this new hidden gem!!! It must have been destiny since their sign isn't even up yet.
-
-            Our waitress was super nice and attentive. Great attitude and always kept my water filled. She must have topped off my water like 20 times throughout dinner.
-
-            On to the food. The Food came out fairly fast. 
+              {review.content}
             </p>
             </div>
 
             <button onClick={handleOpen}>Edit</button>
+            <button >Delete</button>
           </Paper>
 
-          {/* <Modal
-          open={open}
+          <Modal
+          open={openReviewForm}
           onClose={handleClose}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           >
-            <CollabReviewForm />
-          </Modal> */}
+            <CollabReviewForm review={review} handleClose={handleClose}/>
+        </Modal>
 
         </Grid>
       </div>

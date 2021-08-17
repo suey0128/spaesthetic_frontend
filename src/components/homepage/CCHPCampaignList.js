@@ -8,12 +8,12 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 export default function CCHPCampaignList() {
+  const dispatch = useDispatch();
 
   const campaignArr = useSelector((state) => state.campaignReducer.campaignArr);
+  const needFetchCampaignArr = useSelector((state) => state.campaignReducer.needFetchCampaignArr);
 
-  
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch("http://localhost:3000/campaigns", 
@@ -30,9 +30,9 @@ export default function CCHPCampaignList() {
         alert(r.errors)
       }
     });
-  }, []);
+  }, [needFetchCampaignArr]);
 
-  console.log("campaignArr",campaignArr)
+  // console.log("campaignArr",campaignArr)
 
   const filteredCampaignArr = campaignArr
 
@@ -47,7 +47,7 @@ export default function CCHPCampaignList() {
 
         <Grid container spacing={1}>
           {
-            filteredCampaignArr.map(c=>  <CampaignCard key={c.id} campaign={c}/>)
+            filteredCampaignArr.map(c=>  <CampaignCard key={c.id} campaignPassedDown={c}/>)
           } 
         </Grid>
 

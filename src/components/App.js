@@ -29,6 +29,7 @@ function App() {
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
+  const needFetchUser = useSelector((state) => state.userReducer.needFetchUser);
 
   useEffect(() => {
     // auto-login
@@ -44,9 +45,9 @@ function App() {
         });
       }
     });
-  }, []);
+  }, [needFetchUser]);
 
-  console.log("currentUerInApp", currentUser)
+  // console.log("currentUerInApp", currentUser)
 
   return (
     <div className="App">
@@ -71,7 +72,7 @@ function App() {
             <CCProfile />
           </Route>
 
-          <Route path="/campaigndetail">
+          <Route path="/campaigndetail/:id">
             <CampaginDetail />
             </Route>
 

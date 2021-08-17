@@ -14,10 +14,9 @@ export default function CCProfileInfo() {
   const history = useHistory();
   const ccProfileEditBody = useSelector((state) => state.ccReducer.ccProfileEditBody)
   const currentUser = useSelector((state=> state.userReducer.currentUser))
-  // const currentCC = currentUser.platform_user
-
-
   const [open, setOpen] = React.useState(false);
+
+
 
   const handleClose = () => {
     setOpen(false);
@@ -28,40 +27,43 @@ export default function CCProfileInfo() {
   };
 
   const handleOpenProfilePicUpload = () => {
-    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <NewProfilePicForm />})
+    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <NewProfilePicForm handleClose={handleClose} currentUser={currentUser}/>})
     setOpen(true);
   };
 
   const handleOpenChangePD = () => {
-    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <PasswordEditForm />})
+    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <PasswordEditForm handleClose={handleClose} currentUser={currentUser}/>})
     setOpen(true);
   };
+
+  if (currentUser === null) return <h2>Loading...</h2>;
 
   return (
 
     <Grid container spacing={1}>
       <Grid item xs={12} sm={3}>
         <div className="profile-img-and-uploads-btn">
-            <img src="https://via.placeholder.com/280x350.png" alt="ccprofile picture"/>
+            {/* <img src="https://via.placeholder.com/280x350.png" alt="ccprofile picture"/> */}
+            <img src={currentUser.platform_user.profile_pic} alt={currentUser.username}/>
             <button onClick={handleOpenProfilePicUpload}>Update profile Pic</button>
         </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
         <ul className="profile-info-list">
-            <li>currentUser.username</li>
-            <li>first name last name</li>
-            <li>gender</li>
-            <li>email</li>
-            <li>website</li>
-            <li>Linked Instagram account</li>
-            <li>Follower</li>
-            <li>Male/Female follow ratio</li>
-            <li>Top 1 followed location</li>
-            <li>Avg rate for a campaign</li>
-            <li>paypal account</li>
+            <li>Username: {currentUser.username}</li>
+            <li>{currentUser.platform_user.first_name} {currentUser.platform_user.last_name}</li>
+            <li>{currentUser.platform_user.gender}</li>
+            <li>{currentUser.email}</li>
+            <li>{currentUser.platform_user.website}</li>
+            <a href={currentUser.platform_user.instagram_url}>{currentUser.platform_user.instagram_username}</a>
+            <li>Follower: {currentUser.platform_user.instagram_follower}</li>
+            <li>Female follow ratio: {currentUser.platform_user.instagram_female_follower_ratio} </li>
+            <li>Top 1 followed location: {currentUser.platform_user.instagram_top1_follow_location}</li>
+            <li>Avg rate for a campaign: {currentUser.platform_user.ave_rate_per_campaign}</li>
+            <li>paypal account: {currentUser.platform_user.paypal_account}</li>
             <li>About me</li>
-            <li>About me content</li>
+            <li>{currentUser.platform_user.about_me}</li>
         </ul>
       </Grid>
 
