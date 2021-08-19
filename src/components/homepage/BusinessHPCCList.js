@@ -1,48 +1,46 @@
 import CCCard from "../forms_and_cards/CCCard";
-import InvitationForm from "../forms_and_cards/InvitationForm";
 
 import React from 'react';
-import Modal from '@material-ui/core/Modal';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import {useSelector, useDispatch} from 'react-redux' 
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  }));
 
 function BusinessHPCCList() {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const openCurrentCampaignList = useSelector((state) => state.campaignReducer.openCurrentCampaignList)
 
-  const handleClose = () => {
-    dispatch({type: 'OPEN_CURRENT_CAMPAIGN_LIST', playload: false});
-  };
+  const dispatch = useDispatch();
+  const contentCreatorArr = useSelector((state) => state.ccReducer.contentCreatorArr)
+  const needFetchCC = useSelector((state) => state.ccReducer.needFetchCC)
+
+  //fetch all the cc
+  useEffect(() => {
+    fetch("http://localhost:3000/content_creators", 
+    // {
+    //   credentials: "include"
+    // }
+    ).then((r) => {  
+      if (r.ok) {
+        r.json().then((cc) => {
+        // console.log(cc)
+        dispatch({ type: "SET_CONTENT_CREATOR_ARR", playload: cc})
+        });
+      } else {
+        alert(r.errors)
+      }
+    });
+  }, [needFetchCC]);
+
+   const filteredCCArr = contentCreatorArr
 
     return (
       <div className="BusinessHPCCList">
         <h2>BusinessHPCCList</h2>
         <Grid container spacing={1}>
-          <CCCard />
+          {filteredCCArr.map(cc=> <CCCard key={cc.id} cc={cc}/>)}
         </Grid>
 
-        <Modal
-          open={openCurrentCampaignList}
-          onClose={handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          >
-            <InvitationForm />
-        </Modal>
+
       </div>
     );
   }

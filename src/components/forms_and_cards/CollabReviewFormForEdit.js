@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 
 import { useState } from 'react'
 import { set } from "date-fns/esm";
+import {useSelector, useDispatch} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,28 +45,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// the fn that position the modal
-function getModalStyle() {
-  const top = 50 
-  const left = 50
 
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-export default function CollabReviewForm({ review, handleClose }) {
-
-  console.log(review)
+export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
 
   const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
+  const dispatch = useDispatch();
   const [rating, ratingSetter] = useState(review.rating)
   const [newReview, newReviewSetter] = useState(review.content)
   const [updateDate, updateDateSetter] = useState(review.date.slice(0,10))
-  console.log (review)
+
+  // //review passed down from BusinessDetailInfo
+  // console.log(review) // {id: 4, reviewee: {…}, content: "review cc2 to b1", date: "2021-08-19T00:07:48.758Z", rating: 4}
+
+  // //review passed down from CollabReviewCard(businessside)
+  // console.log(review) // {id: 2, reviewee: {…}, content: "review b1 to cc2", date: "2021-08-19T00:07:48.735Z", rating: 3}
 
   const ratingChanged = (newRating) => {
     ratingSetter(newRating);
@@ -81,22 +74,24 @@ export default function CollabReviewForm({ review, handleClose }) {
       });
       if (res.ok) {
         const updatedReview = await res.json();
-        console.log("yes", updatedReview.content, updatedReview.rating, updatedReview.updated_at.slice(0,10))
-        newReviewSetter(updatedReview.content);
-        ratingSetter(updatedReview.rating);
-        updateDateSetter(updatedReview.updated_at.slice(0,10));
-        handleClose();
+        // console.log(updatedReview.content, updatedReview.rating, updatedReview.updated_at.slice(0,10))
+        forCancelBtn(false)
+        console.log(updatedReview)
       } else {
         const err = await res.json();
         alert(err.errors)
       }
     }
     reviewUpdate();
+    dispatch({type: "NEED_FETCH_USER" })
+  }
+
+  const handleCancel = () => {
+    forCancelBtn(false) //CollabReviewCard shows the review
   }
 
     return (
-      <div  className="collab-review-card">
-        <div style={modalStyle} className={classes.popup}>
+      // <div  className="collab-review-card">
           <Grid item xs={12}>
               <div className="container-in-collab-review-paper">
 
@@ -142,14 +137,14 @@ export default function CollabReviewForm({ review, handleClose }) {
                       value={newReview}
                       onChange={(e)=>{newReviewSetter(e.target.value)}}
                       />
-                  <button>Submit</button>
+                  <button type="submit" value="Submit">Submit</button>
+                  <button onClick={handleCancel}>cancel</button>
 
                 </form>
 
               </div>
           </Grid>
-        </div>
-      </div>
+      // </div>
     );
   }
   

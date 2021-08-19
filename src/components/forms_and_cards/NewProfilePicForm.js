@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // the fn that position the modal
@@ -37,15 +37,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function NewProfilePicForm({ handleClose, currentUser }) {
+export default function NewProfilePicForm({ handleClose }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
 
   const [modalStyle] = React.useState(getModalStyle);
   const [url, urlSetter] = useState("")
 
   let userType;
-  currentUser.platform_user_type = "ContentCreator" ? userType = "content_creators" : userType = "businesses"
+
+  if (!currentUser) return <h2>Loading campaign</h2>
+  currentUser.platform_user_type === "ContentCreator" ? userType = "content_creators" : userType = "businesses"
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,8 +61,8 @@ export default function NewProfilePicForm({ handleClose, currentUser }) {
         body: JSON.stringify({ profile_pic: url })
       });
       if (res.ok) {
-        const updatedCC = await res.json();
-        console.log(updatedCC)
+        const data = await res.json();
+        console.log(data)
         dispatch({ type: 'NEED_FETCH_USER' })
       } else {
         const err = await res.json()

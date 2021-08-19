@@ -9,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
 
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -38,9 +38,79 @@ export default function BusinessProfileEditForm() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [username, usernameSetter] = useState("")
-
   const currentUser = useSelector((state) => state.userReducer.currentUser);
+
+  //local state for control form
+  const [username, usernameSetter] = useState("")
+  const [email, emailSetter] = useState("")
+  const [businessName, businessNameSetter] = useState("")
+  const [businessType, businessTypeSetter] = useState("")
+  const [website, websiteSetter] = useState("")
+  const [description, descriptionSetter] = useState("")
+  const [address,addressSetter] = useState("")
+  const [city, citySetter] = useState("")
+  const [state, stateSetter] = useState("")
+  const [zip, zipSetter] = useState("")
+  const [country, countrySetter] = useState("")
+
+
+  useEffect(() => {
+    if (currentUser)  {
+    usernameSetter(currentUser.username)
+    emailSetter(currentUser.email)
+    businessNameSetter(currentUser.platform_user.name)
+    businessTypeSetter(currentUser.platform_user.business_type)
+    websiteSetter(currentUser.platform_user.website)
+    addressSetter(currentUser.platform_user.address)
+    citySetter(currentUser.platform_user.city)
+    stateSetter(currentUser.platform_user.state)
+    zipSetter(currentUser.platform_user.zip)
+    countrySetter(currentUser.platform_user.country)
+    descriptionSetter(currentUser.platform_user.description)
+    }
+  }, [currentUser])
+
+  const handleProfileEditSubmit = (e) => {
+    e.preventDefault();
+    //create new profile instance.
+    const updatedProfile = { 
+      user: {
+        username,
+        email
+      },
+      business: {
+        name: businessName,
+        business_type: businessType,
+        website,
+        description,
+        address,
+        city,
+        state,
+        zip,
+        country
+      }
+    }
+    // console.log(updatedProfile)
+    async function updateProfile() {
+      const res = await fetch(`/users/${currentUser.id}`,{
+          method: 'PATCH',
+          // credentials: "include",
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedProfile)
+      });
+      const userData = await res.json();
+      if(res.ok){
+          console.log(userData)
+          dispatch({ type: "SET_CURRENT_USER", playload: userData})
+          history.push('/businessprofile')
+      } else {
+          alert(userData.errors)
+      }
+    }
+    updateProfile();
+  }
 
 
 
@@ -58,7 +128,7 @@ export default function BusinessProfileEditForm() {
         </Typography>
 
 
-        <form className={classes.form} noValidate >
+        <form className={classes.form} noValidate onSubmit={handleProfileEditSubmit}>
 
         <Typography component="h6" >Account Info</Typography>
         <Grid container spacing={1}>
@@ -88,8 +158,8 @@ export default function BusinessProfileEditForm() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={email}
+                onChange={(e)=>emailSetter(e.target.value)}
             />
           </Grid>      
         </Grid>
@@ -127,8 +197,8 @@ export default function BusinessProfileEditForm() {
                 name="businessName"
                 autoComplete="businessName"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={businessName}
+                onChange={(e)=>businessNameSetter(e.target.value)}
                 />
             </Grid>        
             <Grid item xs={12} sm={3}>
@@ -141,8 +211,8 @@ export default function BusinessProfileEditForm() {
                 name="businessType"
                 autoComplete="businessType"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={businessType}
+                onChange={(e)=>businessTypeSetter(e.target.value)}
                 />
             </Grid>  
             <Grid item xs={12} sm={6}>
@@ -155,8 +225,8 @@ export default function BusinessProfileEditForm() {
                 name="website"
                 autoComplete="website"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={website}
+                onChange={(e)=>websiteSetter(e.target.value)}
                 />
             </Grid>    
 
@@ -170,8 +240,8 @@ export default function BusinessProfileEditForm() {
                 name="address"
                 autoComplete="address"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={address}
+                onChange={(e)=>addressSetter(e.target.value)}
                 />
             </Grid>     
 
@@ -185,8 +255,8 @@ export default function BusinessProfileEditForm() {
                 name="city"
                 autoComplete="city"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={city}
+                onChange={(e)=>citySetter(e.target.value)}
                 />
             </Grid>    
 
@@ -200,8 +270,8 @@ export default function BusinessProfileEditForm() {
                 name="state"
                 autoComplete="state"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={state}
+                onChange={(e)=>stateSetter(e.target.value)}
                 />
             </Grid>    
 
@@ -215,8 +285,8 @@ export default function BusinessProfileEditForm() {
                 name="zip"
                 autoComplete="zip"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={zip}
+                onChange={(e)=>zipSetter(e.target.value)}
                 />
             </Grid>    
 
@@ -230,8 +300,8 @@ export default function BusinessProfileEditForm() {
                 name="country"
                 autoComplete="country"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={country}
+                onChange={(e)=>countrySetter(e.target.value)}
                 />
             </Grid>    
 
@@ -249,8 +319,8 @@ export default function BusinessProfileEditForm() {
                 autoFocus
                 multiline
                 rows={4}
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={description}
+                onChange={(e)=>descriptionSetter(e.target.value)}
                 />
             </Grid>
           <br></br>

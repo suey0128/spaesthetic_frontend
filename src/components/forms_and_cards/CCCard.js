@@ -1,7 +1,14 @@
+import CCInfo from './CCInfo';
+import CCImg from './CCImg';
+import CCBtnGroup from './CCBtnGroup';
+import InvitationForm from "../forms_and_cards/InvitationForm";
+
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
 
 
 import {useSelector, useDispatch} from 'react-redux' 
@@ -15,50 +22,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CCCard() {
+export default function CCCard({ cc }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const openCurrentCampaignList = useSelector((state) => state.campaignReducer.openCurrentCampaignList)
+  const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
-    dispatch({ type: 'OPEN_CURRENT_CAMPAIGN_LIST', playload: true });
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
     return (
       //<div>
         <Paper className={classes.paper}>
           <Grid container spacing={1} className="campaign-card">
-              <Grid item xs={12} sm={3}>
-                  <img className="img-in-Campaign-card"
-                        src="https://cdn.vox-cdn.com/thumbor/vjciPYMEQy2ez9UIj_sksSOqC_4=/0x0:1000x667/1200x800/filters:focal(420x253:580x413)/cdn.vox-cdn.com/uploads/chorus_image/image/61171177/01_2013_ALFRED_COFFEE-3.0.0.1412833624.0.jpeg"
-                        alt="b1"
-                  />
-              </Grid>
+ 
+            <CCImg cc={cc}/>
 
-              <Grid item xs={12} sm={6}>
-                  <div className="info-in-Campaign-card">
-                    <p>cc name:</p>
-                    <p>website</p>
-                    <p>Linked Instagram account</p>
-                    <p>Follower</p>
-                    <p>Male/Female follow ratio</p>
-                    <p>Top 1 followed location</p>
-                    <p>Avg rate for a campaign</p>
-                    <p>About this cc</p>
-                    <p>About this cc content</p>
-                  </div>
-              </Grid>
+            <CCInfo cc={cc}/>
 
-              <Grid item xs={12} sm={3}>
-                  <div className="buttons-in-Campaign-card">
-                    <button>See Details</button>
-                    <button onClick={handleOpen}>Invite</button>
-                  </div>
-              </Grid>
+            <CCBtnGroup cc={cc} handleOpen={handleOpen}/>
 
-
-              
           </Grid>
+
+          <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          >
+            <InvitationForm cc={cc} handleClose={handleClose}/>
+        </Modal>
         </Paper> 
       //</div>
 

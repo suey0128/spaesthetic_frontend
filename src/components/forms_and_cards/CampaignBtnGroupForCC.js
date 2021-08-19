@@ -2,21 +2,17 @@ import Grid from '@material-ui/core/Grid';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
-export default function CampaignBtnGroup({ campaign, showDetailsBtn }) {
+export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
     const history = useHistory();
     const dispatch = useDispatch();
     //states
     const currentUser = useSelector((state) => state.userReducer.currentUser);
         //decide which btn shows up
 
-    const [isCurrentCampaign, isCurrentCampaignSetter] = useState(currentUser.current_campaigns.find(c=>c.id === campaign.id)); //hired
-    const [isApplied, isAppliedSetter] = useState(currentUser.applied_campaigns.find(c=>c.id === campaign.id)); //applied
-    const [isInvited, isInvitedSetter] = useState(currentUser.invited_by.find(c=>c.id === campaign.id)); //invited
-
-    if (currentUser === null) return <h2>Loading...</h2>;
+    if (!currentUser) return <h2>Loading...</h2>;
 
     const handleSeeDetailsClick = () => {
         history.push(`/campaigndetail/${campaign.id}`)
@@ -30,8 +26,6 @@ export default function CampaignBtnGroup({ campaign, showDetailsBtn }) {
             const res = await fetch (`/collabs/${collabId}`, {method: 'DELETE'});
             if(res.ok){
                 dispatch({ type: "NEED_FETCH_USER" })
-                isCurrentCampaignSetter(false);
-                isAppliedSetter(false);
             };
         };
         cancelCollab();
@@ -46,7 +40,6 @@ export default function CampaignBtnGroup({ campaign, showDetailsBtn }) {
             const res = await fetch (`/applications/${applicationId}`, {method: 'DELETE'});
             if (res.ok) {
                 dispatch({ type: "NEED_FETCH_USER" })
-                isAppliedSetter(false)
             };
         };
         withdrawApplication();
@@ -73,7 +66,6 @@ export default function CampaignBtnGroup({ campaign, showDetailsBtn }) {
                 dispatch({ type: "NEED_FETCH_USER"})
                 dispatch({ type: "NEED_FETCH_CAMPAIGN_ARR"})
                 dispatch({ type: "NEED_FETCH_CAMPAIGN"})
-                isAppliedSetter(true);
             } else {
                 const err = await res.json();
                 alert(err.errors)
@@ -82,21 +74,34 @@ export default function CampaignBtnGroup({ campaign, showDetailsBtn }) {
         apply();
     };
 
+
+    // console.log(campaign)
+
     return (
         <Grid item xs={12} sm={3}>
-            {isInvited? <p>you are invited by this campaign❣</p> : null}
+            {currentUser.invited_by.find(c=>c.id === campaign.id) ? <p>you are invited by this campaign❣</p> : null}
 
             <div className="buttons-in-Campaign-card">
+
+            {new Date(campaign.end_date) > new Date() ? 
+            <div>
+                {currentUser.current_campaigns.find(c=>c.id === campaign.id) ? 
+                    <button onClick={handleCancelCollabClick}>Cancel Collab</button> : 
+                    (currentUser.applied_campaigns.find(c=>c.id === campaign.id) ?
+                    <button onClick={handleWithdrawClick}>Withdraw Application</button> : 
+                    <button onClick={handleApplyClick}>Apply</button>
+                    )
+                }
+            </div> : null
+            }
+            
             {showDetailsBtn ? <button onClick={handleSeeDetailsClick}>See Details</button> : null}
 
-            {isCurrentCampaign ? 
-                <button onClick={handleCancelCollabClick}>Cancel Collab</button> : 
-                (isApplied ?
-                <button onClick={handleWithdrawClick}>Withdraw Application</button> : 
-                <button onClick={handleApplyClick}>Apply</button>
-                )
-            }
             </div>
         </Grid>
     );
 }
+
+
+
+

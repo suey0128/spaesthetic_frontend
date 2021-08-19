@@ -1,4 +1,5 @@
-import CampaignBtnGroup from './CampaignBtnGroup';
+import CampaignBtnGroupForCC from './CampaignBtnGroupForCC';
+import CampaignBtnGroupForBusiness from './CampaignBtnGroupForBusiness';
 import CampaignInfo from './CampaignInfo';
 import CampaignImg from './CampaignImg';
 import CampaignRelatedCC from './CampaignRelatedCC';
@@ -7,9 +8,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -20,43 +22,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CampaignCard({ campaignPassedDown }) {
+export default function CampaignCard({ campaign }) {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const campaign = useSelector((state) => state.campaignReducer.campaign)
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
+  const viewingCC = useSelector((state) => state.ccReducer.viewingCC);
 
-  useEffect(() => {
-    fetch(`campaigns/${campaignPassedDown.id}`)
-    .then(r=>{
-      if(r.ok) {
-        r.json().then((data) => {
-          dispatch({ type: 'SET_CAMPAIGN', playload: data})
-        });
-      } else {
-        alert(r.errors)
-      }
-    })
-  },[])
+ if (!campaign ) return <h2>Loading campaign</h2>
+ if (!currentUser ) return <h2>Loading campaign</h2>
 
- if (campaign === null) return <h2>Loading campaign</h2>
 
     return (
       //<div>
-        <Paper className={classes.paper}>
+      <Container component="main" maxWidth="lg">
+        <Paper className={classes.paper} >
           <Grid container spacing={1} className="campaign-card">
 
               <CampaignImg campaign={campaign} />
 
               <CampaignInfo campaign={campaign} />
 
-              <CampaignBtnGroup campaign={campaign}
+              {currentUser.platform_user_type === "ContentCreator" ?
+              <CampaignBtnGroupForCC campaign={campaign} 
                                 showDetailsBtn={true} 
-                                />
+                                />: null
+              }
 
-              <CampaignRelatedCC campaign={campaign}/>
-              
+              {currentUser.platform_user_type === "Business" ?
+              <CampaignBtnGroupForBusiness campaign={campaign}
+                                            showDetailsBtn={true} 
+                                            /> : null
+              }
+
+              {currentUser.platform_user_type === "Business" && viewingCC === null ?
+              <CampaignRelatedCC campaign={campaign}/> : null
+              }
+ 
           </Grid>
         </Paper> 
+        </Container>
       //</div>
 
     );

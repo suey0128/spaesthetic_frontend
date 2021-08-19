@@ -47,7 +47,7 @@ function App() {
     });
   }, [needFetchUser]);
 
-  // console.log("currentUerInApp", currentUser)
+  console.log("currentUerInApp", currentUser)
 
   return (
     <div className="App">
@@ -60,7 +60,7 @@ function App() {
             <HomePage />
           </Route>
 
-          <Route path="/businessdetail">
+          <Route path="/businessdetail/:id">
             <BusinessDetail />
           </Route>
 
@@ -76,9 +76,9 @@ function App() {
             <CampaginDetail />
             </Route>
 
-          <Route path="/ccdetail">
+          <Route path="/ccdetail/:id">
             <CCDetail />
-            </Route>
+          </Route>
 
           <Route path="/businesscurrentcampaign">
             <BusinessCurrentCampaignList />
@@ -114,7 +114,7 @@ function App() {
 
         </Switch>
           
-        <Footer />
+        {/* <Footer /> */}
 
       </Router>
     </div>

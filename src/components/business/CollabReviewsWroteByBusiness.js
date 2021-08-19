@@ -1,15 +1,27 @@
 import CollabReviewCard from '../forms_and_cards/CollabReviewCard'
 import Grid from '@material-ui/core/Grid';
 
-function CollabReviewsWroteByBusiness() {
-    return (
-      <div className="CollabReviewsWroteByBusiness">
-        <h2>CollabReviewsWroteByBusiness</h2>
+import {useSelector, useDispatch} from 'react-redux' 
+
+export default function CollabReviewsWroteByBusiness() {
+  const dispatch = useDispatch();
+  const openReviewForm = useSelector((state) => state.reviewReducer.openReviewForm)
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
+  if (!currentUser) return <h2>Loading...</h2>;
+
+  return (
+    <div className="CollabReviewsWroteByCC">
+      <h2>CollabReviewsWroteByBusiness</h2>
         <Grid container spacing={1}>
-          <CollabReviewCard />                 
+        {currentUser.reviews_i_wrote.length > 0 ? 
+        currentUser.reviews_i_wrote.map(r=> <CollabReviewCard key={r.id} review={r} showBtn={true}/>) 
+        : 
+        <h2>You don't have any review</h2>
+        }
         </Grid>
-      </div>
-    );
-  }
+
+
+    </div>
+  );
+}
   
-  export default CollabReviewsWroteByBusiness;

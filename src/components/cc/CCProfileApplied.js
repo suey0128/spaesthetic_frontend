@@ -15,7 +15,7 @@ function CCProfileApplied() {
         <h2>CCProfileApplied</h2>
         <Grid container spacing={1}>
         {currentUser.applied_campaigns.length > 0 ? 
-          currentUser.applied_campaigns.map(c=> <CampaignCard key={c.id} campaignPassedDown={c}/>)
+          currentUser.applied_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>)
           : 
           <h2>You don't have any campaign that you applied to</h2>
           }

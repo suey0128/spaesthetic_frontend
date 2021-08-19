@@ -1,4 +1,5 @@
-import CampaignBtnGroup from './forms_and_cards/CampaignBtnGroup';
+import CampaignBtnGroupForCC from './forms_and_cards/CampaignBtnGroupForCC';
+import CampaignBtnGroupForBusiness from './forms_and_cards/CampaignBtnGroupForBusiness';
 import CampaignInfo from './forms_and_cards/CampaignInfo';
 import CampaignImg from './forms_and_cards/CampaignImg';
 import CampaignRelatedCC from './forms_and_cards/CampaignRelatedCC';
@@ -35,8 +36,9 @@ export default function CampaginDetail() {
   },[needFetchCampaign])
 
   if (!isLoaded ) return <h2>Loading...</h2>;
+  if (!currentUser ) return <h2>Loading...</h2>;
+  console.log(campaign)
 
-  // console.log(currentUser)
 
 
   return (
@@ -47,11 +49,21 @@ export default function CampaginDetail() {
 
       <CampaignInfo campaign={campaign} />
 
-      <CampaignBtnGroup campaign={campaign}
-                        showDetailsBtn={false}
-                        />
+              {currentUser.platform_user_type === "ContentCreator" ?
+              <CampaignBtnGroupForCC campaign={campaign} 
+                                showDetailsBtn={false} 
+                                />: null
+              }
 
-      <CampaignRelatedCC campaign={campaign} />
+              {currentUser.platform_user_type === "Business" ?
+              <CampaignBtnGroupForBusiness campaign={campaign}
+                                            showDetailsBtn={false}  
+                                            /> : null
+              }
+
+              {currentUser.platform_user_type === "Business" ?
+              <CampaignRelatedCC campaign={campaign}/> : null
+              }
 
       {/* <button onClick={()=>{history.push('/campaignform')}}>Edit</button> */}
     </Grid>

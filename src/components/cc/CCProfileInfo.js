@@ -16,8 +16,6 @@ export default function CCProfileInfo() {
   const currentUser = useSelector((state=> state.userReducer.currentUser))
   const [open, setOpen] = React.useState(false);
 
-
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -27,12 +25,12 @@ export default function CCProfileInfo() {
   };
 
   const handleOpenProfilePicUpload = () => {
-    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <NewProfilePicForm handleClose={handleClose} currentUser={currentUser}/>})
+    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <NewProfilePicForm handleClose={handleClose} />})
     setOpen(true);
   };
 
   const handleOpenChangePD = () => {
-    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <PasswordEditForm handleClose={handleClose} currentUser={currentUser}/>})
+    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <PasswordEditForm handleClose={handleClose} />})
     setOpen(true);
   };
 

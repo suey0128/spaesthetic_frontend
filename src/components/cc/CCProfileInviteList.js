@@ -8,13 +8,14 @@ import { useSelector } from 'react-redux'
 function CCProfileInviteList() {
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   if (currentUser === null) return <h2>Loading...</h2>;
+  console.log(currentUser.invited_by)
   
     return (
       <div className="CCProfileInviteList">
         <h2>CCProfileInviteList</h2>
         <Grid container spacing={1}>
         {currentUser.invited_by.length > 0 ? 
-          currentUser.invited_by.map(c=> <CampaignCard key={c.id} campaignPassedDown={c}/>)
+          currentUser.invited_by.map(c=> <CampaignCard key={c.id} campaign={c}/>)
           : 
           <h2>You don't have any campaign that you are invited to</h2>
           }

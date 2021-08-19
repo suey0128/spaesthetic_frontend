@@ -4,23 +4,32 @@ import Grid from '@material-ui/core/Grid';
 
 import { useSelector } from 'react-redux'
 
-function CollabReviewsOnCC() {
+export default function CollabReviewsOnCC() {
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
-  if (currentUser === null) return <h2>Loading...</h2>;
+  const viewingCC = useSelector((state) => state.ccReducer.viewingCC);
 
-    return (
-      <div className="CollabReviewsOnCC">
-        <h2>CollabReviewsOnCC</h2>
-        <Grid container spacing={1}>
-          {currentUser.reviews_on_me.length > 0 ? 
-          currentUser.reviews_on_me.map(r=> <CollabReviewCard key={r.id} review={r}/>) 
-          : 
-          <h2>You don't have any review</h2>
-          }
-        </Grid>
-      </div>
-    );
+  if (!currentUser === null && viewingCC === null) return <h2>Loading...</h2>;
+
+  let party;
+  if (viewingCC) {
+    party = viewingCC
+  } else {
+    party = currentUser
   }
-  
-  export default CollabReviewsOnCC;
+ 
+  console.log('here')
+
+  return (
+    <div className="CollabReviewsOnCC">
+      <h2>CollabReviewsOnCC</h2>
+      <Grid container spacing={1}>
+        {party.reviews_on_me.length > 0 ? 
+        party.reviews_on_me.map(r=> <CollabReviewCard key={r.id} review={r} showBtn={false}/>) 
+        : 
+        <h2>You don't have any review</h2>
+        }
+      </Grid>
+    </div>
+  );
+}

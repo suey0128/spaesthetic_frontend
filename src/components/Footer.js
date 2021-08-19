@@ -41,12 +41,12 @@ export default function Footer() {
 
   return (
     <div className={classes.root}>
-      <footer className={classes.footer}>
+      {/* <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">My sticky footer can be found here.</Typography>
           <Copyright />
         </Container>
-      </footer>
+      </footer> */}
     </div>
   );
 }

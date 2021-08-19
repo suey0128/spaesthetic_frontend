@@ -67,7 +67,7 @@ export default function BusinessSignUp() {
       business: {
         name: businessName,
         business_type: "",
-        logo: "",
+        profile_pic: "https://via.placeholder.com/280x350.png",
         description: "",
         address: "",
         city: "",

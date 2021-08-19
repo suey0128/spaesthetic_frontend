@@ -6,13 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -21,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'left',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -41,10 +38,87 @@ export default function CCProfileEditForm() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [username, usernameSetter] = useState("")
-
+  // state from the store
   const currentUser = useSelector((state) => state.userReducer.currentUser);
 
+  //local state for control form
+  const [username, usernameSetter] = useState("")
+  const [email, emailSetter] = useState(currentUser ? currentUser.email : "" )
+  const [paypalAccount, paypalAccountSetter] = useState(currentUser ? currentUser.platform_user.paypal_account : "")
+  const [rate, rateSetter] = useState(currentUser ? currentUser.platform_user.ave_rate_per_campaign : "")
+  const [website, websiteSetter] = useState(currentUser ? currentUser.platform_user.website : "")
+  const [igUrl, igUrlSetter] = useState(currentUser ? currentUser.platform_user.instagram_url : "")
+  const [followerNumber, followerNumberSetter] = useState(currentUser ? currentUser.platform_user.instagram_follower : "")
+  const [femaleFollowRatio, femaleFollowRatioSetter] = useState(currentUser ? currentUser.platform_user.instagram_female_follower_ratio : "")
+  const [top1FollowLocation, top1FollowLocationSetter] = useState(currentUser ? currentUser.platform_user.instagram_top1_follow_location : "")
+  const [firstName, firstNameSetter] = useState(currentUser ? currentUser.platform_user.first_name : "")
+  const [lastName, lastNameSetter] = useState(currentUser ? currentUser.platform_user.last_name : "")
+  const [gender, genderSetter] = useState(currentUser ? currentUser.platform_user.gender : "")
+  const [aboutMe, aboutMeSetter] = useState(currentUser ? currentUser.platform_user.about_me : "")
+
+  useEffect(() => {
+    if (currentUser)  {
+    usernameSetter(currentUser.username)
+    emailSetter(currentUser.email)
+    paypalAccountSetter(currentUser.platform_user.paypal_account)
+    rateSetter(currentUser.platform_user.ave_rate_per_campaign)
+    websiteSetter(currentUser.platform_user.website)
+    igUrlSetter(currentUser.platform_user.instagram_url)
+    followerNumberSetter(currentUser.platform_user.instagram_follower)
+    femaleFollowRatioSetter(currentUser.platform_user.instagram_female_follower_ratio)
+    top1FollowLocationSetter(currentUser.platform_user.instagram_top1_follow_location)
+    firstNameSetter(currentUser.platform_user.first_name)
+    lastNameSetter(currentUser.platform_user.last_name)
+    genderSetter(currentUser.platform_user.gender)
+    aboutMeSetter(currentUser.platform_user.about_me)
+    }
+}, [currentUser])
+
+ 
+
+  const handleProfileEditSubmit = (e) => {
+    e.preventDefault();
+    //create new profile instance.
+    const updatedProfile = { 
+      user: {
+        username,
+        email
+      },
+      content_creator: {
+        first_name: firstName,
+        last_name: lastName,
+        gender: gender,
+        instagram_username: igUrl.slice(25,-1),
+        instagram_url: igUrl,
+        instagram_follower: followerNumber,
+        instagram_female_follower_ratio: femaleFollowRatio,
+        instagram_top1_follow_location: top1FollowLocation,
+        ave_rate_per_campaign: rate,
+        paypal_account: paypalAccount,
+        website
+      }
+    }
+    // console.log(updatedProfile)
+    async function updateProfile() {
+      const res = await fetch(`/users/${currentUser.id}`,{
+          method: 'PATCH',
+          // credentials: "include",
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedProfile)
+      });
+      const userData = await res.json();
+      if(res.ok){
+          console.log(userData)
+          dispatch({ type: "SET_CURRENT_USER", playload: userData})
+          history.push('/ccprofile')
+      } else {
+          alert(userData.errors)
+      }
+    }
+    updateProfile();
+  }
 
 
   return (
@@ -61,7 +135,7 @@ export default function CCProfileEditForm() {
         </Typography>
 
 
-        <form className={classes.form} noValidate >
+        <form className={classes.form} noValidate onSubmit={handleProfileEditSubmit}>
 
         <Typography component="h6" >Account Info</Typography>
         <Grid container spacing={1}>
@@ -91,8 +165,8 @@ export default function CCProfileEditForm() {
             name="email"
             autoComplete="email"
             autoFocus
-            value={username}
-            onChange={(e)=>usernameSetter(e.target.value)}
+            value={email}
+            onChange={(e)=>emailSetter(e.target.value)}
           />
         </Grid>      
         </Grid>
@@ -100,7 +174,7 @@ export default function CCProfileEditForm() {
 
         <Typography component="h6" >Getting Paid</Typography>
         <Grid container spacing={1}>
-          <Grid item xs={12} >
+          <Grid item xs={12} sm={6} >
             <TextField
               variant="outlined"
               margin="normal"
@@ -110,8 +184,22 @@ export default function CCProfileEditForm() {
               name="paypalAccount"
               autoComplete="paypalAccount"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={paypalAccount}
+              onChange={(e)=>paypalAccountSetter(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} >
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="rate"
+              label="Avg rate for a collab $"
+              name="rate"
+              autoComplete="rate"
+              autoFocus
+              value={rate}
+              onChange={(e)=>rateSetter(e.target.value)}
             />
           </Grid>
         </Grid>
@@ -129,8 +217,8 @@ export default function CCProfileEditForm() {
               name="website"
               autoComplete="website"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={website}
+              onChange={(e)=>websiteSetter(e.target.value)}
             />
           </Grid>         
           <Grid item xs={12} sm={6}>
@@ -144,8 +232,8 @@ export default function CCProfileEditForm() {
               name="igUrl"
               autoComplete="igUrl"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={igUrl}
+              onChange={(e)=>igUrlSetter(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -158,8 +246,8 @@ export default function CCProfileEditForm() {
               name="followerNumber"
               autoComplete="followerNumber"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={followerNumber}
+              onChange={(e)=>followerNumberSetter(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -172,8 +260,8 @@ export default function CCProfileEditForm() {
               name="femaleFollowRatio"
               autoComplete="femaleFollowRatio"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={femaleFollowRatio}
+              onChange={(e)=>femaleFollowRatioSetter(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -186,8 +274,8 @@ export default function CCProfileEditForm() {
               name="top1FollowLocation"
               autoComplete="top1FollowLocation"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={top1FollowLocation}
+              onChange={(e)=>top1FollowLocationSetter(e.target.value)}
             />
           </Grid>
         </Grid>
@@ -207,8 +295,8 @@ export default function CCProfileEditForm() {
               name="firstName"
               autoComplete="firstName"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={firstName}
+              onChange={(e)=>firstNameSetter(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -222,8 +310,8 @@ export default function CCProfileEditForm() {
               name="lastName"
               autoComplete="lastName"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={lastName}
+              onChange={(e)=>lastNameSetter(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -236,8 +324,8 @@ export default function CCProfileEditForm() {
               name="gender"
               autoComplete="gender"
               autoFocus
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={gender}
+              onChange={(e)=>genderSetter(e.target.value)}
             />
           </Grid>         
           <Grid item xs={12} >
@@ -252,8 +340,8 @@ export default function CCProfileEditForm() {
               autoFocus
               multiline
               rows={4}
-              value={username}
-              onChange={(e)=>usernameSetter(e.target.value)}
+              value={aboutMe}
+              onChange={(e)=>aboutMeSetter(e.target.value)}
             />
           </Grid>
           <br></br>

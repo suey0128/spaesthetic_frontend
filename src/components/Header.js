@@ -11,8 +11,8 @@ function Header() {
     fetch("/logout", {
       method: "DELETE",
     }).then(() => {
-      dispatch({ type: "SET_CURRENT_USER", playload: null})
       history.push('/')
+      dispatch({ type: "SET_CURRENT_USER", playload: null})
     });
   }
   // console.log(currentUser)

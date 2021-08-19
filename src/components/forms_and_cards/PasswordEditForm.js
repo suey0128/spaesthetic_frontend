@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 // the fn that position the modal
 function getModalStyle() {
@@ -37,9 +37,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function NewProfilePicForm({ currentUser, handleClose }) {
+export default function NewProfilePicForm({ handleClose }) {
   const classes = useStyles();
-
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
   const [modalStyle] = React.useState(getModalStyle);
   const [newPassword, setNewPassword] = useState("")
   const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("")

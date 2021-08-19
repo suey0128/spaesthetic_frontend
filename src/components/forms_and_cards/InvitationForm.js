@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
 
 import { useState } from 'react'
+import {useSelector, useDispatch} from 'react-redux' 
 
 // the fn that position the modal
 function getModalStyle() {
@@ -37,48 +35,59 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function InvitationForm() {
+export default function InvitationForm({ cc, handleClose }) {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const [modalStyle] = React.useState(getModalStyle);
-  const [username, usernameSetter] = useState("")
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
 
-  const handleSubmit = () => {
+  if (currentUser === null) return <h2>Loading campaign</h2>
 
+
+  const handleInviteClick = (campaign) => {
+    //POST a new invitation
+    async function createNewInvite () {
+      const res = await fetch(`/invitations`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content_creator_id: cc.id, campaign_id:campaign.id })
+      });
+      if (res.ok) {
+        const newInvite = await res.json();
+        console.log(newInvite)
+        dispatch({ type: 'NEED_FETCH_USER' })
+      } else {
+        const err = await res.json()
+        alert(err.errors)
+      };
+    }
+    createNewInvite();
   }
 
-  const [checked, setChecked] = React.useState(true);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
   return (
-    <div className="NewProfilePicForm">
-      <div style={modalStyle} className={classes.paper}>
-        <h2 id="simple-modal-title">Updating Your Profile Picture</h2>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <div>
-            <Checkbox
-            checked={checked}
-            onChange={handleChange}
-            inputProps={{ 'aria-label': 'primary checkbox' }}
-            /> 
-            <label> Name</label>
-          </div>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Invite
-          </Button>
-        </form>
+      <div style={modalStyle} className={classes.paper}>
+        <h2 id="simple-modal-title">{`Invite ${cc.first_name} to apply to your current campaigns`}</h2>
+          
+          {currentUser.current_campaigns.map(campaign => 
+            campaign.invitees.find((invitee)=> invitee.id === cc.id) ? null :
+            (<div>
+              <h3>{campaign.name}</h3>
+              <button onClick={()=>{handleInviteClick(campaign)}}>Invite</button>
+            </div>)
+          )}
+
+          {
+            currentUser.current_campaigns.filter(invitee => invitee.id === cc.id).length === currentUser.current_campaigns.length ?
+            <h2>{`You have invite ${cc.first_name} to all your current campaigns`}</h2> : null
+          }
+
+          <button onClick={handleClose}>Close Window</button>
+
       </div>
-    </div>
+
   );
   }
   

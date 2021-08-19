@@ -57,21 +57,86 @@ export default function CampaignForm() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [username, usernameSetter] = useState("")
-
   const currentUser = useSelector((state) => state.userReducer.currentUser);
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  //state for the control form:
+  const [name, nameSetter] = useState("")
+  const [image, imageSetter] = useState("")
+  const [startDate, startDateSetter] = useState(new Date());
+  const [endDate, endDateSetter] = useState(new Date());
+  const [description, descriptionSetter] = useState("")
+  const [address,addressSetter] = useState("")
+  const [city, citySetter] = useState("")
+  const [state, stateSetter] = useState("")
+  const [zip, zipSetter] = useState("")
+  const [country, countrySetter] = useState("")
+  const [compensationType, compensationTypeSetter] = useState("")
+  const [compensationMarketValue, compensationMarketValueSetter] = useState("")
+  const [followingMinimum, followingMinimumSetter] = useState("")
+  const [followingLocation, followingLocationSetter] = useState("")
+  const [followingFemaleRatio, followingFemaleRatioSetter] = useState("")
+  const [ccGender,ccGenderSetter] = useState("")
+  const [applyBy, applyBySetter] = useState(new Date());
+  const [requirementDetails, requirementDetailsSetter] = useState("")
+  const [contentSentBy, contentSentBySetter] = useState(new Date());
+  const [mustPostBy, mustPostBySetter] = useState(new Date());
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  let alternativeImg;
+  if (image === "") {alternativeImg = "https://via.placeholder.com/280x350.png"}
 
-  const [compensationType, compensationTypeSetter] = React.useState('');
 
-  const handleChange = (event) => {
-    compensationTypeSetter(event.target.value);
-  };
+  const handlePostNewCampaign = (e) => {
+    e.preventDefault();
+    //create new campaign instance.
+    const newCampaign = { 
+      business_id: currentUser.platform_user.id,
+      name,
+      image: alternativeImg,
+      location_name: "",
+      location_type: "",
+      address,
+      city,
+      state,
+      zip,
+      country,
+      compensation_type: compensationType,
+      compensation_market_value: compensationMarketValue,
+      start_date: startDate,
+      end_date: endDate,
+      application_deadline: applyBy,
+      require_following_minimum: followingMinimum,
+      require_following_location: followingLocation,
+      require_following_female_ratio: followingFemaleRatio,
+      require_gender: ccGender,
+      require_others: requirementDetails,
+      description, 
+      content_sent_by: contentSentBy,
+      must_post_by: mustPostBy
+    }
+    console.log(newCampaign)
+
+    async function postCampaign() {
+      const res = await fetch(`/campaigns`,{
+          method: 'POST',
+          // credentials: "include",
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newCampaign)
+      });
+      const userData = await res.json();
+      if(res.ok){
+          console.log(userData)
+          //add the current user state to make the new campaign without refreshing 
+          dispatch({ type: "NEED_FETCH_USER" })
+          history.push('/businesscurrentcampaign')
+      } else {
+          alert(userData.errors)
+      }
+    }
+    postCampaign();
+  }
+
 
 
   return (
@@ -88,7 +153,7 @@ export default function CampaignForm() {
         </Typography>
 
 
-        <form className={classes.form} noValidate >
+        <form className={classes.form} noValidate onSubmit={handlePostNewCampaign}>
 
         <Typography component="h6" >About the campaign</Typography>
         <Grid container spacing={1}>
@@ -103,8 +168,8 @@ export default function CampaignForm() {
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={name}
+                onChange={(e)=>nameSetter(e.target.value)}
               />
             </Grid>        
           <Grid item xs={12} sm={3}>
@@ -117,8 +182,8 @@ export default function CampaignForm() {
                 name="image"
                 autoComplete="image"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={image}
+                onChange={(e)=>imageSetter(e.target.value)}
             />
           </Grid>    
 
@@ -129,8 +194,8 @@ export default function CampaignForm() {
                 id="startDate"
                 label="Start Date"
                 format="MM/dd/yyyy"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={startDate}
+                onChange={startDateSetter}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
@@ -142,8 +207,8 @@ export default function CampaignForm() {
                 id="endDate"
                 label="End Date"
                 format="MM/dd/yyyy"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={endDate}
+                onChange={endDateSetter}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
@@ -163,8 +228,8 @@ export default function CampaignForm() {
                 autoFocus
                 multiline
                 rows={4}
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={description}
+                onChange={(e)=>descriptionSetter(e.target.value)}
                 />
           </Grid>
         </Grid>
@@ -183,8 +248,8 @@ export default function CampaignForm() {
             name="address"
             autoComplete="address"
             autoFocus
-            value={username}
-            onChange={(e)=>usernameSetter(e.target.value)}
+            value={address}
+            onChange={(e)=>addressSetter(e.target.value)}
             />
           </Grid>     
 
@@ -198,8 +263,8 @@ export default function CampaignForm() {
             name="city"
             autoComplete="city"
             autoFocus
-            value={username}
-            onChange={(e)=>usernameSetter(e.target.value)}
+            value={city}
+            onChange={(e)=>citySetter(e.target.value)}
             />
           </Grid>    
 
@@ -213,8 +278,8 @@ export default function CampaignForm() {
             name="state"
             autoComplete="state"
             autoFocus
-            value={username}
-            onChange={(e)=>usernameSetter(e.target.value)}
+            value={state}
+            onChange={(e)=>stateSetter(e.target.value)}
             />
           </Grid>    
 
@@ -228,8 +293,8 @@ export default function CampaignForm() {
             name="zip"
             autoComplete="zip"
             autoFocus
-            value={username}
-            onChange={(e)=>usernameSetter(e.target.value)}
+            value={zip}
+            onChange={(e)=>zipSetter(e.target.value)}
             />
           </Grid>    
 
@@ -243,8 +308,8 @@ export default function CampaignForm() {
             name="country"
             autoComplete="country"
             autoFocus
-            value={username}
-            onChange={(e)=>usernameSetter(e.target.value)}
+            value={country}
+            onChange={(e)=>countrySetter(e.target.value)}
             />
           </Grid>    
         </Grid>  
@@ -259,7 +324,7 @@ export default function CampaignForm() {
                 labelId="compensationType"
                 id="compensationType"
                 value={compensationType}
-                onChange={handleChange}
+                onChange={(e)=>compensationTypeSetter(e.target.value)}
                 label="compensationType"
               >
                 <MenuItem value="money">Monetery</MenuItem>
@@ -275,8 +340,8 @@ export default function CampaignForm() {
               <InputLabel htmlFor="compensationMarketValue">Compensation Market Value</InputLabel>
               <OutlinedInput
                 id="compensationMarketValue"
-                value={username}
-                onChange={handleChange}
+                value={compensationMarketValue}
+                onChange={(e)=>compensationMarketValueSetter(e.target.value)}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
                 labelWidth={210}
               />
@@ -297,8 +362,8 @@ export default function CampaignForm() {
                 name="followingMinimum"
                 autoComplete="followingMinimum"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={followingMinimum}
+                onChange={(e)=>followingMinimumSetter(e.target.value)}
               />
             </Grid>        
           <Grid item xs={12} sm={3}>
@@ -311,8 +376,8 @@ export default function CampaignForm() {
                 name="followingLocation"
                 autoComplete="followingLocation"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={followingLocation}
+                onChange={(e)=>followingLocationSetter(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -325,8 +390,8 @@ export default function CampaignForm() {
                 name="femaleRatio"
                 autoComplete="femaleRatio"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={followingFemaleRatio}
+                onChange={(e)=>followingFemaleRatioSetter(e.target.value)}
               />
             </Grid>        
           <Grid item xs={12} sm={3}>
@@ -339,10 +404,11 @@ export default function CampaignForm() {
                 name="gender"
                 autoComplete="gender"
                 autoFocus
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={ccGender}
+                onChange={(e)=>ccGenderSetter(e.target.value)}
             />
           </Grid>
+
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid item xs={12} sm={3}>
               <KeyboardDatePicker
@@ -350,14 +416,15 @@ export default function CampaignForm() {
                 id="date-picker-dialog"
                 label="Apply by"
                 format="MM/dd/yyyy"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={applyBy}
+                onChange={applyBySetter}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
               />
             </Grid>
           </MuiPickersUtilsProvider>
+
           <Grid item xs={12}>
             <TextField
                 variant="outlined"
@@ -370,8 +437,8 @@ export default function CampaignForm() {
                 autoFocus
                 multiline
                 rows={2}
-                value={username}
-                onChange={(e)=>usernameSetter(e.target.value)}
+                value={requirementDetails}
+                onChange={(e)=>requirementDetailsSetter(e.target.value)}
             />
           </Grid>          
         </Grid>
@@ -386,8 +453,8 @@ export default function CampaignForm() {
                 id="contentSentBy"
                 label="Content Sent By"
                 format="MM/dd/yyyy"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={contentSentBy}
+                onChange={contentSentBySetter}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
@@ -399,8 +466,8 @@ export default function CampaignForm() {
                 id="mustPostBy"
                 label="Must Post By"
                 format="MM/dd/yyyy"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={mustPostBy}
+                onChange={mustPostBySetter}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}

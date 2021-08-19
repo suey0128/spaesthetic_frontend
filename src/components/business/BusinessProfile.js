@@ -16,6 +16,7 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -57,13 +58,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
-function BusinessProfile() {
+export default function BusinessProfile() {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -112,4 +111,4 @@ function BusinessProfile() {
     );
   }
   
-  export default BusinessProfile;
+  

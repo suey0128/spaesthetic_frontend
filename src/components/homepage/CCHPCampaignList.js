@@ -5,15 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
-
-
 export default function CCHPCampaignList() {
   const dispatch = useDispatch();
 
   const campaignArr = useSelector((state) => state.campaignReducer.campaignArr);
   const needFetchCampaignArr = useSelector((state) => state.campaignReducer.needFetchCampaignArr);
-
-
 
   useEffect(() => {
     fetch("http://localhost:3000/campaigns", 
@@ -32,10 +28,9 @@ export default function CCHPCampaignList() {
     });
   }, [needFetchCampaignArr]);
 
-  // console.log("campaignArr",campaignArr)
-
   const filteredCampaignArr = campaignArr
 
+  // console.log("filteredCampaignArr",filteredCampaignArr)
 
     return (
       <div className="cchp-campaign-list">
@@ -47,7 +42,7 @@ export default function CCHPCampaignList() {
 
         <Grid container spacing={1}>
           {
-            filteredCampaignArr.map(c=>  <CampaignCard key={c.id} campaignPassedDown={c}/>)
+            filteredCampaignArr.map(c=>  <CampaignCard key={c.id} campaign={c}/>)
           } 
         </Grid>
 

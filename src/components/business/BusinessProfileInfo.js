@@ -12,10 +12,12 @@ import { useHistory } from 'react-router-dom'
 export default function BusinessProfileInfo() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const ccProfileEditBody = useSelector((state) => state.ccReducer.ccProfileEditBody)
-
-
+  const businessProfileEditBody = useSelector((state) => state.businessReducer.businessProfileEditBody)
+  const currentUser = useSelector((state) => state.userReducer.currentUser);
   const [open, setOpen] = React.useState(false);
+
+  if (currentUser === null) return <h2>Loading...</h2>;
+
 
   const handleClose = () => {
     setOpen(false);
@@ -26,35 +28,39 @@ export default function BusinessProfileInfo() {
   };
 
   const handleOpenProfilePicUpload = () => {
-    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <NewProfilePicForm />})
+    dispatch({ type: "SET_BUSINESS_PROFILE_EDIT_BODY", playload: <NewProfilePicForm handleClose={handleClose}/>})
     setOpen(true);
   };
 
   const handleOpenChangePD = () => {
-    dispatch({ type: "SET_CC_PROFILE_EDIT_BODY", playload: <PasswordEditForm />})
+    dispatch({ type: "SET_BUSINESS_PROFILE_EDIT_BODY", playload: <PasswordEditForm handleClose={handleClose}/>})
     setOpen(true);
   };
+
 
   return (
 
     <Grid container spacing={1}>
       <Grid item xs={12} sm={3}>
         <div className="profile-img-and-uploads-btn">
-            <img src="https://via.placeholder.com/280x280.png" alt="ccprofile picture"/>
+          { currentUser.platform_user.profile_pic === "" ? 
+            <img src="https://via.placeholder.com/280x280.png" alt={currentUser.platform_user.name}/> : 
+            <img src={currentUser.platform_user.profile_pic} alt={currentUser.platform_user.name}/>
+          }
             <button onClick={handleOpenProfilePicUpload}>Update logo pic</button>
         </div>
       </Grid>
 
       <Grid item xs={12} sm={6}>
         <ul className="profile-info-list">
-            <li>username</li>
-            <li>email</li>
-            <li>business name</li>
-            <li>business type</li>
-            <li>HQ location</li>
-            <li>website</li>
-            <li>business description</li>
-            <p>business description content</p>
+            <li>Username: {currentUser.username}</li>
+            <li>Email: {currentUser.email}</li>
+            <li>Company: {currentUser.platform_user.name}</li>
+            <li>Business Type: {currentUser.platform_user.business_type}</li>
+            <li>HQ location: {currentUser.platform_user.address} {currentUser.platform_user.city}</li>
+            <li>website: {currentUser.platform_user.website}</li>
+            <li>business description: </li>
+            <p>{currentUser.platform_user.description}</p>
         </ul>
       </Grid>
 
@@ -71,7 +77,7 @@ export default function BusinessProfileInfo() {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           >
-          {ccProfileEditBody}
+          {businessProfileEditBody}
       </Modal>
     </Grid>
   );

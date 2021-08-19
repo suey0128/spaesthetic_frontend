@@ -78,7 +78,7 @@ export default function CCSignUp() {
         instagram_connection_permission: igPermission,
         ave_rate_per_campaign: "",
         paypal_account: "",
-        profile_pic: "",
+        profile_pic: "https://via.placeholder.com/280x350.png",
         website: ""
       }
     }

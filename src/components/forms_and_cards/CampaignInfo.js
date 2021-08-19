@@ -2,11 +2,12 @@ import Grid from '@material-ui/core/Grid';
 
 export default function CampaignInfo({ campaign }) {
 
+    console.log(campaign.business)
     return (
         <Grid item xs={12} sm={6}>
             <div className="info-in-Campaign-card">
                 <h3>{campaign.name}</h3>
-                <p>host by: {campaign.business.name}</p>
+                <p>Hosted by: <a href={`/businessdetail/${campaign.business_id}`} >{campaign.business.name}</a></p>
                 <p>location: {campaign.address} {campaign.city}</p>
                 <p>compensation_type: {campaign.compensation_type}</p>
                 <p>compensation_market_value:{campaign.compensation_market_value}</p>
