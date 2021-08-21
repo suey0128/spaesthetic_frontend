@@ -16,6 +16,8 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BusinessProfile() {
+  const dispatch = useDispatch();
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -68,6 +71,11 @@ export default function BusinessProfile() {
     setValue(newValue);
   };
 
+  useEffect(() => {
+    dispatch({ type: "SET_VIEWING_CC", playload: null})
+  },[])
+
+  
 
     return (
       <div className="business-profile">

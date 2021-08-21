@@ -10,6 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 import {useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,12 +24,14 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     color: theme.palette.text.secondary,
     width:"100%",
+    borderRadius:20,
   },
 }));
 
 export default function CollabReviewCard({ review, showBtn }) {
 
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [isEditing, isEditingSetter] =useState(false)
 
@@ -54,61 +57,96 @@ export default function CollabReviewCard({ review, showBtn }) {
     deleteReview() 
   }
 
+  const nameOnDisplay = () => {
+    if (review.reviewer) {
+      if (review.reviewer.name) {
+        return <p>{review.reviewer.name}</p>
+      } else {
+        return <p>{review.reviewer.first_name}</p>
+      }
+    } else  {
+      if (review.reviewee.name) {
+        return <p>{review.reviewee.name}</p>
+      } else {
+        return <p>{review.reviewee.first_name}</p>
+      }
+    }
+  }
+
+  const handleAcatarClick = () => {
+    if (review.reviewer) {
+      if (review.reviewer.name) {
+        return (history.push(`/businessdetail/${review.reviewer.id}`))
+      } else {
+        return (history.push(`/ccdetail/${review.reviewer.id}`))
+      }
+    } else  {
+      if (review.reviewee.name) {
+        return (history.push(`/businessdetail/${review.reviewee.id}`))
+      } else {
+        return (history.push(`/ccdetail/${review.reviewee.id}`))
+      }
+    }
+  }
+
     return (
 
-        <Container component="main" maxWidth="lg" className={classes.paper}>
-          <Paper className={classes.paper}>  
-          {isEditing ? 
-            <CollabReviewFormForEdit review={review} forCancelBtn={isEditingSetter}/>
-            :
-            <div className="container-in-collab-review-paper">
+      <Container component="main" maxWidth="lg" className={classes.paper}>
+        <Paper className={classes.paper}>  
+        {isEditing ? 
+          <CollabReviewFormForEdit review={review} forCancelBtn={isEditingSetter}/>
+          :
+          <div className="container-in-collab-review-paper">
 
-              <div className="upper-in-collab-review-paper">
-                <ReactStars
-                count={5}
-                value={review.rating}
-                onChange={ratingChanged}
-                edit={false}
-                size={20}
-                isHalf={true}
-                char="♥"
-                emptyIcon={<i className="far fa-star"></i>}
-                halfIcon={<i className="fa fa-star-half-alt"></i>}
-                fullIcon={<i className="fa fa-star"></i>}
-                activeColor="#c40405"
-                />
+            <div className="upper-in-collab-review-paper">
+              <ReactStars
+              count={5}
+              value={review.rating}
+              onChange={ratingChanged}
+              edit={false}
+              size={20}
+              isHalf={true}
+              char="♥"
+              emptyIcon={<i className="far fa-star"></i>}
+              halfIcon={<i className="fa fa-star-half-alt"></i>}
+              fullIcon={<i className="fa fa-star"></i>}
+              activeColor="#c40405"
+              />
 
-                <div className="upper-right-in-collab-review-paper">
+              <div className="upper-right-in-collab-review-paper">
 
-                  <div className="name-date-in-collab-review-paper">
-                    <p>{review.date.slice(0,10)}</p>
-                    {review.reviewer ? <p>{review.reviewer.name}</p> : <p>{review.reviewee.name}</p>}
-                  </div>
+                <div className="name-date-in-collab-review-paper">
+                  <p>{review.date.slice(0,10)}</p>
 
-                  <div className={classes.root}>
-                  {review.reviewer ? 
-                  <Avatar alt={review.reviewer.name} src={review.reviewer.profile_pic} /> 
-                  : <Avatar alt={review.reviewee.name} src={review.reviewee.profile_pic} /> 
-                  }
-                  </div>
+                  {nameOnDisplay()}
+
+
                 </div>
 
+                <div className={classes.root}>
+                {review.reviewer ? 
+                <Avatar alt={review.reviewer.name} src={review.reviewer.profile_pic} onClick={handleAcatarClick}/> 
+                : <Avatar alt={review.reviewee.name} src={review.reviewee.profile_pic} onClick={handleAcatarClick}/> 
+                }
+                </div>
               </div>
-            
-              <p className="review-content">
-                {review.content}
-              </p>
 
-              { showBtn ? 
-            <div>
-              <button onClick={handleEdit}>Edit</button>
-              <button onClick={handleDelete}>Delete</button>
-            </div> : null
-            }
             </div>
+          
+            <p className="review-content">
+              {review.content}
+            </p>
+
+            { showBtn ? 
+          <div>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+          </div> : null
           }
-          </Paper>
-        </Container>
- 
+          </div>
+        }
+        </Paper>
+      </Container>
+
     );
   }

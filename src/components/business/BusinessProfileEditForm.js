@@ -103,7 +103,7 @@ export default function BusinessProfileEditForm() {
       const userData = await res.json();
       if(res.ok){
           console.log(userData)
-          dispatch({ type: "SET_CURRENT_USER", playload: userData})
+          dispatch({ type: "NEED_FETCH_USER" })
           history.push('/businessprofile')
       } else {
           alert(userData.errors)

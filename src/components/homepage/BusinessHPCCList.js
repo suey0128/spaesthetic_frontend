@@ -35,7 +35,6 @@ function BusinessHPCCList() {
 
     return (
       <div className="BusinessHPCCList">
-        <h2>BusinessHPCCList</h2>
         <Grid container spacing={1}>
           {filteredCCArr.map(cc=> <CCCard key={cc.id} cc={cc}/>)}
         </Grid>

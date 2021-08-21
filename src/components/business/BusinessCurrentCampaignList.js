@@ -8,7 +8,7 @@ export default function BusinessCurrentCampaignList() {
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const viewingBusiness = useSelector((state) => state.businessReducer.viewingBusiness);
 
-  if (!currentUser === null && viewingBusiness === null) return <h2>Loading...</h2>;
+  if (currentUser === null && viewingBusiness === null) return <h2>Loading...</h2>;
 
   let party;
   if (viewingBusiness) {
