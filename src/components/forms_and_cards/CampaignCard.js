@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    borderRadius:20,
   },
 }));
 
@@ -29,7 +30,6 @@ export default function CampaignCard({ campaign }) {
 
  if (!campaign ) return <h2>Loading campaign</h2>
  if (!currentUser ) return <h2>Loading campaign</h2>
-
 
     return (
       //<div>
@@ -53,8 +53,11 @@ export default function CampaignCard({ campaign }) {
                                             /> : null
               }
 
-              {currentUser.platform_user_type === "Business" && viewingCC === null ?
-              <CampaignRelatedCC campaign={campaign}/> : null
+              {currentUser.platform_user_type !== "Business" ?
+              null : (
+                viewingCC ? 
+                null : <CampaignRelatedCC campaign={campaign}/> 
+                )
               }
  
           </Grid>

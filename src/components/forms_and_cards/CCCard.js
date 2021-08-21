@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
+import Container from '@material-ui/core/Container';
 
 
 import {useSelector, useDispatch} from 'react-redux' 
@@ -16,9 +17,11 @@ import {useSelector, useDispatch} from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
+    // margin: theme.spacing(1),
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    borderRadius:20,
   },
 }));
 
@@ -36,8 +39,9 @@ export default function CCCard({ cc }) {
   };
 
     return (
-      //<div>
-        <Paper className={classes.paper}>
+
+      <Container component="main" maxWidth="lg" className={classes.paper}>
+        <Paper className={classes.paper} >
           <Grid container spacing={1} className="campaign-card">
  
             <CCImg cc={cc}/>
@@ -57,7 +61,7 @@ export default function CCCard({ cc }) {
             <InvitationForm cc={cc} handleClose={handleClose}/>
         </Modal>
         </Paper> 
-      //</div>
+      </Container>
 
     );
   }

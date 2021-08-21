@@ -76,7 +76,7 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
         const updatedReview = await res.json();
         // console.log(updatedReview.content, updatedReview.rating, updatedReview.updated_at.slice(0,10))
         forCancelBtn(false)
-        console.log(updatedReview)
+        newReviewSetter(updatedReview.content)
       } else {
         const err = await res.json();
         alert(err.errors)

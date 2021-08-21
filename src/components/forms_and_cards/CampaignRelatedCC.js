@@ -1,7 +1,8 @@
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CampaignRelatedCC ({ campaign }) { 
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
  
     if (campaign === null) return <h2>Loading campaign</h2>
   console.log(campaign)
@@ -68,8 +70,10 @@ export default function CampaignRelatedCC ({ campaign }) {
                   {campaign.applicants.length === 0 ? <p>You don't have any applicant for this campaign yet.</p> : null}
                   {campaign.applicants.map(c=> 
                     <div>
-                    <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} />
-                    <button onClick={()=>{handleHireClick(c)}}>hire</button>
+                    <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+                    {new Date(campaign.end_date) > new Date() ?
+                    <button onClick={()=>{handleHireClick(c)}}>hire</button> :null
+                    }
                     </div>
                   )}
 
@@ -81,7 +85,7 @@ export default function CampaignRelatedCC ({ campaign }) {
               <div className={classes.avatar}>
               {campaign.invitees.length === 0 ? <p>You don't have any invitee for this campaign yet.</p> : null}
               {campaign.invitees.map(c=> 
-                <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} />
+                <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
               )}
               </div>
             </Grid>
@@ -92,8 +96,10 @@ export default function CampaignRelatedCC ({ campaign }) {
               {campaign.content_creators.length === 0 ? <p>You don't have any collaborator for this campaign yet.</p> : null}
               {campaign.content_creators.map(c=> 
                <div>
-                <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} />
-                <button onClick={()=>{handleCancelClick(c)}}>cancel</button>
+                <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+                {new Date(campaign.end_date) > new Date() ?
+                  <button onClick={()=>{handleCancelClick(c)}}>cancel</button> : null
+                }
               </div>
               )}
 

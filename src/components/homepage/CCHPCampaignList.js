@@ -35,10 +35,10 @@ export default function CCHPCampaignList() {
     return (
       <div className="cchp-campaign-list">
         <h2>CCHPCampaignList</h2>
-        <div>
+        {/* <div>
           <button>Back</button>
           <button>Next</button>
-        </div>
+        </div> */}
 
         <Grid container spacing={1}>
           {
@@ -46,10 +46,10 @@ export default function CCHPCampaignList() {
           } 
         </Grid>
 
-        <div>
+        {/* <div>
           <button>Back</button>
           <button>Next</button>
-        </div>
+        </div> */}
       </div>
     );
   }
