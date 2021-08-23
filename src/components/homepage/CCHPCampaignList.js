@@ -9,7 +9,9 @@ export default function CCHPCampaignList() {
   const dispatch = useDispatch();
 
   const campaignArr = useSelector((state) => state.campaignReducer.campaignArr);
+  const campaignOnDisplay = useSelector((state) => state.campaignReducer.campaignOnDisplay);
   const needFetchCampaignArr = useSelector((state) => state.campaignReducer.needFetchCampaignArr);
+
 
   useEffect(() => {
     fetch("http://localhost:3000/campaigns", 
@@ -21,6 +23,7 @@ export default function CCHPCampaignList() {
         r.json().then((campaigns) => {
         // console.log(campaigns)
         dispatch({ type: "SET_CAMPAIGN_ARR", playload: campaigns})
+        dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: campaigns})
         });
       } else {
         alert(r.errors)
@@ -28,7 +31,7 @@ export default function CCHPCampaignList() {
     });
   }, [needFetchCampaignArr]);
 
-  const filteredCampaignArr = campaignArr
+  
 
   // console.log("filteredCampaignArr",filteredCampaignArr)
 
@@ -42,7 +45,7 @@ export default function CCHPCampaignList() {
 
         <Grid container spacing={1}>
           {
-            filteredCampaignArr.map(c=>  <CampaignCard key={c.id} campaign={c}/>)
+            campaignOnDisplay.map(c=>  <CampaignCard key={c.id} campaign={c}/>)
           } 
         </Grid>
 

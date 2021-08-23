@@ -1,6 +1,7 @@
 
 const initialState = {
     campaignArr: [],
+    campaignOnDisplay: [],
     openCurrentCampaignList: false,
     campaign:null,
     needFetchCampaignArr: true,
@@ -13,6 +14,9 @@ export default (state = initialState, action) => {
         case "SET_CAMPAIGN_ARR":
             return {...state, campaignArr: action.playload};
         
+        case "SET_CAMPAIGN_ON_DISPLAY":
+            return {...state, campaignOnDisplay: action.playload};
+
         case "OPEN_CURRENT_CAMPAIGN_LIST":
             return {...state, openCurrentCampaignList: action.playload};
 
