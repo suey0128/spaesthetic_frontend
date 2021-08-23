@@ -187,11 +187,11 @@ function CCHP() {
 
   //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
   // console.log(checkedBox)
-  console.log(arrWithRepitition, filteredCampaignArr)
-  console.log(filteredCampaignArr[0])
-  console.log(filteredCampaignArr[4])
-  console.log(filteredCampaignArr[0] === filteredCampaignArr[4]) //return false 
-  console.log(String(filteredCampaignArr[0]) === String(filteredCampaignArr[4])) //return true
+  // console.log(arrWithRepitition, filteredCampaignArr)
+  // console.log(filteredCampaignArr[0])
+  // console.log(filteredCampaignArr[4])
+  // console.log(filteredCampaignArr[0] === filteredCampaignArr[4]) //return false 
+  // console.log(String(filteredCampaignArr[0]) === String(filteredCampaignArr[4])) //return true
 
   // if (filteredCampaignArr.length === 0) {
   //   dispatch({  type: "SET_FILTERED_CAMPAIGN_ARR", playload: campaignArr })

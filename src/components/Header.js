@@ -1,8 +1,14 @@
+import HeaderBadge from './HeaderBadge'
+
+
 import {  useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom';
 
 
+
+
 function Header() {
+
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -47,6 +53,7 @@ function Header() {
           <NavLink to='/cccurrentcollab'>                 
             <p>Current Collab</p>
           </NavLink>           
+          <HeaderBadge />
           <button onClick={handleLogout}>logout</button>
         </div>
       :
@@ -59,7 +66,8 @@ function Header() {
           </NavLink>     
           <NavLink to='/campaignform'>                 
             <p>post new campaign</p>
-          </NavLink>           
+          </NavLink>         
+          <HeaderBadge />
           <button onClick={handleLogout}>logout</button>
         </div>
       )}
