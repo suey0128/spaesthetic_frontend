@@ -98,13 +98,13 @@ export default function CCHPSearchAndSort({ handleSearch, handleSort, handleSwit
         className={classes.selectEmpty}
         inputProps={{ 'aria-label': 'age' }}
       >
-        <option value="newPost">Newly posted</option>
-        <option value="applyBy">Application deadline</option>
-        <option value="startDate">Campaign start date</option>
-        <option value="endDate">Campaign end date</option>
-        <option value="mustPostBy">Content posting Deadline</option>
-        <option value="mustSentBy">Content sending Deadline</option>
-        <option value="compensationMarketValue">Compensation market value</option>
+        <option value="created_at">Newly posted</option>
+        <option value="application_deadline">Application deadline</option>
+        <option value="start_date">Campaign start date</option>
+        <option value="end_date">Campaign end date</option>
+        <option value="must_post_by">Content posting Deadline</option>
+        <option value="content_sent_by">Content sending Deadline</option>
+        <option value="compensation_market_value">Compensation market value</option>
       </NativeSelect>
     </FormControl>
     </div>
