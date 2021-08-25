@@ -3,12 +3,31 @@ import CCHPCampaignList from "./CCHPCampaignList";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import yearsToMonths from "date-fns/yearsToMonths";
 
 
 function CCHP() {
   const dispatch = useDispatch();
 
+  const campaignArr = useSelector((state) => state.campaignReducer.campaignArr)
+  const campaignOnDisplay = useSelector((state) => state.campaignReducer.campaignOnDisplay);
+  const currentUser = useSelector((state) => state.userReducer.currentUser)
+  const [arrWithRepitition, arrWithRepititionSetter] = useState([])
+  const [checkedBox, checkBoxSetter] = useState(0)
+  const [filteredCampaignArr, filteredCampaignArrSetter] = useState([])
+  const [isEmpty, isEmptySetter] = useState(false)
+
+  useEffect(()=>{
+    if (filteredCampaignArr.length > 0 && checkedBox > 0) {
+      isEmptySetter(false)
+      dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: filteredCampaignArr})
+    } else if (filteredCampaignArr.length === 0 && checkedBox > 0) {
+      isEmptySetter(true)
+      dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: filteredCampaignArr})
+    } else {
+      dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: campaignArr})
+      isEmptySetter(false)
+    }
+  },[filteredCampaignArr, checkedBox])
 
 
   const handleSearch = (e,input) => {
@@ -20,11 +39,9 @@ function CCHP() {
       const res = await fetch (`/campaigns?search=${convertedInput}`)
       const data = await res.json()
       if (res.ok){
-        // if (data.length === 0) { 
-        //   isSearchComeBackEmptySetter(true)
-        // } else {
+
           dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: data}) 
-        // }
+
       } else {
         alert(data.errors)
       }
@@ -32,12 +49,10 @@ function CCHP() {
     fetchCCWithSearch();
   }
 
-  // if (isSearchComeBackEmpty) return 
-  //  <p>Sorry, we can't find any content creator related to your search 😫. <br></br> Please search other key words❤️ 🧡 💛 💚 💙 💜 🖤 🤍.  </p>;
+  
 
   const handleSort = (e) => {
     console.log(e.target.value)
-    let sortBy = e.target.value
     async function sort(){
       const res = await fetch (`/campaigns?sort=${e.target.value}`)
       const data = await res.json()
@@ -50,20 +65,8 @@ function CCHP() {
     sort();
   }
 
-  const campaignArr = useSelector((state) => state.campaignReducer.campaignArr)
-  const campaignOnDisplay = useSelector((state) => state.campaignReducer.campaignOnDisplay);
-  const currentUser = useSelector((state) => state.userReducer.currentUser)
-  const [arrWithRepitition, arrWithRepititionSetter] = useState([])
-  const [checkedBox, checkBoxSetter] = useState(0)
-  const [filteredCampaignArr, filteredCampaignArrSetter] = useState([])
 
-  useEffect(()=>{
-    if (filteredCampaignArr.length > 0) {
-      dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: filteredCampaignArr})
-    } else {
-      dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: campaignArr})
-    }
-  },[filteredCampaignArr])
+
 
   let tempObj = {}
   //filter using frontend and backend
@@ -136,7 +139,7 @@ function CCHP() {
           currentUser.platform_user.instagram_follower >= c.require_following_minimum : null
         )
         let followerNumberFiltered = [...new Set([...no_follower_requirement_campaigns, ...fitting_follower_requirement_campaigns])]
-        console.log("1",followerNumberFiltered)
+        // console.log("1",followerNumberFiltered)
         
 
         let femaleRatioFiltered = [];
@@ -150,7 +153,7 @@ function CCHP() {
         } else {
           femaleRatioFiltered = followerNumberFiltered
         }
-        console.log("2",femaleRatioFiltered)
+        // console.log("2",femaleRatioFiltered)
 
         let qualified = [];
         let genderArr = ['female', 'male', 'lgbtq and others']
@@ -162,7 +165,7 @@ function CCHP() {
           qualified = femaleRatioFiltered
         }
 
-        console.log("3",qualified)
+        // console.log("3",qualified)
         tempObj[filterKeyWord] = qualified
       } 
       arrWithRepititionSetter([...arrWithRepitition, tempObj])
@@ -179,6 +182,7 @@ function CCHP() {
       // get all the values from filteredCampaignArrWithRepetition after geting rid of that unselected one, 
       //flat it and get rid of duplicates and display
       filteredCampaignArrSetter( [...new Set(x.map(o=>Object.values(o)).flat().flat())] )
+      checkBoxSetter(checkedBox-1)
     } else {
       filteredCampaignArrSetter( [] )
       checkBoxSetter(0)
@@ -213,12 +217,12 @@ function CCHP() {
 
     return (
       <div className="cchp">
-        <h2>CCHP</h2>
         <CCHPSearchAndSort handleSearch={handleSearch} 
                             handleSort={handleSort} 
                             handleSwitchChangeCompensation={handleSwitchChangeCompensation} 
                             handleSwitchChangeQualification={handleSwitchChangeQualification} 
         />
+        <h1 style={{ display: isEmpty ? "" : "none" }} >😔 Sorry, there isn't any campaign that fits</h1>
         <CCHPCampaignList />
       </div>
     );

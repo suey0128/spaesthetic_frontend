@@ -7,8 +7,6 @@ import { useState } from 'react';
 function BusinessHP() {
   const dispatch = useDispatch();
 
-  const [isSearchComeBackEmpty, isSearchComeBackEmptySetter] =useState(false)
-
   const handleSearch = (e,input) => {
     e.preventDefault();
  
@@ -18,11 +16,9 @@ function BusinessHP() {
       const res = await fetch (`/content_creators?search=${convertedInput}`)
       const data = await res.json()
       if (res.ok){
-        // if (data.length === 0) { 
-        //   isSearchComeBackEmptySetter(true)
-        // } else {
+
           dispatch({ type: "SET_CONTENT_CREATOR_ARR", playload: data}) 
-        // }
+
       } else {
         alert(data.errors)
       }
@@ -30,9 +26,7 @@ function BusinessHP() {
     fetchCCWithSearch();
   }
 
-  // if (isSearchComeBackEmpty) return 
-  //  <p>Sorry, we can't find any content creator related to your search 😫. <br></br> Please search other key words❤️ 🧡 💛 💚 💙 💜 🖤 🤍.  </p>;
-
+  
   const handleSort = (e) => {
     console.log(e.target.value)
     let sortBy = e.target.value

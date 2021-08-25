@@ -30,6 +30,7 @@ function App() {
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const needFetchUser = useSelector((state) => state.userReducer.needFetchUser);
+  const isOnLandingPage = useSelector((state) => state.otherReducer.isOnLandingPage)
 
   useEffect(() => {
     // auto-login
@@ -52,45 +53,14 @@ function App() {
   return (
     <div className="App">
       <Router>
+        {/* {isOnLandingPage ?  null : <Header />} */}
         <Header />
 
         <Switch>
 
           <Route exact path="/">
             <HomePage />
-          </Route>
-
-          <Route path="/businessdetail/:id">
-            <BusinessDetail />
-          </Route>
-
-          <Route path="/cccurrentcollab">
-            <CCCurrentCollabList />
-          </Route>
-
-          <Route path="/ccprofile">
-            <CCProfile />
-          </Route>
-
-          <Route path="/campaigndetail/:id">
-            <CampaginDetail />
-            </Route>
-
-          <Route path="/ccdetail/:id">
-            <CCDetail />
-          </Route>
-
-          <Route path="/businesscurrentcampaign">
-            <BusinessCurrentCampaignList />
-          </Route>
-
-          <Route path="/businessprofile">
-            <BusinessProfile />
-          </Route>
-
-          <Route path="/campaignform">
-            <CampaignForm />
-          </Route>
+          </Route> 
 
           <Route path="/ccsignup">
             <CCSignUp />
@@ -104,14 +74,50 @@ function App() {
             <Login />
           </Route>
 
-          <Route path="/ccprofileedit">
-            <CCProfileEditForm />
-          </Route>
+        {currentUser ? 
+        <>
+              <Route path="/businessdetail/:id">
+                  <BusinessDetail />
+                </Route>
 
-          <Route path="/businessprofileedit">
-            <BusinessProfileEditForm />
-          </Route>
+                <Route path="/cccurrentcollab">
+                  <CCCurrentCollabList />
+                </Route>
 
+                <Route path="/ccprofile">
+                  <CCProfile />
+                </Route>
+
+                <Route path="/ccprofileedit">
+                  <CCProfileEditForm />
+                </Route>
+
+                <Route path="/ccdetail/:id">
+                  <CCDetail />
+                </Route>
+
+                <Route path="/businesscurrentcampaign">
+                  <BusinessCurrentCampaignList />
+                </Route>
+
+                <Route path="/businessprofile">
+                  <BusinessProfile />
+                </Route>
+
+                <Route path="/campaignform">
+                  <CampaignForm />
+                </Route>
+
+                <Route path="/businessprofileedit">
+                  <BusinessProfileEditForm />
+                </Route>
+
+            <Route path="/campaigndetail/:id">
+              <CampaginDetail />
+            </Route>
+            </>
+           : <p>Please Login or Sign Up</p>
+        }
         </Switch>
           
         {/* <Footer /> */}

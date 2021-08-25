@@ -13,8 +13,11 @@ import Tab from '@material-ui/core/Tab';
 import PhoneIcon from '@material-ui/icons/Phone';
 import HelpIcon from '@material-ui/icons/Help';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import HistoryIcon from '@material-ui/icons/History';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import RateReviewIcon from '@material-ui/icons/RateReview';
+import EditIcon from '@material-ui/icons/Edit';
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -79,7 +82,6 @@ export default function BusinessProfile() {
 
     return (
       <div className="business-profile">
-        <h2>BusinessProfile</h2>
         <BusinessProfileInfo />
 
         <br></br>
@@ -96,9 +98,9 @@ export default function BusinessProfile() {
             aria-label="scrollable force tabs example"
           >
             <Tab label="Current Campaigns" icon={<PhoneIcon />} {...a11yProps(0)} />
-            <Tab label="Past Campaigns" icon={<PhoneIcon />} {...a11yProps(1)} />
-            <Tab label="Reviews On Me" icon={<HelpIcon />} {...a11yProps(2)} />
-            <Tab label="Reviews I Wrote" icon={<ShoppingBasket />} {...a11yProps(3)} />
+            <Tab label="Past Campaigns" icon={<HistoryIcon />} {...a11yProps(1)} />
+            <Tab label="Reviews On Me" icon={<RateReviewIcon />} {...a11yProps(2)} />
+            <Tab label="Reviews I Wrote" icon={<EditIcon />} {...a11yProps(3)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>

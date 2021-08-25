@@ -19,12 +19,11 @@ export default function BusinessCurrentCampaignList() {
 
   return (
     <div className="business-curren-campaign-list">
-      <h2>BusinessCurrentCampaignList</h2>
       <Grid container spacing={1}>
         {party.current_campaigns.length > 0 ? 
         party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>) 
         : 
-        <h2>You don't have any current campaign</h2>
+        <h2>No current campaign going on</h2>
         }
       </Grid>
     </div>

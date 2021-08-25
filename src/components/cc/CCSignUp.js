@@ -72,7 +72,7 @@ export default function CCSignUp() {
         gender: "",
         instagram_username: igName,
         instagram_url: `https://www.instagram.com/${igNameInUrl}`,
-        instagram_follower: "",
+        instagram_follower: following,
         instagram_female_follower_ratio: "",
         instagram_top1_follow_location: "",
         instagram_connection_permission: igPermission,
@@ -178,7 +178,7 @@ console.log(currentUser)
                 required
                 fullWidth
                 id="igName"
-                label="Instagram Username, ex. @my_username"
+                label="Instagram Username, ex. my_username"
                 name="igName"
                 autoComplete="igName"
                 value={igName}

@@ -48,20 +48,30 @@ export default function CCProfileInfo() {
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <ul className="profile-info-list">
-            <li>Username: {currentUser.username}</li>
-            <li>{currentUser.platform_user.first_name} {currentUser.platform_user.last_name}</li>
-            <li>{currentUser.platform_user.gender}</li>
-            <li>{currentUser.email}</li>
-            <li>{currentUser.platform_user.website}</li>
-            <a href={currentUser.platform_user.instagram_url}>{currentUser.platform_user.instagram_username}</a>
-            <li>Follower: {currentUser.platform_user.instagram_follower}</li>
-            <li>Female follow ratio: {currentUser.platform_user.instagram_female_follower_ratio} </li>
-            <li>Top 1 followed location: {currentUser.platform_user.instagram_top1_follow_location}</li>
-            <li>Avg rate for a campaign: {currentUser.platform_user.ave_rate_per_campaign}</li>
-            <li>paypal account: {currentUser.platform_user.paypal_account}</li>
-            <li>About me</li>
-            <li>{currentUser.platform_user.about_me}</li>
+        <ul className="info-list">
+            <h4>Account Info: </h4>
+              <p>Username: {currentUser.username}</p>
+              <p>Name: {currentUser.platform_user.first_name} {currentUser.platform_user.last_name}</p>
+              <p>Gender: {currentUser.platform_user.gender}</p>
+              <p>Email: {currentUser.email}</p>
+            <br></br>
+
+            <h4>Social Info: </h4>
+              <p>website: {currentUser.platform_user.website}</p>
+              <p>Instagram: <a href={currentUser.platform_user.instagram_url}> {currentUser.platform_user.instagram_username}</a> </p>
+              <p>Follower Number: {currentUser.platform_user.instagram_follower}</p>
+              <p>Female follow ratio: {currentUser.platform_user.instagram_female_follower_ratio}%</p>
+              <p>Top 1 followed location: {currentUser.platform_user.instagram_top1_follow_location}</p>
+              <a href={currentUser.platform_user.website}> website: {currentUser.platform_user.website}</a>
+              <br></br><br></br>
+
+            <h4>Getting Paid: </h4>
+              <p>Avg rate for a campaign: ${currentUser.platform_user.ave_rate_per_campaign}</p>
+              <p>paypal account: {currentUser.platform_user.paypal_account}</p>
+            <br></br>
+
+            <h4>About me</h4>
+            <p>{currentUser.platform_user.about_me}</p>
         </ul>
       </Grid>
 

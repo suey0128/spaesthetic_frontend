@@ -54,12 +54,6 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
   const [newReview, newReviewSetter] = useState(review.content)
   const [updateDate, updateDateSetter] = useState(review.date.slice(0,10))
 
-  // //review passed down from BusinessDetailInfo
-  // console.log(review) // {id: 4, reviewee: {…}, content: "review cc2 to b1", date: "2021-08-19T00:07:48.758Z", rating: 4}
-
-  // //review passed down from CollabReviewCard(businessside)
-  // console.log(review) // {id: 2, reviewee: {…}, content: "review b1 to cc2", date: "2021-08-19T00:07:48.735Z", rating: 3}
-
   const ratingChanged = (newRating) => {
     ratingSetter(newRating);
   };
@@ -74,16 +68,16 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
       });
       if (res.ok) {
         const updatedReview = await res.json();
-        // console.log(updatedReview.content, updatedReview.rating, updatedReview.updated_at.slice(0,10))
         forCancelBtn(false)
         newReviewSetter(updatedReview.content)
+        dispatch({type: "FETCH_VIEWING_BUSINESS" })
+        dispatch({type: "NEED_FETCH_USER" })
       } else {
         const err = await res.json();
         alert(err.errors)
       }
     }
     reviewUpdate();
-    dispatch({type: "NEED_FETCH_USER" })
   }
 
   const handleCancel = () => {
@@ -91,7 +85,7 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
   }
 
     return (
-      // <div  className="collab-review-card">
+      <div  className="modal-forms">
           <Grid item xs={12}>
               <div className="container-in-collab-review-paper">
 
@@ -144,7 +138,7 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
 
               </div>
           </Grid>
-      // </div>
+      </div>
     );
   }
   

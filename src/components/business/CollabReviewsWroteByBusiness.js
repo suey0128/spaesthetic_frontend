@@ -11,12 +11,11 @@ export default function CollabReviewsWroteByBusiness() {
 
   return (
     <div className="CollabReviewsWroteByCC">
-      <h2>CollabReviewsWroteByBusiness</h2>
         <Grid container spacing={1}>
         {currentUser.reviews_i_wrote.length > 0 ? 
         currentUser.reviews_i_wrote.map(r=> <CollabReviewCard key={r.id} review={r} showBtn={true}/>) 
         : 
-        <h2>You don't have any review</h2>
+        <h2>There isn't any review</h2>
         }
         </Grid>
 

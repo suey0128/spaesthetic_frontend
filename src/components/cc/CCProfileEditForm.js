@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import EditIcon from '@material-ui/icons/Edit';
 import Container from '@material-ui/core/Container';
 
 import { useState, useEffect } from 'react'
@@ -15,10 +15,16 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    // marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'left',
+  },
+  title: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -125,16 +131,17 @@ export default function CCProfileEditForm() {
 
     <Container component="main" maxWidth="lg">
       <CssBaseline />
-      <div className={classes.paper}>
+      <div className={classes.title}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <EditIcon />
         </Avatar>
 
         <Typography component="h1" variant="h5">
           Edit Profile Info
         </Typography>
+      </div>
 
-
+      <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleProfileEditSubmit}>
 
         <Typography component="h6" >Account Info</Typography>

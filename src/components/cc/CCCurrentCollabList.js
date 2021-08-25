@@ -22,12 +22,11 @@ export default function CCCurrentCollabList() {
 
     return (
       <div className="cc-current-collab-list">
-        <h2>CCCurrentCollabList</h2>
         <Grid container spacing={1}>
           {party.current_campaigns.length > 0 ? 
           party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>) 
           : 
-          <h2>You don't have any current collab</h2>
+          <h2>There isn't any current collab going on</h2>
           }
         </Grid>
       </div>

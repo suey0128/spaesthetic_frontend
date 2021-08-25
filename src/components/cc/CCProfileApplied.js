@@ -12,7 +12,6 @@ function CCProfileApplied() {
 
     return (
       <div className="CCProfileApplied">
-        <h2>CCProfileApplied</h2>
         <Grid container spacing={1}>
         {currentUser.applied_campaigns.length > 0 ? 
           currentUser.applied_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>)

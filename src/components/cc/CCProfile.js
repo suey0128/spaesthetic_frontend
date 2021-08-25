@@ -12,13 +12,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import HistoryIcon from '@material-ui/icons/History';
+import RateReviewIcon from '@material-ui/icons/RateReview';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,7 +74,6 @@ function CCProfile() {
 
   return (
     <div className="cc-profile">
-      <h2>CCProfile</h2>
       <CCProfileInfo />
 
       <br></br>
@@ -89,12 +89,12 @@ function CCProfile() {
             textColor="primary"
             aria-label="scrollable force tabs example"
           >
-            <Tab label="Current Collabs" icon={<PhoneIcon />} {...a11yProps(0)} />
-            <Tab label="Past Collabs" icon={<PhoneIcon />} {...a11yProps(1)} />
-            <Tab label="Collab Applied" icon={<FavoriteIcon />} {...a11yProps(2)} />
-            <Tab label="Invited Me" icon={<PersonPinIcon />} {...a11yProps(3)} />
-            <Tab label="Reviews On Me" icon={<HelpIcon />} {...a11yProps(4)} />
-            <Tab label="Reviews I Wrote" icon={<ShoppingBasket />} {...a11yProps(5)} />
+            <Tab label="Current Collabs" icon={<FavoriteIcon />} {...a11yProps(0)} />
+            <Tab label="Past Collabs" icon={<HistoryIcon />} {...a11yProps(1)} />
+            <Tab label="Collab Applied" icon={<DescriptionIcon />} {...a11yProps(2)} />
+            <Tab label="Invited Me" icon={<LoyaltyIcon />} {...a11yProps(3)} />
+            <Tab label="Reviews On Me" icon={<RateReviewIcon />} {...a11yProps(4)} />
+            <Tab label="Reviews I Wrote" icon={<BorderColorIcon />} {...a11yProps(5)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>

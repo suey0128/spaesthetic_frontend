@@ -26,7 +26,6 @@ function HomePage() {
 
     return (
       <div className="homepage">
-        <h2>HomePage</h2>
         {displayHP(currentUser)}
       </div>
     );

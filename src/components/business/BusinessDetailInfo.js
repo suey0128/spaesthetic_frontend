@@ -54,14 +54,19 @@ export default function BusinessDetailInfo() {
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <ul className="profile-info-list">
-            <li>Company: {viewingBusiness.name}</li>
-            <li>Business Type: {viewingBusiness.business_type}</li>
-            <li>HQ location: {viewingBusiness.address} {viewingBusiness.city}</li>
-            <li>website: {viewingBusiness.website}</li>
-            <li>business description: </li>
+        <div className="info-list">
+            <h3>{viewingBusiness.name}</h3>
+            <br></br>
+            <p>Business Type: {viewingBusiness.business_type}</p>
+            <br></br>
+            <p>HQ location: {viewingBusiness.address} {viewingBusiness.city}</p>
+            <br></br>
+            <p>website: <a href={viewingBusiness.website} > {viewingBusiness.website}</a></p>
+            <br></br>
+            <p>business description: </p>
+            <br></br>
             <p>{viewingBusiness.description}</p> 
-        </ul>
+        </div>
       </Grid>
 
       {viewingBusiness.cc_I_worked_with.find(cc=>cc.id === currentUser.platform_user.id) ? 

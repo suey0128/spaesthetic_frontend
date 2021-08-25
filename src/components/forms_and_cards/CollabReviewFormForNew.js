@@ -92,13 +92,14 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
         // console.log(updatedReview.content, updatedReview.rating, updatedReview.updated_at.slice(0,10))
         forCancelBtn(false)
         console.log(data)
+        dispatch({type: "FETCH_VIEWING_BUSINESS" })
+        dispatch({type: "NEED_FETCH_USER" })
       } else {
         const err = await res.json();
         alert(err.errors)
       }
     }
     postNewReview();
-    dispatch({type: "NEED_FETCH_USER" })
   }
 
   const handleCancel = () => {
@@ -106,7 +107,7 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
   }
 
     return (
-      // <div  className="collab-review-card">
+      <div  className="modal-forms">
           <Grid item xs={12}>
               <div className="container-in-collab-review-paper">
 
@@ -157,7 +158,7 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
 
               </div>
           </Grid>
-      // </div>
+      </div>
     );
   }
   

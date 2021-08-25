@@ -1,5 +1,6 @@
 import HeaderBadge from './HeaderBadge'
 
+import RoomIcon from '@material-ui/icons/Room';
 
 import {  useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom';
@@ -28,17 +29,27 @@ function Header() {
 
   return (
     <div className="header">
-      <NavLink to='/' style={{ textDecoration: 'none' }}>
-        <h2 id="logo">Spaesthetic</h2>
-      </NavLink>
+      <div className="header-left">
+        <NavLink to='/' style={{ textDecoration: 'none' }}>
+          <h2 id="logo">Spaesthetic</h2>
+        </NavLink>
+
+      <div className="header-geo-div">
+        <RoomIcon />
+        <p>Los Angeles</p>  
+      </div>
+
+
       
+      </div>
+
       {currentUser === null ? 
       <div className="nav-bar">
         <NavLink to='/ccsignup'>
-          <p>Content Creator Sign Up</p>
+          <p>Content Creator<br></br>Sign Up</p>
         </NavLink>
         <NavLink to='/businesssignup'>
-          <p>Business Sign Up</p>
+          <p>Business<br></br>Sign Up</p>
         </NavLink>
         <NavLink to='/login'>
           <button>Login</button>
@@ -51,7 +62,7 @@ function Header() {
             <p>Profile</p>
           </NavLink> 
           <NavLink to='/cccurrentcollab'>                 
-            <p>Current Collab</p>
+            <p>Current Collabs</p>
           </NavLink>           
           <HeaderBadge />
           <button onClick={handleLogout}>logout</button>
@@ -62,10 +73,10 @@ function Header() {
             <p>Profile</p>
           </NavLink> 
           <NavLink to='/businesscurrentcampaign'>                 
-            <p>Current campaign</p>
+            <p>Current<br></br>campaigns</p>
           </NavLink>     
           <NavLink to='/campaignform'>                 
-            <p>post new campaign</p>
+            <p>post<br></br>new campaign</p>
           </NavLink>         
           <HeaderBadge />
           <button onClick={handleLogout}>logout</button>
