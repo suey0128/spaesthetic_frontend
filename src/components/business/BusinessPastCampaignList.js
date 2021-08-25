@@ -20,12 +20,11 @@ export default function BusinessPastCollabList() {
 
     return (
       <div className="CCPastCollabList">
-        <h2>BusinessPastCollabList</h2>
         <Grid container spacing={1}>
           {party.past_campaigns.length > 0 ? 
           party.past_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>)
           : 
-          <h2>You don't have any past collab</h2>
+          <h2>There isn't any past campaign</h2>
           }
         </Grid>
       </div>

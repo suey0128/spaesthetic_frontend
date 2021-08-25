@@ -3,7 +3,7 @@ import HeaderNotificationPopover from './HeaderNotificationPopover'
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import Popover from '@material-ui/core/Popover';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -73,7 +73,7 @@ export default function HeaderBadge() {
   return (
     <div className={classes.root}>
       <Badge badgeContent={unreadNotificationNum} color="primary" onClick={handleClick}>
-        <MailIcon />
+        <NotificationsIcon />
       </Badge>
 
       <Popover

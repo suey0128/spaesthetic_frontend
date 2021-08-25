@@ -20,12 +20,11 @@ export default function CollabReviewsOnBusiness() {
 
   return (
     <div className="CollabReviewsOnCC">
-      <h2>CollabReviewsOnBusiness</h2>
       <Grid container spacing={1}>
         {party.reviews_on_me.length > 0 ? 
         party.reviews_on_me.map(r=> <CollabReviewCard key={r.id} review={r} showBtn={false}/>) 
         : 
-        <h2>You don't have any review</h2>
+        <h2>There isn't any review</h2>
         }
       </Grid>
     </div>

@@ -48,6 +48,7 @@ export default function CampaginDetail() {
       <CampaignImg campaign={campaign} />
 
       <CampaignInfo campaign={campaign} />
+      
 
               {currentUser.platform_user_type === "ContentCreator" ?
               <CampaignBtnGroupForCC campaign={campaign} 

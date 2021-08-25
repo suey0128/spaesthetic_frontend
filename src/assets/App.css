@@ -1,17 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   /* background-color:  #f4e7dc; */
-  color: #6289a2
+  color: #6289a2;
+  font-family: "Montserrat", "sans-serif";
 }
 
-#logo {
-  font-family: "Montserrat", "sans-serif";
-  font-size: 50px;
-  color: #bcced4
+.homepage, .cc-profile, 
+.cc-current-collab-list, 
+.business-profile, 
+.campaign-detail-container, 
+.business-curren-campaign-list {
+  padding: 30px 5%;
 }
 
 button {
@@ -23,7 +28,16 @@ button {
   padding: 10px 20px;
 }
 
+/* HEADER ############################################################################################### */
+
+#logo {
+  font-family: "Montserrat", "sans-serif";
+  font-size: 50px;
+  color: #bcced4
+}
+
 .header {
+  height: 110px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,6 +46,18 @@ button {
   position: sticky;
   z-index: 999;
   top: 0;
+  color: #bcced4;
+  height: 110px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-geo-div {
+  margin-left: 20px;
+  text-align: center;
 }
 
 .nav-bar {
@@ -41,13 +67,217 @@ button {
   align-items: center;
 }
 
-.homepage, .cc-profile, .cc-current-collab-list, .business-profile, .campaign-detail-container, .business-curren-campaign-list {
-  padding: 30px 5%;
+.nav-bar p{
+  text-align: center;
+  font-size:17px;
 }
 
 
-.profile-info-list {
-  list-style:none;
+/* landing page############################################################################################### */
+.none-user-HP {
+  margin: 0;
+  padding: 0;
+  font-family: "Poiret One", "sans-serif";
+  height:100vh;
+  /* background: #000; */
+}
+
+.none-user-HP-container {
+  width: 100%;;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.none-user-HP-login {
+  margin-top: 5px;
+  margin-left: 90%;
+  color:   #bcced4;
+  font-family: "Montserrat", "sans-serif";
+  font-size: 18px;
+  text-decoration: underline;
+}
+
+.none-user-HP-login:hover {
+  transition: 0.5s;
+  transform: scale(1.2);
+  cursor: pointer;
+  text-decoration: none;
+  color:  #c40405;
+}
+
+.none-user-HP-logo {
+  margin-top: 10px;
+  text-align: center;
+  font-size:3.5em;
+  color:  #c40405;
+  font-family: "Montserrat", "sans-serif";
+}
+
+.none-user-HP-btn-group {
+  width: 40vw;
+  position: fixed; 
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 999;
+  
+}
+
+.none-user-HP-btn-group button {
+  width: 200px;
+  height:50px;
+  background: #6289a2;
+}
+
+.none-user-HP-btn-group button:hover {
+  background: #c40405;
+  color:  #f4e7dc;
+  transition: 0.5s;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.none-user-HP-column {
+  width:25%;
+  height: 100%;
+  float: left;
+  border-right: 2px solid rgba(0,0,0,.5);
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.none-user-HP-column:last-child {
+  border-right: none;
+}
+
+.none-user-HP-content {
+  position: relative;
+  height: 100%;
+}
+
+.none-user-HP-h1-box {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 40%;
+  background: rgba(38,54,64,.8);
+  margin: 0;
+  padding: 0;
+  color: rgba(96,91,86,.2);
+  border-top: 2px solid rgba(0,0,0,.5);
+  border-bottom: 2px solid rgba(0,0,0,.5);
+}
+
+.none-user-HP-content h1 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align:center;
+  margin: 0;
+  padding: 0;
+  color: rgba(255,255,255,.5);
+  font-size: 3.5em;
+
+}
+
+.none-user-HP-box {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  padding: 40px;
+  background: #f4e7dc;
+  text-align: center;
+  transition: 0.5s;
+  opacity: 1;
+}
+
+
+.none-user-HP-box h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  font-family: "Montserrat", "sans-serif";
+}
+
+.none-user-HP-box p {
+  font-size: 15px;
+  font-family: "Montserrat", "sans-serif";
+}
+
+.none-user-HP-bg {
+  /* background: url(https://cdn.britannica.com/97/100097-050-7E411D6F/Harbor-Freeway-Los-Angeles.jpg); */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bg1{
+  background: url(https://cdn.britannica.com/97/100097-050-7E411D6F/Harbor-Freeway-Los-Angeles.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.bg2 {
+  background: url(https://i.pinimg.com/originals/8f/95/b4/8f95b47af9e5914b874ac0307e148ee4.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.bg3 {
+  background: url(https://www.adayinlatours.com/content/uploads/2019/02/4th.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.bg4 {
+  background: url(https://www.visittheusa.com/sites/default/files/styles/hero_l/public/images/hero_media_image/2017-01/Getty_515070156_EDITORIALONLY_LosAngeles_HollywoodBlvd_Web72DPI_0.jpg?itok=lst_2_5d);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
+
+/* CCHP############################################################################################### */
+.cchp h1 {
+  padding: 30px 5%;
+  text-align: center;
+  position: relative;
+  margin-top: 10%;
+}
+
+
+
+/* Login############################################################################################### */
+.signup-in-login {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup-in-login-p {
+  color: #bcced4;
+}
+
+
+/* profile############################################################################################### */
+.info-list {
+  margin-left: 40px;
+  margin-right: 40px;
+
 }
 
 .profile-btn {
@@ -123,4 +353,16 @@ button {
 
 .footer {
   background-color: #c40405;
+}
+
+/* SHARE COMPONENT #######################################################################################*/
+.modal-forms {
+  padding: 5px, 10px;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  
 }

@@ -1,7 +1,8 @@
 const initialState = {
     currentBusiness: null,
     businessProfileEditBody: null,
-    viewingBusiness: null
+    viewingBusiness: null,
+    fetchViewingBusiness: false,
 }
 
 export default (state = initialState, action) => {
@@ -14,6 +15,9 @@ export default (state = initialState, action) => {
         
         case "SET_VIEWING_BUSINESS":
             return {...state, viewingBusiness: action.playload }
+
+        case "FETCH_VIEWING_BUSINESS":
+            return {...state, fetchViewingBusiness: !(state.fetchViewingBusiness) }
 
         default: 
             return state;

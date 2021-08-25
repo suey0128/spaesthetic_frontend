@@ -37,7 +37,6 @@ export default function CCHPCampaignList() {
 
     return (
       <div className="cchp-campaign-list">
-        <h2>CCHPCampaignList</h2>
         {/* <div>
           <button>Back</button>
           <button>Next</button>

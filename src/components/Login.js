@@ -78,7 +78,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
 
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -110,10 +110,10 @@ export default function Login() {
             onChange={(e)=>passwordSetter(e.target.value)}
           />
 
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
 
           <Button
             type="submit"
@@ -125,15 +125,13 @@ export default function Login() {
             Login
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
+            <Grid item xs className="signup-in-login">
+              <Link href="/businesssignup" color="primary">
+                Sign up as Business
               </Link>
-            </Grid>
-            <Grid item>
-              {/* <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link> */}
+              <Link href="/ccsignup" color="primary">
+                Sign up as Content Creator
+              </Link>
             </Grid>
           </Grid>
         </form>

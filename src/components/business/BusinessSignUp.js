@@ -46,9 +46,9 @@ export default function BusinessSignUp() {
   const [username, usernameSetter] = useState("")
   const [email, emailSetter] = useState("")
   const [businessName, businessNameSetter] = useState("")
-  const [creditCardNumber, creditCardNumberSetter] = useState("")
-  const [expiry, expirySetter] = useState("")
-  const [cvv, cvvSetter] = useState("")
+  // const [creditCardNumber, creditCardNumberSetter] = useState("")
+  // const [expiry, expirySetter] = useState("")
+  // const [cvv, cvvSetter] = useState("")
   const [password, passwordSetter] = useState("")
   const [passwordConfirmation, passwordConfirmationSetter] = useState("")
 
@@ -164,7 +164,7 @@ console.log(currentUser)
               />
             </Grid> */}
 
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -205,7 +205,7 @@ console.log(currentUser)
                 value={cvv}
                 onChange={(e)=>cvvSetter(e.target.value)}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12}>
               <TextField

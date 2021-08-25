@@ -52,18 +52,18 @@ export default function CCDetailInfo() {
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <ul className="profile-info-list">
-            <li>{viewingCC.first_name} {viewingCC.last_name}</li>
-            <li>{viewingCC.gender}</li>
-            <li>{viewingCC.website}</li>
-            <a href={viewingCC.instagram_url}>{viewingCC.instagram_username}</a>
-            <li>Follower: {currentUser.platform_user.instagram_follower}</li>
-            <li>Female follow ratio: {viewingCC.instagram_female_follower_ratio} </li>
-            <li>Top 1 followed location: {viewingCC.instagram_top1_follow_location}</li>
-            <li>Avg rate for a campaign: {viewingCC.ave_rate_per_campaign}</li>
-            <li>About me</li>
-            <li>{viewingCC.about_me}</li>
-        </ul>
+        <div className="profile-info-list">
+            <p>Name: {viewingCC.first_name} {viewingCC.last_name}</p>
+            <p>Gender: {viewingCC.gender}</p>
+            <p>Website: {viewingCC.website}</p>
+            <a href={viewingCC.instagram_url} >Instagram Account: {viewingCC.instagram_username}</a>
+            <p>Follower: {currentUser.platform_user.instagram_follower}</p>
+            <p>Female follow ratio: {viewingCC.instagram_female_follower_ratio} </p>
+            <p>Top 1 followed location: {viewingCC.instagram_top1_follow_location}</p>
+            <p>Avg rate for a campaign: {viewingCC.ave_rate_per_campaign}</p>
+            <p>About me</p>
+            <p>{viewingCC.about_me}</p>
+        </div>
       </Grid>
 
         {viewingCC.campaigns.find(c=>c.business_id === currentUser.platform_user.id) ? 

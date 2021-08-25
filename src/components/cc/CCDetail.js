@@ -94,7 +94,6 @@ export default function CCDetail() {
 
     return (
       <div className="business-profile">
-        <h2>CCDetail</h2>
         <CCDetailInfo />
 
         <br></br>

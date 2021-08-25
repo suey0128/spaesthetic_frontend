@@ -20,7 +20,6 @@ export default function CollabReviewList() {
 
     return (
       <div className="CollabReviewsWroteByCC">
-        <h2>CollabReviewsWroteByCC</h2>
           <Grid container spacing={1}>
             <CollabReviewCard/>
           </Grid>
