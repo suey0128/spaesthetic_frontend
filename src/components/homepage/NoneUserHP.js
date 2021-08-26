@@ -19,21 +19,21 @@ export default function NoneUserHP() {
 
   const handleLoginClick = () =>{
     history.push('/login')
-    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+    // dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
   }
 
   const handleBusinessSignUpClick = (e) => {
     e.stopPropagation();
     console.log('click')
     history.push("/businesssignup")
-    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+    // dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
   }
 
   const handleCCSignUpClick = (e) => {
     e.stopPropagation();
     console.log('click')
     history.push("/ccsignup")
-    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+    // dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
   }
 
     return (
@@ -44,6 +44,7 @@ export default function NoneUserHP() {
           
 
           <h1 className="none-user-HP-logo">Spaesthetic</h1>
+          <h3 className="none-user-HP-subtitle">Connecting Local Business to Local Influencers</h3>
 
           <div className="none-user-HP-btn-group">
             <button onClick={handleBusinessSignUpClick}>Sign Up as Business</button>
@@ -57,8 +58,8 @@ export default function NoneUserHP() {
                 <h1>Connections</h1>
               </div>
               <div className={hovered1 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered1 ? "" : "none" }}>Connecting Local business with local influence</h2>
-                <p style={{display: hovered1 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h2 style={{display: hovered1 ? "" : "none" }}>Connecting Local business with local influence to grow together!</h2>
+                {/* <p style={{display: hovered1 ? "" : "none" }}> Social media marketing is never easy when your business is local. Growing influence can be tough when you only post local content as well. But we are always stronger when sticking together!</p> */}
               </div>
             </div>
 
@@ -75,8 +76,8 @@ export default function NoneUserHP() {
               </div>
 
               <div className={hovered2 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered2 ? "" : "none" }}>Influence local to go out and enjoy their city more</h2>
-                <p style={{display: hovered2 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h2 style={{display: hovered2 ? "" : "none" }}>Influence local people to go out and enjoy our amazing city more! </h2>
+                {/* <p style={{display: hovered2 ? "" : "none" }}> let’s make people love our city more by inspiring them to go out and explore! </p> */}
               </div>
             </div>
 
@@ -93,8 +94,8 @@ export default function NoneUserHP() {
               </div>
 
               <div className={hovered3 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered3 ? "" : "none" }}>All about localtions and spaces</h2>
-                <p style={{display: hovered3 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h2 style={{display: hovered3 ? "" : "none" }}>Space and experience. Social media marketing isn't online only!</h2>
+                {/* <p style={{display: hovered3 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
               </div>
             </div>
 
@@ -111,8 +112,8 @@ export default function NoneUserHP() {
               </div>
 
               <div className={hovered4 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered4 ? "" : "none" }}>Beauty, arts and fun</h2>
-                <p style={{display: hovered4 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h2 style={{display: hovered4 ? "" : "none" }}>Make our city better by inspiring and promoting more beauty, arts and fun</h2>
+                {/* <p style={{display: hovered4 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
               </div>
             </div>
 

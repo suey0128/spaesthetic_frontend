@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 
 import {useSelector, useDispatch} from 'react-redux';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +34,9 @@ export default function CollabReviewCard({ review, showBtn }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isEditing, isEditingSetter] =useState(false)
+  // const RatingOnDisplay = useSelector((state) => state.reviewReducer.RatingOnDisplay)
+
+  // console.log(RatingOnDisplay)
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
@@ -138,7 +141,7 @@ export default function CollabReviewCard({ review, showBtn }) {
             </p>
 
             { showBtn ? 
-          <div>
+          <div className="review-card-btn-group">
             <button onClick={handleEdit}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
           </div> : null

@@ -53,8 +53,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* {isOnLandingPage ?  null : <Header />} */}
-        <Header />
+        {isOnLandingPage ?  null : <Header />}
+        {/* <Header /> */}
 
         <Switch>
 
@@ -120,7 +120,7 @@ function App() {
         }
         </Switch>
           
-        {/* <Footer /> */}
+        {isOnLandingPage ?  null : <Footer />}
 
       </Router>
     </div>

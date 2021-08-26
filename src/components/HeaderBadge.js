@@ -72,8 +72,10 @@ export default function HeaderBadge() {
 
   return (
     <div className={classes.root}>
-      <Badge badgeContent={unreadNotificationNum} color="primary" onClick={handleClick}>
-        <NotificationsIcon />
+      <Badge badgeContent={unreadNotificationNum} onClick={handleClick} color="primary">
+        <NotificationsIcon 
+        style={{ fill: "#f4e7dc" }}
+        />
       </Badge>
 
       <Popover

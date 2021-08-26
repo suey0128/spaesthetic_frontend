@@ -1,6 +1,6 @@
 import CampaignBtnGroupForCC from './forms_and_cards/CampaignBtnGroupForCC';
 import CampaignBtnGroupForBusiness from './forms_and_cards/CampaignBtnGroupForBusiness';
-import CampaignInfo from './forms_and_cards/CampaignInfo';
+import CampaignDetailInfo from './CampaignDetailInfo';
 import CampaignImg from './forms_and_cards/CampaignImg';
 import CampaignRelatedCC from './forms_and_cards/CampaignRelatedCC';
 
@@ -8,12 +8,11 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 export default function CampaginDetail() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const params = useParams();
   // console.log (params) //=>{id:1}
 
@@ -24,6 +23,7 @@ export default function CampaginDetail() {
 
   //fetch campaign base on the id from the params
   useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false});
     async function fetchCampaign(){
       const res = await fetch (`/campaigns/${params.id}`)
       if (res.ok){
@@ -47,24 +47,24 @@ export default function CampaginDetail() {
       
       <CampaignImg campaign={campaign} />
 
-      <CampaignInfo campaign={campaign} />
+      <CampaignDetailInfo campaign={campaign} />
       
 
-              {currentUser.platform_user_type === "ContentCreator" ?
-              <CampaignBtnGroupForCC campaign={campaign} 
-                                showDetailsBtn={false} 
-                                />: null
-              }
+      {currentUser.platform_user_type === "ContentCreator" ?
+      <CampaignBtnGroupForCC campaign={campaign} 
+                        showDetailsBtn={false} 
+                        />: null
+      }
 
-              {currentUser.platform_user_type === "Business" ?
-              <CampaignBtnGroupForBusiness campaign={campaign}
-                                            showDetailsBtn={false}  
-                                            /> : null
-              }
+      {currentUser.platform_user_type === "Business" ?
+      <CampaignBtnGroupForBusiness campaign={campaign}
+                                    showDetailsBtn={false}  
+                                    /> : null
+      }
 
-              {currentUser.platform_user_type === "Business" ?
-              <CampaignRelatedCC campaign={campaign}/> : null
-              }
+      {currentUser.platform_user_type === "Business" ?
+      <CampaignRelatedCC campaign={campaign}/> : null
+      }
 
       {/* <button onClick={()=>{history.push('/campaignform')}}>Edit</button> */}
     </Grid>

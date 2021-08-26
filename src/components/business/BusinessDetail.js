@@ -9,8 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import HelpIcon from '@material-ui/icons/Help';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
@@ -18,7 +16,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 
@@ -77,6 +75,7 @@ export default function BusinessDetail() {
 
   //fetch campaign base on the id from the params
   useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     async function fetchBusiness(){
       const res = await fetch (`/businesses/${params.id}`)
       if (res.ok){
@@ -89,7 +88,6 @@ export default function BusinessDetail() {
   },[fetchViewingBusiness])
 
   if (!isLoaded ) return <h2>Loading...</h2>;
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

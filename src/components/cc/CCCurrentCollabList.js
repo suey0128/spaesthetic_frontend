@@ -2,10 +2,16 @@ import CampaignCard from "../forms_and_cards/CampaignCard";
 
 import Grid from '@material-ui/core/Grid';
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect} from 'react'
 
 
 export default function CCCurrentCollabList() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+  },[])
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const viewingCC = useSelector((state) => state.ccReducer.viewingCC);

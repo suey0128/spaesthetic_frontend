@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -41,6 +41,10 @@ export default function BusinessSignUp() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+  },[])
 
   //all the states for the control form
   const [username, usernameSetter] = useState("")
@@ -102,7 +106,7 @@ console.log(currentUser)
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon style={{ fill: "#f4e7dc" }}/>
         </Avatar>
         <Typography component="h1" variant="h5">
           Business Sign up
@@ -229,31 +233,28 @@ console.log(currentUser)
                 fullWidth
                 name="passwordConfirmation"
                 label="Password Confirmation"
-                type="passwordConfirmation"
+                type="password"
                 id="passwordConfirmation"
                 autoComplete="current-password"
                 value={passwordConfirmation}
                 onChange={(e)=>passwordConfirmationSetter(e.target.value)}
               />
             </Grid>
-
+{/* 
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           
-          <Button
+          <button
             type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+            style={{ width: '100%', marginTop: '15px'}}
           >
             Sign Up
-          </Button>
+          </button>
           
           <Grid container justifyContent="flex-end">
             <Grid item>

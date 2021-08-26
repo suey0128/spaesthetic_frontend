@@ -1,4 +1,4 @@
-import CollabReviewFormForEdit from '../forms_and_cards/CollabReviewFormForEdit';
+import CollabReviewFormForUpdate from '../forms_and_cards/CollabReviewFormForUpdate';
 import CollabReviewFormForNew from '../forms_and_cards/CollabReviewFormForNew';
 
 import React from 'react';
@@ -37,7 +37,7 @@ export default function BusinessDetailInfo() {
   let modalBody;
   isNewReview ? 
     modalBody =  <CollabReviewFormForNew viewingParty={viewingBusiness} forCancelBtn={handleClose}/> : 
-    modalBody = <CollabReviewFormForEdit review={review} forCancelBtn={handleClose}/>
+    modalBody = <CollabReviewFormForUpdate review={review} forCancelBtn={handleClose}/>
 
     console.log(viewingBusiness, currentUser)
  

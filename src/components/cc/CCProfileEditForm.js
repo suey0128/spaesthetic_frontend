@@ -63,6 +63,7 @@ export default function CCProfileEditForm() {
   const [aboutMe, aboutMeSetter] = useState(currentUser ? currentUser.platform_user.about_me : "")
 
   useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     if (currentUser)  {
     usernameSetter(currentUser.username)
     emailSetter(currentUser.email)
@@ -353,15 +354,16 @@ export default function CCProfileEditForm() {
           </Grid>
           <br></br>
 
-            <Button
+            <button
               type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
+              style={{ width: '100%', marginTop: '15px'}}
+              // fullWidth
+              // variant="contained"
+              // color="primary"
+              // className={classes.submit}
             >
             Save Change
-            </Button>
+            </button>
         </Grid>
         </form>
       </div>

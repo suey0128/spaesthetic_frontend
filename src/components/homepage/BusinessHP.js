@@ -2,10 +2,14 @@ import BusinessHPSearchAndSort from "./BusinessHPSearchAndSort";
 import BusinessHPCCList from "./BusinessHPCCList";
 
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 function BusinessHP() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+  },[])
 
   const handleSearch = (e,input) => {
     e.preventDefault();
@@ -28,7 +32,7 @@ function BusinessHP() {
 
   
   const handleSort = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     let sortBy = e.target.value
     async function sort(){
       const res = await fetch (`/content_creators?sort=${e.target.value}`)

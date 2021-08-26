@@ -55,6 +55,7 @@ export default function BusinessProfileEditForm() {
 
 
   useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     if (currentUser)  {
     usernameSetter(currentUser.username)
     emailSetter(currentUser.email)
