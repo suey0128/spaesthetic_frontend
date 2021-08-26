@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 
 import { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux' 
@@ -73,9 +74,9 @@ export default function InvitationForm({ cc, handleClose }) {
           
           {currentUser.current_campaigns.map(campaign => 
             campaign.invitees.find((invitee)=> invitee.id === cc.id) ? null :
-            (<div>
+            (<div className="invitation-form-item">
               <h3>{campaign.name}</h3>
-              <button onClick={()=>{handleInviteClick(campaign)}}>Invite</button>
+              <button className="invitation-form-btn" onClick={()=>{handleInviteClick(campaign)}}>Invite</button>
             </div>)
           )}
 
@@ -84,7 +85,7 @@ export default function InvitationForm({ cc, handleClose }) {
             <h2>{`You have invite ${cc.first_name} to all your current campaigns`}</h2> : null
           }
 
-          <button onClick={handleClose}>Close Window</button>
+          <button className="invitation-form-btn" onClick={handleClose}>Close Window</button>
 
       </div>
 

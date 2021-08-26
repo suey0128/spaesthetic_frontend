@@ -5,9 +5,9 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useEffect} from 'react';
 
 export default function BusinessProfileInfo() {
   const dispatch = useDispatch();
@@ -15,6 +15,10 @@ export default function BusinessProfileInfo() {
   const businessProfileEditBody = useSelector((state) => state.businessReducer.businessProfileEditBody)
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+  },[])
 
   if (currentUser === null) return <h2>Loading...</h2>;
 
@@ -52,16 +56,22 @@ export default function BusinessProfileInfo() {
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <ul className="profile-info-list">
-            <li>Username: {currentUser.username}</li>
-            <li>Email: {currentUser.email}</li>
-            <li>Company: {currentUser.platform_user.name}</li>
-            <li>Business Type: {currentUser.platform_user.business_type}</li>
-            <li>HQ location: {currentUser.platform_user.address} {currentUser.platform_user.city}</li>
-            <li>website: {currentUser.platform_user.website}</li>
-            <li>business description: </li>
+        <div className="info-list">
+          <h4>Account Info: </h4>
+            <p>Username: {currentUser.username}</p>
+            <p>Email: {currentUser.email}</p>
+            <br></br>
+          
+          <h4>Business Info: </h4>
+            <p>Company: {currentUser.platform_user.name}</p>
+            <p>Business Type: {currentUser.platform_user.business_type}</p>
+            <p>HQ location: {currentUser.platform_user.address} {currentUser.platform_user.city}</p>
+            <p>website: {currentUser.platform_user.website}</p>
+            <br></br>
+            <p>business description: </p>
             <p>{currentUser.platform_user.description}</p>
-        </ul>
+
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={3}>

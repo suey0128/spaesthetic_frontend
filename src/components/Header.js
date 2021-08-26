@@ -35,7 +35,7 @@ function Header() {
         </NavLink>
 
       <div className="header-geo-div">
-        <RoomIcon />
+        <RoomIcon style={{ fill: "#f4e7dc" }}/>
         <p>Los Angeles</p>  
       </div>
 
@@ -45,41 +45,41 @@ function Header() {
 
       {currentUser === null ? 
       <div className="nav-bar">
-        <NavLink to='/ccsignup'>
+        <NavLink to='/ccsignup' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>
           <p>Content Creator<br></br>Sign Up</p>
         </NavLink>
-        <NavLink to='/businesssignup'>
+        <NavLink to='/businesssignup' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>
           <p>Business<br></br>Sign Up</p>
         </NavLink>
-        <NavLink to='/login'>
-          <button>Login</button>
+        <NavLink to='/login' >
+          <button className="login-out-btn">Login</button>
         </NavLink>
       </div>
       : 
       (currentUser.platform_user_type === "ContentCreator" ? 
         <div className="nav-bar">
-          <NavLink to='/ccprofile'>      
+          <NavLink to='/ccprofile' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>      
             <p>Profile</p>
           </NavLink> 
-          <NavLink to='/cccurrentcollab'>                 
+          <NavLink to='/cccurrentcollab' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>                 
             <p>Current Collabs</p>
           </NavLink>           
           <HeaderBadge />
-          <button onClick={handleLogout}>logout</button>
+          <button onClick={handleLogout} className="login-out-btn">logout</button>
         </div>
       :
         <div className="nav-bar">
-          <NavLink to='/businessprofile'>      
+          <NavLink to='/businessprofile' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>      
             <p>Profile</p>
           </NavLink> 
-          <NavLink to='/businesscurrentcampaign'>                 
+          <NavLink to='/businesscurrentcampaign' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>                 
             <p>Current<br></br>campaigns</p>
           </NavLink>     
-          <NavLink to='/campaignform'>                 
+          <NavLink to='/campaignform' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>                 
             <p>post<br></br>new campaign</p>
           </NavLink>         
           <HeaderBadge />
-          <button onClick={handleLogout}>logout</button>
+          <button onClick={handleLogout} className="login-out-btn">logout</button>
         </div>
       )}
       

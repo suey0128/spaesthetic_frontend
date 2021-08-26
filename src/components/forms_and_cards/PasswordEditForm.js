@@ -92,21 +92,18 @@ export default function NewProfilePicForm({ handleClose }) {
             fullWidth
             name="passwordConfirmation"
             label="Password Confirmation"
-            type="passwordConfirmation"
+            type="password"
             id="passwordConfirmation"
             autoComplete="current-password"
             value={newPasswordConfirmation}
             onChange={(e)=>setNewPasswordConfirmation(e.target.value)}
           />
-            <Button
+            <button
               type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
+              style={{ width: '100%', marginTop: '15px'}}
             >
               Save new password
-            </Button>
+            </button>
         </form>
       </div>
     </div>

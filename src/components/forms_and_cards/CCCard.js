@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     // margin: theme.spacing(1),
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: 'left',
     color: theme.palette.text.secondary,
     borderRadius:20,
   },

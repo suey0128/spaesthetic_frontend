@@ -7,15 +7,36 @@ import { createStore } from "redux";
 import rootReducer from "./redux/reducers/rootReducer";
 import { Provider } from "react-redux";
 
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const store = createStore(rootReducer);
 // console.log(store.getState().campaignReducer.campaignArr);
 // console.log(store.dispatch({ type: "SET_CAMPAIGN_ARR", playload:  "campaigns"}))
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#bcced4',
+    },
+    secondary: {
+      main: '#c40405',
+    },
+  },
+  typography:{
+    fontFamily: [
+      'Montserrat',
+      'Roboto',
+  ].join(',')
+  }
+});
+
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

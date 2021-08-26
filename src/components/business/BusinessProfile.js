@@ -10,14 +10,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import HistoryIcon from '@material-ui/icons/History';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import EditIcon from '@material-ui/icons/Edit';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -97,7 +95,7 @@ export default function BusinessProfile() {
             textColor="primary"
             aria-label="scrollable force tabs example"
           >
-            <Tab label="Current Campaigns" icon={<PhoneIcon />} {...a11yProps(0)} />
+            <Tab label="Current Campaigns" icon={<EventAvailableIcon />} {...a11yProps(0)} />
             <Tab label="Past Campaigns" icon={<HistoryIcon />} {...a11yProps(1)} />
             <Tab label="Reviews On Me" icon={<RateReviewIcon />} {...a11yProps(2)} />
             <Tab label="Reviews I Wrote" icon={<EditIcon />} {...a11yProps(3)} />

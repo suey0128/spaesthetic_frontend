@@ -16,10 +16,12 @@ export default function CCBtnGroup({ cc, handleOpen }) {
     return (
         <Grid item xs={12} sm={3}>
 
-            <button onClick={()=>{history.push(`/ccdetail/${cc.id}`)}}>See Details</button>
+            <button onClick={()=>{history.push(`/ccdetail/${cc.id}`)}} className="cc-btn-group-btns"
+            >See Details</button>
             {   currentUser.current_campaigns.map(campaign => 
                 campaign.invitees.filter((invitee)=> invitee.id === cc.id)).find(a => a.length === 0) ? 
-                <button onClick={handleOpen}>Invite</button> : null
+                <button onClick={handleOpen} className="cc-btn-group-btns"
+                >Invite</button> : null
             }
         </Grid>
     );

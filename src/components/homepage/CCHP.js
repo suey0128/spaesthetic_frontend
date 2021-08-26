@@ -17,6 +17,7 @@ function CCHP() {
   const [isEmpty, isEmptySetter] = useState(false)
 
   useEffect(()=>{
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     if (filteredCampaignArr.length > 0 && checkedBox > 0) {
       isEmptySetter(false)
       dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: filteredCampaignArr})

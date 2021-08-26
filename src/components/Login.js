@@ -12,9 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,6 +40,10 @@ export default function Login() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+  },[])
 
   const [username, usernameSetter] = useState("")
   const [password, passwordSetter] = useState("")
@@ -75,7 +79,7 @@ export default function Login() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon style={{ fill: "#f4e7dc" }}/>
         </Avatar>
         <Typography component="h1" variant="h5">
           Login
@@ -115,15 +119,16 @@ export default function Login() {
             label="Remember me"
           /> */}
 
-          <Button
+          <button
             type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+            style={{ width: '100%', marginTop: '15px'}}
+            // fullWidth
+            // variant="contained"
+            // color="primary"
+            // className={classes.submit}
           >
             Login
-          </Button>
+          </button>
           <Grid container>
             <Grid item xs className="signup-in-login">
               <Link href="/businesssignup" color="primary">

@@ -151,9 +151,10 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
                       value={newReview}
                       onChange={(e)=>{newReviewSetter(e.target.value)}}
                       />
-                  <button type="submit" value="Submit">Post your review</button>
-                  <button onClick={handleCancel}>cancel</button>
-
+                  <div className="review-form-btn-group">
+                    <button type="submit" value="Submit">Post your review</button>
+                    <button onClick={handleCancel}>cancel</button>
+                  </div>
                 </form>
 
               </div>

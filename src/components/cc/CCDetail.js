@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 
@@ -74,6 +74,7 @@ export default function CCDetail() {
 
   //fetch campaign base on the id from the params
   useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     async function fetchCC(){
       const res = await fetch (`/content_creators/${params.id}`)
       if (res.ok){

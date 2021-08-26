@@ -91,15 +91,16 @@ export default function NewProfilePicForm({ handleClose }) {
               value={url}
               onChange={(e)=>urlSetter(e.target.value)}
             />
-            <Button
+            <button
               type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
+              style={{ width: '100%', marginTop: '15px'}}
+              // fullWidth
+              // variant="contained"
+              // color="primary"
+              // className={classes.submit}
             >
               Update
-            </Button>
+            </button>
         </form>
       </div>
     </div>

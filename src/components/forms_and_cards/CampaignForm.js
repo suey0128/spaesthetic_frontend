@@ -1,12 +1,11 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import Container from '@material-ui/core/Container';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -21,16 +20,17 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    padding: '40px'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    textColor: '#c40405',
   },
   formControl: {
     marginTop: theme.spacing(1),
@@ -59,11 +60,19 @@ export default function CampaignForm() {
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
 
+  useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+  },[])
+
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+
   //state for the control form:
   const [name, nameSetter] = useState("")
   const [image, imageSetter] = useState("")
-  const [startDate, startDateSetter] = useState(new Date());
-  const [endDate, endDateSetter] = useState(new Date());
+  const [startDate, startDateSetter] = useState(tomorrow);
+  const [endDate, endDateSetter] = useState(tomorrow);
   const [description, descriptionSetter] = useState("")
   const [address,addressSetter] = useState("")
   const [city, citySetter] = useState("")
@@ -76,10 +85,10 @@ export default function CampaignForm() {
   const [followingLocation, followingLocationSetter] = useState("")
   const [followingFemaleRatio, followingFemaleRatioSetter] = useState(0)
   const [ccGender,ccGenderSetter] = useState("")
-  const [applyBy, applyBySetter] = useState(new Date());
+  const [applyBy, applyBySetter] = useState(tomorrow);
   const [requirementDetails, requirementDetailsSetter] = useState("")
-  const [contentSentBy, contentSentBySetter] = useState(new Date());
-  const [mustPostBy, mustPostBySetter] = useState(new Date());
+  const [contentSentBy, contentSentBySetter] = useState(tomorrow);
+  const [mustPostBy, mustPostBySetter] = useState(tomorrow);
 
   let alternativeImg;
   if (image === "") {alternativeImg = "https://via.placeholder.com/280x350.png"}
@@ -139,13 +148,14 @@ export default function CampaignForm() {
 
 
 
+
   return (
 
     <Container component="main" maxWidth="lg">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <EventAvailableIcon style={{ fill: "#f4e7dc" }}/>
         </Avatar>
 
         <Typography component="h1" variant="h5">
@@ -190,6 +200,8 @@ export default function CampaignForm() {
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid item xs={12} sm={3}>
               <KeyboardDatePicker
+                required
+                minDate={tomorrow}
                 margin="normal"
                 id="startDate"
                 label="Start Date"
@@ -203,6 +215,8 @@ export default function CampaignForm() {
             </Grid>
             <Grid item xs={12} sm={3}>
               <KeyboardDatePicker
+                required
+                minDate={tomorrow}
                 margin="normal"
                 id="endDate"
                 label="End Date"
@@ -218,6 +232,7 @@ export default function CampaignForm() {
         
           <Grid item xs={12} >
                 <TextField
+                required
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -412,6 +427,8 @@ export default function CampaignForm() {
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid item xs={12} sm={3}>
               <KeyboardDatePicker
+                required
+                minDate={tomorrow}
                 margin="normal"
                 id="date-picker-dialog"
                 label="Apply by"
@@ -449,6 +466,8 @@ export default function CampaignForm() {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid item xs={12} sm={3}>
               <KeyboardDatePicker
+                required
+                minDate={tomorrow}
                 margin="normal"
                 id="contentSentBy"
                 label="Content Sent By"
@@ -462,6 +481,8 @@ export default function CampaignForm() {
             </Grid>
             <Grid item xs={12} sm={3}>
               <KeyboardDatePicker
+                required
+                minDate={tomorrow}
                 margin="normal"
                 id="mustPostBy"
                 label="Must Post By"
@@ -478,15 +499,12 @@ export default function CampaignForm() {
         <br></br>
 
         <Grid container spacing={1}>
-            <Button
+            <button
               type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
+              style={{ width: '100%', marginTop: '15px'}}
             >
               Post
-            </Button>
+            </button>
         </Grid>
         </form>
       </div>

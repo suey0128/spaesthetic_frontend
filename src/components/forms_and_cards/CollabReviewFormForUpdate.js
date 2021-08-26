@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
+export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -45,11 +45,9 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
       if (res.ok) {
         const updatedReview = await res.json();
         forCancelBtn(false)
-        ratingSetter(updatedReview.rating)
         newReviewSetter(updatedReview.content)
         dispatch({type: "FETCH_VIEWING_BUSINESS" })
         dispatch({type: "NEED_FETCH_USER" })
-        // dispatch({ type: "SET_RATING_ON_DISPLAY", playload: updatedReview.rating})
       } else {
         const err = await res.json();
         alert(err.errors)
@@ -58,14 +56,12 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
     reviewUpdate();
   }
 
-  // console.log(rating)
-
   const handleCancel = () => {
     forCancelBtn(false) //CollabReviewCard shows the review
   }
 
     return (
-      <div >
+        <div  className="modal-forms">
           <Grid item xs={12}>
               <div className="container-in-collab-review-paper">
 

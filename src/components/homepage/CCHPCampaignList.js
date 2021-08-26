@@ -31,10 +31,6 @@ export default function CCHPCampaignList() {
     });
   }, [needFetchCampaignArr]);
 
-  
-
-  // console.log("filteredCampaignArr",filteredCampaignArr)
-
     return (
       <div className="cchp-campaign-list">
         {/* <div>

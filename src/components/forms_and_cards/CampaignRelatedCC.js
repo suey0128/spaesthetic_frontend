@@ -1,5 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -12,6 +13,17 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
       },
     },
+    large: {
+      width: theme.spacing(6),
+      height: theme.spacing(6),
+    },
+    container: {
+      marginTop: theme.spacing(2),
+      textAlign: 'left'
+    },
+    item: {
+      marginBottom: theme.spacing(1),
+    },
   }));
 
 export default function CampaignRelatedCC ({ campaign }) { 
@@ -20,7 +32,7 @@ export default function CampaignRelatedCC ({ campaign }) {
     const history = useHistory();
  
     if (campaign === null) return <h2>Loading campaign</h2>
-  console.log(campaign)
+  // console.log(campaign)
 
     const handleHireClick =  (contentCreator) => {
       const newCollab = {
@@ -63,42 +75,47 @@ export default function CampaignRelatedCC ({ campaign }) {
     }
 
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12} >
-              <h5>Campaign Applicants</h5>
+
+        <Grid container spacing={1} className={classes.container}>
+            <Grid item xs={12} className={classes.item}>
+              <h3>Campaign Applicants: </h3>
               <div className={classes.avatar}>
                   {campaign.applicants.length === 0 ? <p>You don't have any applicant for this campaign yet.</p> : null}
                   {campaign.applicants.map(c=> 
-                    <div>
-                    <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+                    <div className="related-cc-avatar-btn-group">
+                    <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
                     {new Date(campaign.end_date) > new Date() ?
-                    <button onClick={()=>{handleHireClick(c)}}>hire</button> :null
+                    <button className="related-cc-btn" onClick={()=>{handleHireClick(c)}}>hire</button> :null
                     }
                     </div>
                   )}
 
               </div>
+              <Divider />
             </Grid>
 
-            <Grid item xs={12} >
-              <h5>Invited Content Creators</h5>
+
+
+            <Grid item xs={12} className={classes.item}>
+              <h3>Invited Content Creators: </h3>
               <div className={classes.avatar}>
               {campaign.invitees.length === 0 ? <p>You don't have any invitee for this campaign yet.</p> : null}
               {campaign.invitees.map(c=> 
-                <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+                <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
               )}
               </div>
+              <Divider />
             </Grid>
 
             <Grid item xs={12} >
-              <h5>Hired Content Creators</h5>
+              <h3>Hired Content Creators: </h3>
               <div className={classes.avatar}>
               {campaign.content_creators.length === 0 ? <p>You don't have any collaborator for this campaign yet.</p> : null}
               {campaign.content_creators.map(c=> 
-               <div>
-                <Avatar key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+               <div className="related-cc-avatar-btn-group">
+                <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
                 {new Date(campaign.end_date) > new Date() ?
-                  <button onClick={()=>{handleCancelClick(c)}}>cancel</button> : null
+                  <button className="related-cc-btn" onClick={()=>{handleCancelClick(c)}}>cancel</button> : null
                 }
               </div>
               )}
@@ -106,5 +123,6 @@ export default function CampaignRelatedCC ({ campaign }) {
               </div>
             </Grid>
         </Grid>
+    
     );
 }

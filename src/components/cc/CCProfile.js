@@ -21,6 +21,9 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import DescriptionIcon from '@material-ui/icons/Description';
 
+import { useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -65,6 +68,11 @@ const useStyles = makeStyles((theme) => ({
 function CCProfile() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
+  },[])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
