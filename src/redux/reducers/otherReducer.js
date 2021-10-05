@@ -2,6 +2,7 @@ const initialState = {
     notificationArr: [],
     unreadNotificationNum: null,
     isOnLandingPage: false,
+    showSidebar: false,
 }
 
 export default (state = initialState, action) => {
@@ -15,6 +16,10 @@ export default (state = initialState, action) => {
         case "SET_IS_ON_LANDING_PAGE":
             return {...state, isOnLandingPage: action.playload }
 
+        case "SET_SHOW_SIDEBAR":
+                return {...state, showSidebar: action.playload }
+
+        
         default: 
             return state;
     }

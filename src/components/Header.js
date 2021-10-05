@@ -1,6 +1,7 @@
-import HeaderBadge from './HeaderBadge'
+import HeaderBadge from './HeaderBadge';
 
 import RoomIcon from '@material-ui/icons/Room';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import {  useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom';
@@ -53,18 +54,26 @@ function Header() {
       </div>
       : 
       (currentUser.platform_user_type === "ContentCreator" ? 
+      <>
         <div className="nav-bar">
+          <HeaderBadge />
           <NavLink to='/ccprofile' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>      
             <p>Profile</p>
           </NavLink> 
           <NavLink to='/cccurrentcollab' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>                 
             <p>Current Collabs</p>
           </NavLink>           
-          <HeaderBadge />
           <button onClick={handleLogout} className="login-out-btn">logout</button>
         </div>
+
+        <div className='mobile-nav-menu-icon'> 
+          <HeaderBadge />
+          <MenuIcon style={{ fill: "#f4e7dc" }} onClick={()=>{dispatch({ type: "SET_SHOW_SIDEBAR", playload: true})}}/>
+        </div>     
+        </>   
       :
         <div className="nav-bar">
+          <HeaderBadge />
           <NavLink to='/businessprofile' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>      
             <p>Profile</p>
           </NavLink> 
@@ -74,8 +83,12 @@ function Header() {
           <NavLink to='/campaignform' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>                 
             <p>post<br></br>new campaign</p>
           </NavLink>         
-          <HeaderBadge />
           <button onClick={handleLogout} className="login-out-btn">logout</button>
+          
+          <div className='mobile-nav-menu-icon'> 
+            <HeaderBadge />
+            <MenuIcon style={{ fill: "#f4e7dc" }}/>
+          </div>     
         </div>
       )}
       

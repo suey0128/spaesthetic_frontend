@@ -14,7 +14,8 @@ import BusinessProfile from './business/BusinessProfile'
 import CampaignForm from './forms_and_cards/CampaignForm'
 import CCProfileEditForm from './cc/CCProfileEditForm'
 import BusinessProfileEditForm from './business/BusinessProfileEditForm'
-import Footer from './Footer'
+import Footer from './Footer';
+import HeaderMobileNavbar from './HeaderMobileNavbar';
 
 import { 
   BrowserRouter as Router,
@@ -31,10 +32,10 @@ function App() {
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const needFetchUser = useSelector((state) => state.userReducer.needFetchUser);
   const isOnLandingPage = useSelector((state) => state.otherReducer.isOnLandingPage)
+  const showSidebar = useSelector((state) => state.otherReducer.showSidebar)
 
   useEffect(() => {
     // auto-login
-    // fetch('/users/1',
     fetch("http://localhost:3000/me", 
     {
       credentials: "include"
@@ -48,13 +49,20 @@ function App() {
     });
   }, [needFetchUser]);
 
-  console.log("currentUerInApp", currentUser)
+  // console.log("currentUerInApp", currentUser)
+  console.log(showSidebar)
 
   return (
     <div className="App">
       <Router>
-        {isOnLandingPage ?  null : <Header />}
-        {/* <Header /> */}
+        {isOnLandingPage ?  (null )
+        :
+        (showSidebar ? 
+          <HeaderMobileNavbar />
+          : 
+          <Header />
+        )
+        }
 
         <Switch>
 
