@@ -531,6 +531,10 @@ button:hover {
   margin-right: 5px;
 }
 
+.mobile-nav-menu-icon {
+  display: none;
+}
+
 @media screen and (max-width: 1000px){
   .none-user-HP-mobile-grid-container {
     display: flex;
@@ -549,4 +553,16 @@ button:hover {
   .none-user-HP-subtitle {
     font-size: 1.5rem;
   }
+
+  .mobile-nav-menu-icon {
+    color: #f4e7dc;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-bar {
+    display: none;
+  }
 }
+
