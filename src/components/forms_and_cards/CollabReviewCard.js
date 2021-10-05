@@ -92,6 +92,8 @@ export default function CollabReviewCard({ review, showBtn }) {
     }
   }
 
+  console.log(review)
+
     return (
 
       <Container component="main" maxWidth="lg" className={classes.paper}>
@@ -105,7 +107,7 @@ export default function CollabReviewCard({ review, showBtn }) {
               <ReactStars
               count={5}
               value={review.rating}
-              onChange={ratingChanged}
+              // onChange={ratingChanged}
               edit={false}
               size={20}
               isHalf={true}

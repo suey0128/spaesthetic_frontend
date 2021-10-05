@@ -117,7 +117,6 @@ button:hover {
   padding: 0;
   font-family: "Poiret One", "sans-serif";
   height:100vh;
-  /* background: #000; */
 }
 
 .none-user-HP-container {
@@ -156,6 +155,7 @@ button:hover {
   font-size:2em;
   color:  #c40405;
   font-family: "Poiret One", "sans-serif";
+  margin-bottom: 20px;
 }
 
 .none-user-HP-btn-group {
@@ -239,13 +239,17 @@ button:hover {
   text-align: center;
   transition: 0.5s;
   opacity: 1;
+  height: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .none-user-HP-box h2 {
-  margin: 0;
+  margin: auto;
   padding: 0;
-  font-size: 28.5px;
+  font-size: 25px;
   font-family: "Montserrat", "sans-serif";
 }
 
@@ -489,6 +493,7 @@ button:hover {
   font-size: 14px;
   color: #f4e7dc;
 }
+
 .socials{
   width: 10vw;
   list-style: none;
@@ -496,4 +501,52 @@ button:hover {
   align-items: center;
   justify-content:space-between;
   margin-bottom: 20px;
+}
+
+.none-user-HP-mobile-grid-container {
+  display: none;
+}
+
+.none-user-HP-mobile-grid {
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height:100%;
+  text-align: center;
+  padding:15px;
+  background: rgba(38,54,64,.8);
+}
+
+.none-user-HP-mobile-btn-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.none-user-HP-mobile-btn1 {
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 1000px){
+  .none-user-HP-mobile-grid-container {
+    display: flex;
+    margin-top: 30px;
+    height: 45%
+  }
+
+  .none-user-HP-column, .none-user-HP-btn-group {
+    display:none;
+  }
+
+  .none-user-HP-logo {
+    font-size: 2.5rem;
+  }
+
+  .none-user-HP-subtitle {
+    font-size: 1.5rem;
+  }
 }

@@ -91,7 +91,11 @@ export default function CampaignForm() {
   const [mustPostBy, mustPostBySetter] = useState(tomorrow);
 
   let alternativeImg;
-  if (image === "") {alternativeImg = "https://via.placeholder.com/280x350.png"}
+  if (image === "") {
+    alternativeImg = "https://via.placeholder.com/280x350.png"
+  } else {
+    alternativeImg = image
+  }
 
 
   const handlePostNewCampaign = (e) => {

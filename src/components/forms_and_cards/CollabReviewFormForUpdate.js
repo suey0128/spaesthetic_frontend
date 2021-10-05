@@ -45,9 +45,10 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
       if (res.ok) {
         const updatedReview = await res.json();
         forCancelBtn(false)
-        newReviewSetter(updatedReview.content)
+        // newReviewSetter(updatedReview.content)
         dispatch({type: "FETCH_VIEWING_BUSINESS" })
         dispatch({type: "NEED_FETCH_USER" })
+        dispatch({type: "FETCH_VIEWING_CC" })
       } else {
         const err = await res.json();
         alert(err.errors)
@@ -55,6 +56,7 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
     }
     reviewUpdate();
   }
+
 
   const handleCancel = () => {
     forCancelBtn(false) //CollabReviewCard shows the review
@@ -71,8 +73,6 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
                   <ReactStars
                     count={5}
                     value={rating}
-                    // onChange={(e)=>{ratingSetter(e.target.value)}}
-                    // value={review.rating}
                     onChange={ratingChanged}
                     size={20}
                     isHalf={true}

@@ -2,7 +2,8 @@ const initialState = {
     ccProfileEditBody: null,
     contentCreatorArr: [],
     needFetchCC:false,
-    viewingCC: null
+    viewingCC: null,
+    fetchViewingCC: false,
 }
 
 export default (state = initialState, action) => {
@@ -18,6 +19,9 @@ export default (state = initialState, action) => {
         
         case "SET_VIEWING_CC":
             return {...state, viewingCC: action.playload}
+
+        case "FETCH_VIEWING_CC":
+            return {...state, fetchViewingCC: !(state.fetchViewingCC)}
 
         default: 
             return state;
