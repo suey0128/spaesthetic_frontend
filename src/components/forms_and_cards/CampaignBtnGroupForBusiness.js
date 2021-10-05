@@ -12,6 +12,7 @@ export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }
     const currentUser = useSelector((state) => state.userReducer.currentUser);
 
     if (!campaign) return <h2>Loading...</h2>;
+    console.log(campaign);
 
     const handleCancelCampaign = () => {
 
@@ -35,7 +36,7 @@ export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }
 
             <div className="buttons-in-Campaign-card">
 
-                {new Date(campaign.end_date) > new Date() ? 
+                {new Date(campaign.end_date) > new Date() && campaign.business_id === currentUser.platform_user_id ? 
                 <button onClick={handleCancelCampaign}>Cancel Campaign</button> : null
                 }
                 

@@ -89,10 +89,10 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
       });
       if (res.ok) {
         const data = await res.json();
-        // console.log(updatedReview.content, updatedReview.rating, updatedReview.updated_at.slice(0,10))
         forCancelBtn(false)
         console.log(data)
         dispatch({type: "FETCH_VIEWING_BUSINESS" })
+        dispatch({type: "FETCH_VIEWING_CC" })
         dispatch({type: "NEED_FETCH_USER" })
       } else {
         const err = await res.json();

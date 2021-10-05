@@ -70,7 +70,7 @@ export default function CCDetail() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [value, setValue] = useState(0);
 
-  const viewingCC = useSelector((state) => state.ccReducer.viewingCC)
+  const fetchViewingCC = useSelector((state) => state.ccReducer.fetchViewingCC)
 
   //fetch campaign base on the id from the params
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function CCDetail() {
       }
     };
     fetchCC();
-  },[])
+  },[fetchViewingCC])
 
   if (!isLoaded ) return <h2>Loading...</h2>;
 

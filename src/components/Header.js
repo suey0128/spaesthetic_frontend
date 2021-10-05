@@ -22,10 +22,6 @@ function Header() {
       dispatch({ type: "SET_CURRENT_USER", playload: null})
     });
   }
-  // console.log(currentUser)
-
-
-
 
   return (
     <div className="header">

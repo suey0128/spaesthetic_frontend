@@ -5,10 +5,12 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector } from 'react-redux'
 
 
+
 function CCProfileInviteList() {
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   if (currentUser === null) return <h2>Loading...</h2>;
-  console.log(currentUser.invited_by)
+
+  // console.log(currentUser.invited_by)
   
     return (
       <div className="CCProfileInviteList">

@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
 export default function NoneUserHP() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -12,6 +16,12 @@ export default function NoneUserHP() {
   const [hovered3, hovered3Setter] = useState(false)
   const [hovered4, hovered4Setter] = useState(false)
 
+  const content = [
+    {'h':'Connections', 'p':'Connecting Local business with local influence to grow together!'},
+    {'h':'Influence', 'p':'Influence local people to go out and enjoy our amazing city more!'},
+    {'h':'Space', 'p':`Space and experience. Social media marketing isn't online only!`},
+    {'h':'Aesthetics', 'p':'Inspiring and promoting more beauty, arts and fun!'},
+  ]
 
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: true})
@@ -19,22 +29,27 @@ export default function NoneUserHP() {
 
   const handleLoginClick = () =>{
     history.push('/login')
-    // dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
   }
 
   const handleBusinessSignUpClick = (e) => {
     e.stopPropagation();
     console.log('click')
     history.push("/businesssignup")
-    // dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
   }
 
   const handleCCSignUpClick = (e) => {
     e.stopPropagation();
     console.log('click')
     history.push("/ccsignup")
-    // dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
   }
+
+  //for mobile
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
     return (
       <div className="none-user-HP">     
@@ -46,65 +61,58 @@ export default function NoneUserHP() {
           <h1 className="none-user-HP-logo">Spaesthetic</h1>
           <h3 className="none-user-HP-subtitle">Connecting Local Business to Local Influencers</h3>
 
-          <div className="none-user-HP-btn-group">
-            <button onClick={handleBusinessSignUpClick}>Sign Up as Business</button>
-            <button onClick={handleCCSignUpClick}>Sign Up as Influencer</button>
-          </div>
 
-          <div className="none-user-HP-column" onMouseEnter={()=>{hovered1Setter(true)}} onMouseLeave={()=>{hovered1Setter(false)}}>
-            
-            <div className="none-user-HP-content">
-              <div className="none-user-HP-h1-box">
-                <h1>Connections</h1>
+
+          <>
+            <div className="none-user-HP-column" onMouseEnter={()=>{hovered1Setter(true)}} onMouseLeave={()=>{hovered1Setter(false)}}>
+              
+              <div className="none-user-HP-content">
+                <div className="none-user-HP-h1-box">
+                  <h1>Connections</h1>
+                </div>
+                <div className={hovered1 ? "none-user-HP-box" : ""}>
+                  <h2 style={{display: hovered1 ? "" : "none" }}>Connecting Local business with local influence to grow together!</h2>
+                </div>
               </div>
-              <div className={hovered1 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered1 ? "" : "none" }}>Connecting Local business with local influence to grow together!</h2>
-                {/* <p style={{display: hovered1 ? "" : "none" }}> Social media marketing is never easy when your business is local. Growing influence can be tough when you only post local content as well. But we are always stronger when sticking together!</p> */}
-              </div>
+
+              <div className="none-user-HP-bg bg1"></div>
             </div>
 
-            <div className="none-user-HP-bg bg1"></div>
-          </div>
+            <div className="none-user-HP-column" onMouseEnter={()=>{hovered2Setter(true)}} onMouseLeave={()=>{hovered2Setter(false)}}>
+              
+              <div className="none-user-HP-content">
+                <div className="none-user-HP-h1-box">
+                  <h1>Influence</h1>
+                </div>
 
-
-
-          <div className="none-user-HP-column" onMouseEnter={()=>{hovered2Setter(true)}} onMouseLeave={()=>{hovered2Setter(false)}}>
-            
-            <div className="none-user-HP-content">
-              <div className="none-user-HP-h1-box">
-                <h1>Influence</h1>
+                <div className={hovered2 ? "none-user-HP-box" : ""}>
+                  <h2 style={{display: hovered2 ? "" : "none" }}>Influence local people to go out and enjoy our amazing city more! </h2>
+                </div>
               </div>
 
-              <div className={hovered2 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered2 ? "" : "none" }}>Influence local people to go out and enjoy our amazing city more! </h2>
-                {/* <p style={{display: hovered2 ? "" : "none" }}> let’s make people love our city more by inspiring them to go out and explore! </p> */}
-              </div>
+              <div className={hovered2 ? "none-user-HP-bg bg2" : "none-user-HP-bg"}></div>
             </div>
 
-            <div className={hovered2 ? "none-user-HP-bg bg2" : "none-user-HP-bg"}></div>
-          </div>
 
 
+            <div className="none-user-HP-column" onMouseEnter={()=>{hovered3Setter(true)}} onMouseLeave={()=>{hovered3Setter(false)}}>
+              
+              <div className="none-user-HP-content">
+                <div className="none-user-HP-h1-box">
+                  <h1>Space</h1>
+                </div>
 
-          <div className="none-user-HP-column" onMouseEnter={()=>{hovered3Setter(true)}} onMouseLeave={()=>{hovered3Setter(false)}}>
-            
-            <div className="none-user-HP-content">
-              <div className="none-user-HP-h1-box">
-                <h1>Space</h1>
+                <div className={hovered3 ? "none-user-HP-box" : ""}>
+                  <h2 style={{display: hovered3 ? "" : "none" }}>Space and experience. Social media marketing isn't online only!</h2>
+                </div>
               </div>
 
-              <div className={hovered3 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered3 ? "" : "none" }}>Space and experience. Social media marketing isn't online only!</h2>
-                {/* <p style={{display: hovered3 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
-              </div>
+              <div className={hovered3 ? "none-user-HP-bg bg3" : "none-user-HP-bg"}></div>
             </div>
 
-            <div className={hovered3 ? "none-user-HP-bg bg3" : "none-user-HP-bg"}></div>
-          </div>
 
 
-
-          <div className="none-user-HP-column" onMouseEnter={()=>{hovered4Setter(true)}} onMouseLeave={()=>{hovered4Setter(false)}}>
+            <div className="none-user-HP-column" onMouseEnter={()=>{hovered4Setter(true)}} onMouseLeave={()=>{hovered4Setter(false)}}>
             
             <div className="none-user-HP-content">
               <div className="none-user-HP-h1-box">
@@ -112,13 +120,38 @@ export default function NoneUserHP() {
               </div>
 
               <div className={hovered4 ? "none-user-HP-box" : ""}>
-                <h2 style={{display: hovered4 ? "" : "none" }}>Make our city better by inspiring and promoting more beauty, arts and fun</h2>
-                {/* <p style={{display: hovered4 ? "" : "none" }}> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
+                <h2 style={{display: hovered4 ? "" : "none" }}>Inspiring and promoting more beauty, arts and fun!</h2>
               </div>
             </div>
 
             <div className={hovered4 ? "none-user-HP-bg bg4" : "none-user-HP-bg"}></div>
           </div>
+          </> 
+
+          <div className="none-user-HP-btn-group">
+            <button onClick={handleBusinessSignUpClick}>Sign Up as Business</button>
+            <button onClick={handleCCSignUpClick}>Sign Up as Influencer</button>
+          </div>
+        
+          <div className="none-user-HP-mobile-grid-container">
+          <Grid container spacing={2}  >
+            {content.map(c => 
+              <Grid item xs={12} sm={6}>
+                <div className="none-user-HP-mobile-grid">
+                  <h2>{c.h}</h2> 
+                  <br></br>
+                  <p>{c.p}</p>
+                </div>
+              </Grid>
+            )}
+              <Grid item xs={12} className="none-user-HP-mobile-btn-container">
+                <button onClick={handleBusinessSignUpClick} className="none-user-HP-mobile-btn1">Sign Up as Business</button>
+                <button onClick={handleCCSignUpClick}>Sign Up as Influencer</button>
+              </Grid>
+          </Grid>
+          </div>
+
+
 
 
         </div>
