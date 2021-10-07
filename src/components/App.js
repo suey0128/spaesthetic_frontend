@@ -48,22 +48,23 @@ function App() {
       }
     });
   }, [needFetchUser]);
-
-  // console.log("currentUerInApp", currentUser)
   console.log(showSidebar)
 
   return (
     <div className="App">
       <Router>
-        {isOnLandingPage ?  (null )
+        {isOnLandingPage ?  null 
         :
-        (showSidebar ? 
-          <HeaderMobileNavbar />
-          : 
+        <>
           <Header />
-        )
+          {/* <HeaderMobileNavbar />  */}
+          {showSidebar ? 
+          <HeaderMobileNavbar /> 
+          : null
+          }
+          </>
         }
-
+        <div className='app-container'>
         <Switch>
 
           <Route exact path="/">
@@ -127,7 +128,7 @@ function App() {
            : <p>Please Login or Sign Up</p>
         }
         </Switch>
-          
+        </div>
         {isOnLandingPage ?  null : <Footer />}
 
       </Router>

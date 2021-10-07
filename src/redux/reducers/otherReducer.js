@@ -17,8 +17,7 @@ export default (state = initialState, action) => {
             return {...state, isOnLandingPage: action.playload }
 
         case "SET_SHOW_SIDEBAR":
-                return {...state, showSidebar: action.playload }
-
+            return {...state, showSidebar: action.playload }
         
         default: 
             return state;

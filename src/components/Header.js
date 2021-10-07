@@ -3,7 +3,7 @@ import HeaderBadge from './HeaderBadge';
 import RoomIcon from '@material-ui/icons/Room';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import {  useSelector, useDispatch } from 'react-redux'
+import {  useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
 
@@ -24,23 +24,27 @@ function Header() {
     });
   }
 
+  function openMenu() {
+    dispatch({ type: "SET_SHOW_SIDEBAR", playload: true})
+  }
+
+
+
   return (
-    <div className="header">
+    <nav className="header">
       <div className="header-left">
         <NavLink to='/' style={{ textDecoration: 'none' }}>
           <h2 id="logo">Spaesthetic</h2>
         </NavLink>
 
-      <div className="header-geo-div">
-        <RoomIcon style={{ fill: "#f4e7dc" }}/>
-        <p>Los Angeles</p>  
-      </div>
-
-
-      
+        <div className="header-geo-div">
+          <RoomIcon style={{ fill: "#f4e7dc" }}/>
+          <p>Los Angeles</p>  
+        </div>
       </div>
 
       {currentUser === null ? 
+      <>
       <div className="nav-bar">
         <NavLink to='/ccsignup' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>
           <p>Content Creator<br></br>Sign Up</p>
@@ -52,6 +56,11 @@ function Header() {
           <button className="login-out-btn">Login</button>
         </NavLink>
       </div>
+
+        <div className='mobile-nav-menu-icon'> 
+          <MenuIcon style={{ fill: "#f4e7dc" }} onClick={openMenu}/>
+        </div>
+      </> 
       : 
       (currentUser.platform_user_type === "ContentCreator" ? 
       <>
@@ -67,11 +76,12 @@ function Header() {
         </div>
 
         <div className='mobile-nav-menu-icon'> 
-          <HeaderBadge />
-          <MenuIcon style={{ fill: "#f4e7dc" }} onClick={()=>{dispatch({ type: "SET_SHOW_SIDEBAR", playload: true})}}/>
+          <HeaderBadge className="header-badge"/>
+          <MenuIcon style={{ fill: "#f4e7dc" }} onClick={openMenu}/>
         </div>     
         </>   
       :
+      <>
         <div className="nav-bar">
           <HeaderBadge />
           <NavLink to='/businessprofile' style={{ textDecoration: 'none' }} activeStyle={{ fontWeight: "bold"}}>      
@@ -84,16 +94,16 @@ function Header() {
             <p>post<br></br>new campaign</p>
           </NavLink>         
           <button onClick={handleLogout} className="login-out-btn">logout</button>
-          
+        </div>
+
           <div className='mobile-nav-menu-icon'> 
             <HeaderBadge />
-            <MenuIcon style={{ fill: "#f4e7dc" }}/>
+            <MenuIcon style={{ fill: "#f4e7dc" }} onClick={openMenu}/>
           </div>     
-        </div>
+        </>
       )}
       
-
-    </div>
+    </nav>
   );
 }
 
