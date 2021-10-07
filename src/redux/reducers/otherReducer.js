@@ -3,6 +3,7 @@ const initialState = {
     unreadNotificationNum: null,
     isOnLandingPage: false,
     showSidebar: false,
+    isNotificationRead: false,
 }
 
 export default (state = initialState, action) => {
@@ -19,6 +20,9 @@ export default (state = initialState, action) => {
         case "SET_SHOW_SIDEBAR":
             return {...state, showSidebar: action.playload }
         
+        case "SET_IS_NOTIFICATION_READ":
+            return {...state, isNotificationRead: action.playload } 
+               
         default: 
             return state;
     }

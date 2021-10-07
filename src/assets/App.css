@@ -520,7 +520,7 @@ button:hover {
   height:100%;
   text-align: center;
   padding:15px;
-  background: rgba(38,54,64,.8);
+  background: #f4e7dc;
 }
 
 .none-user-HP-mobile-btn-container {
@@ -568,6 +568,10 @@ button:hover {
 
 .sidebar-logout-wrap {
   text-align: center;
+}
+
+.notification-container {
+  width: 60vw;
 }
 
 @media screen and (max-width: 1000px){
@@ -623,5 +627,20 @@ button:hover {
   .header-geo-div p {
     font-size: 12px;
   }
+
+  .none-user-HP-login {
+    color:  #c40405;
+  }
+
+  .notification-container {
+    width: 100vw;
+  }
 }
 
+
+@media screen and (max-width: 768px){
+  .notification-container {
+    width: 80vw;
+  }
+
+}

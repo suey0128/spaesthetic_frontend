@@ -151,9 +151,6 @@ export default function NoneUserHP() {
           </Grid>
           </div>
 
-
-
-
         </div>
 
       </div>

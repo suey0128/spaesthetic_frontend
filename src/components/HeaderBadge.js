@@ -22,7 +22,6 @@ export default function HeaderBadge() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
-  // const [unreadNum, unreadNumSetter] = useState(null);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const notificationArr = useSelector((state) => state.otherReducer.notificationArr);
   const unreadNotificationNum = useSelector((state) => state.otherReducer.unreadNotificationNum);
@@ -92,8 +91,13 @@ export default function HeaderBadge() {
           horizontal: 'center',
         }}
       >
+
+      <div className='notification-container'>
         <HeaderNotificationPopover />
+      </div>
+
       </Popover>
+
     </div>
   );
 }
