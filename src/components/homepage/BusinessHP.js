@@ -32,7 +32,6 @@ function BusinessHP() {
 
   
   const handleSort = (e) => {
-    // console.log(e.target.value)
     let sortBy = e.target.value
     async function sort(){
       const res = await fetch (`/content_creators?sort=${e.target.value}`)
@@ -48,7 +47,6 @@ function BusinessHP() {
 
     return (
       <div className="BusinessHP">
-        <h2>BusinessHP</h2>
         <BusinessHPSearchAndSort handleSearch={handleSearch} handleSort={handleSort}/>
         <BusinessHPCCList />
       </div>
