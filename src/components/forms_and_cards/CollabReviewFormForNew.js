@@ -9,6 +9,16 @@ import TextField from '@material-ui/core/TextField';
 import { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
 
+import { styled } from '@mui/material/styles';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#c40405',
+  },
+});
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -54,20 +64,9 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
   const [updateDate, updateDateSetter] = useState(new Date().toDateString())
   const currentUser = useSelector((state) => state.userReducer.currentUser);
 
-  // //review passed down from BusinessDetailInfo
-  // console.log(review) // {id: 4, reviewee: {…}, content: "review cc2 to b1", date: "2021-08-19T00:07:48.758Z", rating: 4}
-
-  // //review passed down from CollabReviewCard(businessside)
-  // console.log(review) // {id: 2, reviewee: {…}, content: "review b1 to cc2", date: "2021-08-19T00:07:48.735Z", rating: 3}
 
   if (!currentUser ) return <h2>Loading...</h2>;
   if (!viewingParty) return <h2>Loading...</h2>;
-
-  console.log(currentUser, viewingParty)
-
-  const ratingChanged = (newRating) => {
-    ratingSetter(newRating);
-  };
 
   const handlePostingReview = (e) => {
     e.preventDefault(); 
@@ -114,17 +113,14 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
               <form className={classes.form} noValidate autoComplete="off" onSubmit={handlePostingReview}>
                 
                 <div className="upper-in-collab-review-paper">
-                  <ReactStars
-                    count={5}
+                  <StyledRating
+                    name="customized-color"
                     value={rating}
-                    onChange={ratingChanged}
-                    size={20}
-                    isHalf={true}
-                    char="♥"
-                    emptyIcon={<i className="far fa-star"></i>}
-                    halfIcon={<i className="fa fa-star-half-alt"></i>}
-                    fullIcon={<i className="fa fa-star"></i>}
-                    activeColor="#c40405"
+                    getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                    onChange={(e, newValue)=>{ratingSetter(newValue)}}
+                    precision={0.5}
+                    icon={<FavoriteIcon fontSize="inherit" style={{ fill: "#c40405" }}/>}
+                    emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
                   />
 
                   <div className="upper-right-in-collab-review-paper">
