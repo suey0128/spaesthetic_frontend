@@ -9,8 +9,19 @@ import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 
 import {useSelector, useDispatch} from 'react-redux';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+
+// MUI
+import { styled } from '@mui/material/styles';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#c40405',
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,19 +39,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function CollabReviewCard({ review, showBtn }) {
 
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const [isEditing, isEditingSetter] =useState(false)
-  // const RatingOnDisplay = useSelector((state) => state.reviewReducer.RatingOnDisplay)
+  const [ratingNumOnDisplay, setRatingNumOnDisplay] = useState(review.rating)
+  const [reviewContentOnDisplay, setReviewContentOnDisplay] = useState(review.content)
 
-  // console.log(RatingOnDisplay)
-
-  const ratingChanged = (newRating) => {
-    console.log(newRating);
-  };
 
   const handleEdit = () => {
     isEditingSetter(true)
@@ -92,31 +101,27 @@ export default function CollabReviewCard({ review, showBtn }) {
     }
   }
 
-  console.log(review)
 
     return (
 
       <Container component="main" maxWidth="lg" className={classes.paper}>
         <Paper className={classes.paper}>  
         {isEditing ? 
-          <CollabReviewFormForEdit review={review} forCancelBtn={isEditingSetter}/>
+          <CollabReviewFormForEdit review={review} forCancelBtn={isEditingSetter} setRatingNumOnDisplay={setRatingNumOnDisplay} setReviewContentOnDisplay={setReviewContentOnDisplay}/>
           :
           <div className="container-in-collab-review-paper">
 
             <div className="upper-in-collab-review-paper">
-              <ReactStars
-              count={5}
-              value={review.rating}
-              // onChange={ratingChanged}
-              edit={false}
-              size={20}
-              isHalf={true}
-              char="♥"
-              emptyIcon={<i className="far fa-star"></i>}
-              halfIcon={<i className="fa fa-star-half-alt"></i>}
-              fullIcon={<i className="fa fa-star"></i>}
-              activeColor="#c40405"
+
+              <StyledRating
+                name="customized-color"
+                value={ratingNumOnDisplay}
+                readOnly
+                precision={0.5}
+                icon={<FavoriteIcon fontSize="inherit" style={{ fill: "#c40405" }} />}
+                emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
               />
+
 
               <div className="upper-right-in-collab-review-paper">
 
@@ -139,7 +144,7 @@ export default function CollabReviewCard({ review, showBtn }) {
             </div>
           
             <p className="review-content">
-              {review.content}
+              {reviewContentOnDisplay}
             </p>
 
             { showBtn ? 

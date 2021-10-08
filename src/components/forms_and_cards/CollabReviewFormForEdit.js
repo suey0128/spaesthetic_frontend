@@ -9,7 +9,16 @@ import TextField from '@material-ui/core/TextField';
 import { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
 
-
+// MUI
+import { styled } from '@mui/material/styles';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#c40405',
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
+export default function CollabReviewFormForEdit({ review, forCancelBtn, setRatingNumOnDisplay, setReviewContentOnDisplay}) {
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -30,9 +39,6 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
   const [newReview, newReviewSetter] = useState(review.content)
   const [updateDate, updateDateSetter] = useState(review.date.slice(0,10))
 
-  const ratingChanged = (newRating) => {
-    ratingSetter(newRating);
-  };
 
   const handleReviewEdit = (e) => {
     e.preventDefault(); 
@@ -45,11 +51,10 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
       if (res.ok) {
         const updatedReview = await res.json();
         forCancelBtn(false)
-        ratingSetter(updatedReview.rating)
-        newReviewSetter(updatedReview.content)
+        setRatingNumOnDisplay(updatedReview.rating)
+        setReviewContentOnDisplay(updatedReview.content)
         dispatch({type: "FETCH_VIEWING_BUSINESS" })
         dispatch({type: "NEED_FETCH_USER" })
-        // dispatch({ type: "SET_RATING_ON_DISPLAY", playload: updatedReview.rating})
       } else {
         const err = await res.json();
         alert(err.errors)
@@ -58,7 +63,7 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
     reviewUpdate();
   }
 
-  // console.log(rating)
+  console.log(rating)
 
   const handleCancel = () => {
     forCancelBtn(false) //CollabReviewCard shows the review
@@ -72,20 +77,16 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn }) {
               <form className={classes.form} noValidate autoComplete="off" onSubmit={handleReviewEdit}>
                 
                 <div className="upper-in-collab-review-paper">
-                  <ReactStars
-                    count={5}
-                    value={rating}
-                    // onChange={(e)=>{ratingSetter(e.target.value)}}
-                    // value={review.rating}
-                    onChange={ratingChanged}
-                    size={20}
-                    isHalf={true}
-                    char="♥"
-                    emptyIcon={<i className="far fa-star"></i>}
-                    halfIcon={<i className="fa fa-star-half-alt"></i>}
-                    fullIcon={<i className="fa fa-star"></i>}
-                    activeColor="#c40405"
-                  />
+
+                <StyledRating
+                  name="customized-color"
+                  value={rating}
+                  getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                  onChange={(e, newValue)=>{ratingSetter(newValue)}}
+                  precision={0.5}
+                  icon={<FavoriteIcon fontSize="inherit" style={{ fill: "#c40405" }}/>}
+                  emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                />
 
                   <div className="upper-right-in-collab-review-paper">
 

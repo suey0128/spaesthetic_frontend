@@ -48,7 +48,6 @@ function App() {
       }
     });
   }, [needFetchUser]);
-  console.log(showSidebar)
 
   return (
     <div className="App">

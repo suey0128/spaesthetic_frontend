@@ -9,6 +9,15 @@ import TextField from '@material-ui/core/TextField';
 import { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
 
+import { styled } from '@mui/material/styles';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+const StyledRating = styled(Rating)({
+  '& .MuiRating-iconFilled': {
+    color: '#c40405',
+  },
+});
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,10 +39,6 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
   const [newReview, newReviewSetter] = useState(review.content)
   const [updateDate, updateDateSetter] = useState(review.date.slice(0,10))
 
-  const ratingChanged = (newRating) => {
-    ratingSetter(newRating);
-  };
-
   const handleReviewEdit = (e) => {
     e.preventDefault(); 
     async function reviewUpdate () {
@@ -45,7 +50,6 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
       if (res.ok) {
         const updatedReview = await res.json();
         forCancelBtn(false)
-        // newReviewSetter(updatedReview.content)
         dispatch({type: "FETCH_VIEWING_BUSINESS" })
         dispatch({type: "NEED_FETCH_USER" })
         dispatch({type: "FETCH_VIEWING_CC" })
@@ -70,18 +74,16 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
               <form className={classes.form} noValidate autoComplete="off" onSubmit={handleReviewEdit}>
                 
                 <div className="upper-in-collab-review-paper">
-                  <ReactStars
-                    count={5}
-                    value={rating}
-                    onChange={ratingChanged}
-                    size={20}
-                    isHalf={true}
-                    char="♥"
-                    emptyIcon={<i className="far fa-star"></i>}
-                    halfIcon={<i className="fa fa-star-half-alt"></i>}
-                    fullIcon={<i className="fa fa-star"></i>}
-                    activeColor="#c40405"
-                  />
+                <StyledRating
+                  name="customized-color"
+                  value={rating}
+                  getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                  onChange={(e, newValue)=>{ratingSetter(newValue)}}
+                  precision={0.5}
+                  icon={<FavoriteIcon fontSize="inherit" style={{ fill: "#c40405" }}/>}
+                  emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                />
+
 
                   <div className="upper-right-in-collab-review-paper">
 

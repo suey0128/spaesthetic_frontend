@@ -346,10 +346,10 @@ export default function CampaignForm() {
                 onChange={(e)=>compensationTypeSetter(e.target.value)}
                 label="compensationType"
               >
-                <MenuItem value="monetery">Monetery</MenuItem>
-                <MenuItem value="service">Service</MenuItem>
-                <MenuItem value="product">Product</MenuItem>
-                <MenuItem value="others">Others</MenuItem>
+                <MenuItem value="Monetary">Monetary</MenuItem>
+                <MenuItem value="Service">Service</MenuItem>
+                <MenuItem value="Product">Product</MenuItem>
+                <MenuItem value="Others">Others</MenuItem>
               </Select>
             </FormControl>
           </Grid>  
