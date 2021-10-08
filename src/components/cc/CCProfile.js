@@ -69,6 +69,7 @@ function CCProfile() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
+  const [isOnProfile, isOnProfileSetter] = React.useState(true)
   
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
@@ -105,8 +106,8 @@ function CCProfile() {
             <Tab label="Reviews I Wrote" icon={<BorderColorIcon />} {...a11yProps(5)} />
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0}>
-          <CCCurrentCollabList />
+        <TabPanel value={value} index={0} >
+          <CCCurrentCollabList isOnProfile={isOnProfile} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <CCPastCollabList />

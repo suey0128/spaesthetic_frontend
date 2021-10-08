@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -15,6 +14,7 @@ function getModalStyle() {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
+    width: '80%'
   };
 }
 
@@ -62,7 +62,6 @@ export default function NewProfilePicForm({ handleClose }) {
       });
       if (res.ok) {
         const data = await res.json();
-        console.log(data)
         dispatch({ type: 'NEED_FETCH_USER' })
       } else {
         const err = await res.json()
@@ -94,10 +93,6 @@ export default function NewProfilePicForm({ handleClose }) {
             <button
               type="submit"
               style={{ width: '100%', marginTop: '15px'}}
-              // fullWidth
-              // variant="contained"
-              // color="primary"
-              // className={classes.submit}
             >
               Update
             </button>
