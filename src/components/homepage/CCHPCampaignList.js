@@ -8,16 +8,12 @@ import { useSelector, useDispatch } from 'react-redux'
 export default function CCHPCampaignList() {
   const dispatch = useDispatch();
 
-  const campaignArr = useSelector((state) => state.campaignReducer.campaignArr);
   const campaignOnDisplay = useSelector((state) => state.campaignReducer.campaignOnDisplay);
   const needFetchCampaignArr = useSelector((state) => state.campaignReducer.needFetchCampaignArr);
 
 
   useEffect(() => {
     fetch("http://localhost:3000/campaigns", 
-    // {
-    //   credentials: "include"
-    // }
     ).then((r) => {  
       if (r.ok) {
         r.json().then((campaigns) => {
@@ -32,23 +28,11 @@ export default function CCHPCampaignList() {
   }, [needFetchCampaignArr]);
 
     return (
-      <div className="cchp-campaign-list">
-        {/* <div>
-          <button>Back</button>
-          <button>Next</button>
-        </div> */}
-
-        <Grid container spacing={1}>
+        <Grid container spacing={0,5,5,2}>
           {
             campaignOnDisplay.map(c=>  <CampaignCard key={c.id} campaign={c}/>)
           } 
         </Grid>
-
-        {/* <div>
-          <button>Back</button>
-          <button>Next</button>
-        </div> */}
-      </div>
     );
   }
   
