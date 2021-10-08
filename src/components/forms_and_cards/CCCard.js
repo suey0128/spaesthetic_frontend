@@ -16,8 +16,10 @@ import {useSelector, useDispatch} from 'react-redux'
 
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(1),
+  },
   paper: {
-    // margin: theme.spacing(1),
     padding: theme.spacing(2),
     textAlign: 'left',
     color: theme.palette.text.secondary,
@@ -40,7 +42,7 @@ export default function CCCard({ cc }) {
 
     return (
 
-      <Container component="main" maxWidth="lg" className={classes.paper}>
+      <Container component="main" maxWidth="lg" className={classes.container}>
         <Paper className={classes.paper} >
           <Grid container spacing={1} className="campaign-card">
  

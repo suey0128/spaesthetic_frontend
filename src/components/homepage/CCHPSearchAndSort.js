@@ -97,7 +97,7 @@ export default function CCHPSearchAndSort({ handleSearch, handleSort, handleSwit
 
     <Container component="main" maxWidth="lg" className={classes.outer}>
 
-      <Grid container md={12}component="main" maxWidth="lg" className={classes.searchSortContainer}>
+      <Grid container md={12} component="main" maxWidth="lg" className={classes.searchSortContainer}>
         {/* search bar */}
         <Grid item xs={12} md={6} className={classes.gridItem}>
         <Paper component="form" className={classes.searchBar} onSubmit={(e)=>{handleSearch(e, input)}}>
