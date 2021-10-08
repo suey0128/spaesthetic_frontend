@@ -66,6 +66,7 @@ export default function BusinessProfile() {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [isOnProfile, isOnProfileSetter] = React.useState(true)
 
 
   const handleChange = (event, newValue) => {
@@ -102,7 +103,7 @@ export default function BusinessProfile() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <BusinessCurrentCampaignList />
+          <BusinessCurrentCampaignList isOnProfile={isOnProfile}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <BusinessPastCampaignList />

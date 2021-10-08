@@ -32,8 +32,8 @@ export default function CampaignCard({ campaign }) {
  if (!currentUser ) return <h2>Loading campaign</h2>
 
     return (
-      //<div>
-      <Container component="main" maxWidth="lg">
+
+      <Grid container spacing={1}>
         <Paper className={classes.paper} >
           <Grid container spacing={1} className="campaign-card">
 
@@ -62,8 +62,8 @@ export default function CampaignCard({ campaign }) {
  
           </Grid>
         </Paper> 
-        </Container>
-      //</div>
+      </Grid>
+
 
     );
   }

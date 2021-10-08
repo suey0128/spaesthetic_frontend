@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BusinessCurrentCampaignList() {
+export default function BusinessCurrentCampaignList({isOnProfile}) {
   const classes = useStyles();
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
@@ -39,7 +39,7 @@ export default function BusinessCurrentCampaignList() {
   }
 
   return (
-    <div className="business-curren-campaign-list">
+    <div className={isOnProfile ? null : "business-curren-campaign-list"}>
       <Grid container spacing={1}>
         {party.current_campaigns.length > 0 ? 
         party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>) 

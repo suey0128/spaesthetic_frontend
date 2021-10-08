@@ -14,7 +14,6 @@ function CCProfileInviteList() {
   
     return (
       <div className="CCProfileInviteList">
-        <h2>CCProfileInviteList</h2>
         <Grid container spacing={1}>
         {currentUser.invited_by.length > 0 ? 
           currentUser.invited_by.map(c=> <CampaignCard key={c.id} campaign={c}/>)

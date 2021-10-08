@@ -14,6 +14,7 @@ function getModalStyle() {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
+    width: '80%'
   };
 }
 
@@ -70,7 +71,7 @@ export default function InvitationForm({ cc, handleClose }) {
   return (
 
       <div style={modalStyle} className={classes.paper}>
-        <h2 id="simple-modal-title">{`Invite ${cc.first_name} to apply to your current campaigns`}</h2>
+        <h2 className="simple-modal-title">{`Invite ${cc.first_name} to apply to your current campaigns`}</h2>
           
           {currentUser.current_campaigns.map(campaign => 
             campaign.invitees.find((invitee)=> invitee.id === cc.id) ? null :

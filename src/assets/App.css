@@ -361,11 +361,11 @@ button:hover {
   width: 100%;
 }
 
-/* .buttons-in-Campaign-card {
-  position: relative;
-  right:10px;
-  top:10vh;
-} */
+.buttons-in-Campaign-card {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
 
 .buttons-in-Campaign-card button{
   display: block;
@@ -413,7 +413,7 @@ button:hover {
 }
 
 .cc-btn-group-btns {
-  width:90%;
+  width:100%;
   margin-bottom: 5px;
 }
 
@@ -662,15 +662,21 @@ button:hover {
     width: 100%;
   } 
 
-  .info-list h2 {
+  .info-list h2,
+  .simple-modal-title  {
     font-size: 16px;
   }
 
-  .info-list h4, .review-content{
+  .info-list h4, 
+  .review-content, 
+  .campaign-related-cc-h3, 
+  .invitation-form-item h3 {
     font-size: 14px;
   }
 
-  .info-list p, .invite-msg, .info-list a{
+  .info-list p, 
+  .invite-msg, .info-list a, 
+  .campaign-related-cc-p {
     font-size: 12px;
   }
 
@@ -684,7 +690,5 @@ button:hover {
     font-size: 12px;
     text-align: left;
   }
-
-
 
 }
