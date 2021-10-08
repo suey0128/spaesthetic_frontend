@@ -29,8 +29,6 @@ export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }
         history.push(`/campaigndetail/${campaign.id}`)
     };
 
-    // console.log(new Date(campaign.end_date) > new Date())
-
     return (
         <Grid item xs={12} sm={3}>
 

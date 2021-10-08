@@ -329,22 +329,16 @@ button:hover {
 /* profile############################################################################################### */
 .info-list {
   padding-top: 10px;
-  margin-left: 40px;
-  margin-right: 40px;
+  padding: 10px 20px;
+  word-wrap: break-word;
+  /* margin-left: 40px;
+  margin-right: 40px; */
   text-align: left;
 }
 
-.profile-btn {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  /* position: relative;
-  left:100px;
-  top:300px; */
-
-}  
 .profile-btn button  {
   margin-bottom: 5px;
+  width: 200px;
 } 
 
 .profile-img-and-uploads-btn img {
@@ -662,4 +656,35 @@ button:hover {
   .notification-container {
     width: 80vw;
   }
+
+  .profile-btn button  {
+    margin-bottom: 5px;
+    width: 100%;
+  } 
+
+  .info-list h2 {
+    font-size: 16px;
+  }
+
+  .info-list h4, .review-content{
+    font-size: 14px;
+  }
+
+  .info-list p, .invite-msg, .info-list a{
+    font-size: 12px;
+  }
+
+  .upper-in-collab-review-paper {
+    align-items: start;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  .name-date-in-collab-review-paper p {
+    font-size: 12px;
+    text-align: left;
+  }
+
+
+
 }

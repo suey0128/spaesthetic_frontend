@@ -79,7 +79,7 @@ export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
 
     return (
         <Grid item xs={12} sm={3}>
-            {currentUser.invited_by.find(c=>c.id === campaign.id) ? <p>you are invited by this campaign❣</p> : null}
+            {currentUser.invited_by.find(c=>c.id === campaign.id) ? <p className="invite-msg">you are invited by this campaign❣</p> : null}
 
             <div className="buttons-in-Campaign-card">
 

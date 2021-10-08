@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect} from 'react'
 
 
-export default function CCCurrentCollabList() {
+export default function CCCurrentCollabList({isOnProfile}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function CCCurrentCollabList() {
   console.log(viewingCC)
 
     return (
-      <div className="cc-current-collab-list">
+      <div className={isOnProfile ? null : "cc-current-collab-list"}>
         <Grid container spacing={1}>
           {party.current_campaigns.length > 0 ? 
           party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>) 

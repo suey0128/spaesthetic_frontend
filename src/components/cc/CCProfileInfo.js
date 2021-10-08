@@ -39,16 +39,15 @@ export default function CCProfileInfo() {
   return (
 
     <Grid container spacing={1}>
-      <Grid item xs={12} sm={3}>
+      <Grid item xs={12} md={3} >
         <div className="profile-img-and-uploads-btn">
-            {/* <img src="https://via.placeholder.com/280x350.png" alt="ccprofile picture"/> */}
             <img src={currentUser.platform_user.profile_pic} alt={currentUser.username}/>
             <button onClick={handleOpenProfilePicUpload}>Update profile Pic</button>
         </div>
       </Grid>
 
-      <Grid item xs={12} sm={6}>
-        <ul className="info-list">
+      <Grid item xs={12} md={6} >
+        <div className="info-list">
             <h4>Account Info: </h4>
               <p>Username: {currentUser.username}</p>
               <p>Name: {currentUser.platform_user.first_name} {currentUser.platform_user.last_name}</p>
@@ -72,10 +71,10 @@ export default function CCProfileInfo() {
 
             <h4>About me</h4>
             <p>{currentUser.platform_user.about_me}</p>
-        </ul>
+        </div>
       </Grid>
 
-      <Grid item xs={12} sm={3}>
+      <Grid item xs={12} md={3}>
         <div className="profile-btn">
             <button onClick={handleOpenInfoEdit} >Edit profile</button>
             <button onClick={handleOpenChangePD}>Change password</button>
