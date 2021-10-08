@@ -549,13 +549,6 @@ button:hover {
   display:none;
 }
 
-/* .sidebar-menu {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(3,80px);
-  text-align: center;
-} */
-
 .nav-link-mobile {
   display: grid;
   grid-template-columns: 1fr;
@@ -642,12 +635,31 @@ button:hover {
   .notification-container {
     width: 100vw;
   }
+
 }
 
 
-@media screen and (max-width: 768px){
+
+/* MUI md size */
+@media screen and (max-width: 900px){
+  .cchp-filter-title {
+    font-size: 16px;
+  }
+
+  #logo {
+    font-size: 20px;
+  }
+
+  .header-geo-div p {
+    font-size: 10px;
+  }
+
+  .header {
+    height: 70px;
+    padding: 30px 40px;
+  }
+
   .notification-container {
     width: 80vw;
   }
-
 }

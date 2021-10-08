@@ -9,7 +9,6 @@ function CCHP() {
   const dispatch = useDispatch();
 
   const campaignArr = useSelector((state) => state.campaignReducer.campaignArr)
-  const campaignOnDisplay = useSelector((state) => state.campaignReducer.campaignOnDisplay);
   const currentUser = useSelector((state) => state.userReducer.currentUser)
   const [arrWithRepitition, arrWithRepititionSetter] = useState([])
   const [checkedBox, checkBoxSetter] = useState(0)
@@ -190,17 +189,6 @@ function CCHP() {
     }
   }
 
-  //https://www.javascripttutorial.net/array/javascript-remove-duplicates-from-array/
-  // console.log(checkedBox)
-  // console.log(arrWithRepitition, filteredCampaignArr)
-  // console.log(filteredCampaignArr[0])
-  // console.log(filteredCampaignArr[4])
-  // console.log(filteredCampaignArr[0] === filteredCampaignArr[4]) //return false 
-  // console.log(String(filteredCampaignArr[0]) === String(filteredCampaignArr[4])) //return true
-
-  // if (filteredCampaignArr.length === 0) {
-  //   dispatch({  type: "SET_FILTERED_CAMPAIGN_ARR", playload: campaignArr })
-  // }
 
   const handleSwitchChangeCompensation = (e) => {
     handleFilter("compensation", e)
