@@ -136,7 +136,7 @@ export default function NoneUserHP() {
           <div className="none-user-HP-mobile-grid-container">
           <Grid container spacing={2}  >
             {content.map(c => 
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} key={c.h}>
                 <div className="none-user-HP-mobile-grid">
                   <h2>{c.h}</h2> 
                   <br></br>

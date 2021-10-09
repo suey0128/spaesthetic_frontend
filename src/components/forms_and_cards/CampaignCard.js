@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     borderRadius:20,
+    width: '100vw',
   },
 }));
 
@@ -33,8 +34,8 @@ export default function CampaignCard({ campaign }) {
 
     return (
 
-      <Grid container spacing={1}>
-        <Paper className={classes.paper} >
+      <Grid container spacing={1} xs={12}>
+        <Paper className={classes.paper} xs={12}>
           <Grid container spacing={1} className="campaign-card">
 
               <CampaignImg campaign={campaign} />

@@ -24,7 +24,7 @@ export default function CCCurrentCollabList({isOnProfile}) {
   } else {
     party = currentUser
   }
-  console.log(viewingCC)
+  console.log(isOnProfile)
 
     return (
       <div className={isOnProfile ? null : "cc-current-collab-list"}>
@@ -35,6 +35,6 @@ export default function CCCurrentCollabList({isOnProfile}) {
           <h2>There isn't any current collab going on</h2>
           }
         </Grid>
-      </div>
+       </div>
     );
   }

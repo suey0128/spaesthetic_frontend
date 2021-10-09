@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
       display: 'flex',
       '& > *': {
-        margin: theme.spacing(1),
+        margin: theme.spacing(0),
       },
     },
     large: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     container: {
       marginTop: theme.spacing(2),
       padding: theme.spacing(1),
-      textAlign: 'left'
+      textAlign: 'left',
     },
     item: {
       marginBottom: theme.spacing(1),
@@ -77,50 +77,57 @@ export default function CampaignRelatedCC ({ campaign }) {
 
     return (
 
-        <Grid container spacing={1} className={classes.container}>
-            <Grid item xs={12} className={classes.item}>
-              <h3 className='campaign-related-cc-h3'>Campaign Applicants: </h3>
-              <div className={classes.avatar}>
-                  {campaign.applicants.length === 0 ? <p className='campaign-related-cc-p'>You don't have any applicant for this campaign yet.</p> : null}
-                  {campaign.applicants.map(c=> 
-                    <div className="related-cc-avatar-btn-group">
-                    <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
-                    {new Date(campaign.end_date) > new Date() ?
-                    <button className="related-cc-btn" onClick={()=>{handleHireClick(c)}}>hire</button> :null
-                    }
-                    </div>
-                  )}
-              </div>
-              <Divider />
-            </Grid>
-
-
-
-            <Grid item xs={12} className={classes.item}>
+        <Grid container spacing={1} className={classes.container} xs={12}>
+           
+           <Grid item xs={12} className={classes.item}>
               <h3 className='campaign-related-cc-h3'>Invited Content Creators: </h3>
-              <div className={classes.avatar}>
+              <Grid container spacing={0} className={classes.avatar}>
               {campaign.invitees.length === 0 ? <p className='campaign-related-cc-p'>You don't have any invitee for this campaign yet.</p> : null}
               {campaign.invitees.map(c=> 
-                <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+                <Grid item xs={4} sm={2} md={1} className={classes.item}>
+                  <div className="related-cc-avatar-btn-group">
+                  <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+                  </div>
+                </Grid>
               )}
-              </div>
+              </Grid>
+              <Divider />
+            </Grid>
+           
+            <Grid item xs={12} className={classes.item}>
+              <h3 className='campaign-related-cc-h3'>Campaign Applicants: </h3>
+              <Grid container spacing={0} className={classes.avatar}>
+                  {campaign.applicants.length === 0 ? <p className='campaign-related-cc-p'>You don't have any applicant for this campaign yet.</p> : null}
+                  {campaign.applicants.map(c=> 
+                   <Grid item xs={4} sm={2} md={1} className={classes.item}>
+                      <div className="related-cc-avatar-btn-group">
+                        <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
+                        {new Date(campaign.end_date) > new Date() ?
+                        <button className="related-cc-btn" onClick={()=>{handleHireClick(c)}}>hire</button> :null
+                        }
+                      </div>
+                    </Grid>
+                  )}
+              </Grid>
               <Divider />
             </Grid>
 
             <Grid item xs={12} >
               <h3 className='campaign-related-cc-h3'>Hired Content Creators: </h3>
-              <div className={classes.avatar}>
+              <Grid container spacing={0}  className={classes.avatar}>
               {campaign.content_creators.length === 0 ? <p className='campaign-related-cc-p'>You don't have any collaborator for this campaign yet.</p> : null}
               {campaign.content_creators.map(c=> 
+               <Grid item xs={4} sm={2} md={1} className={classes.item}>
                <div className="related-cc-avatar-btn-group">
                 <Avatar className={classes.large} key={c.id} alt={c.first_name} src={c.profile_pic} onClick={()=>history.push(`/ccdetail/${c.id}`)}/>
                 {new Date(campaign.end_date) > new Date() ?
                   <button className="related-cc-btn" onClick={()=>{handleCancelClick(c)}}>cancel</button> : null
                 }
-              </div>
+                </div>
+              </Grid>
               )}
 
-              </div>
+              </Grid>
             </Grid>
         </Grid>
     

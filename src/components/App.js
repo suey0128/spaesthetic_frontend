@@ -56,7 +56,6 @@ function App() {
         :
         <>
           <Header />
-          {/* <HeaderMobileNavbar />  */}
           {showSidebar ? 
           <HeaderMobileNavbar /> 
           : null

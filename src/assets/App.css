@@ -419,7 +419,8 @@ button:hover {
 
 .related-cc-btn {
   margin-top: 5px;
-  padding: 5px 15px;
+  padding: 5px 5px;
+  width:85%;
 }
 
 .related-cc-avatar-btn-group {
