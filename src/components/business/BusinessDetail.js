@@ -68,7 +68,8 @@ export default function BusinessDetail() {
   // console.log (params) //=>{id:1}
 
   const [isLoaded, setIsLoaded] = useState(false)
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const isOnProfile = true;
 
   const viewingBusiness = useSelector((state) => state.businessReducer.viewingBusiness)
   const fetchViewingBusiness = useSelector((state) => state.businessReducer.fetchViewingBusiness)
@@ -116,7 +117,7 @@ export default function BusinessDetail() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <BusinessCurrentCampaignList />
+          <BusinessCurrentCampaignList isOnProfile={isOnProfile}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <BusinessPastCampaignList />

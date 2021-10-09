@@ -79,7 +79,7 @@ function CCProfile() {
     setValue(newValue);
   };
 
-
+  console.log(isOnProfile)
 
   return (
     <div className="cc-profile">
