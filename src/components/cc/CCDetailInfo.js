@@ -5,12 +5,11 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
 
 export default function CCDetailInfo() {
-  const dispatch = useDispatch();
   const viewingCC = useSelector((state) => state.ccReducer.viewingCC);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const [isNewReview, isNewReviewSetter] = useState(false); // detemine if it modal the POST or PATCH Form

@@ -1,10 +1,7 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -50,9 +47,6 @@ export default function BusinessSignUp() {
   const [username, usernameSetter] = useState("")
   const [email, emailSetter] = useState("")
   const [businessName, businessNameSetter] = useState("")
-  // const [creditCardNumber, creditCardNumberSetter] = useState("")
-  // const [expiry, expirySetter] = useState("")
-  // const [cvv, cvvSetter] = useState("")
   const [password, passwordSetter] = useState("")
   const [passwordConfirmation, passwordConfirmationSetter] = useState("")
 
@@ -91,7 +85,6 @@ export default function BusinessSignUp() {
     });
     const userData = await res.json();
     if(res.ok){
-        console.log(userData)
         dispatch({ type: "SET_CURRENT_USER", playload: userData})
         history.push('/businessprofile')
     } else {
@@ -99,7 +92,6 @@ export default function BusinessSignUp() {
     }
 };
 
-console.log(currentUser)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -155,62 +147,6 @@ console.log(currentUser)
               />
             </Grid>              
 
-            {/* <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="businessType"
-                label="business Type"
-                type="businessType"
-                id="businessType"
-                autoComplete="businessType"
-              />
-            </Grid> */}
-
-            {/* <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="creditCardNumber"
-                label="Credit Card Number"
-                name="creditCardNumber"
-                autoComplete="creditCardNumber"
-                value={creditCardNumber}
-                onChange={(e)=>creditCardNumberSetter(e.target.value)}
-              />
-            </Grid>  
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="expiry"
-                name="expiry"
-                variant="outlined"
-                required
-                fullWidth
-                id="expiry"
-                label="Expiry"
-                autoFocus
-                value={expiry}
-                onChange={(e)=>expirySetter(e.target.value)}
-              />
-            </Grid>
-            
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="cvv"
-                label="cvv"
-                name="cvv"
-                autoComplete="cvv"
-                value={cvv}
-                onChange={(e)=>cvvSetter(e.target.value)}
-              />
-            </Grid> */}
-
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -240,13 +176,7 @@ console.log(currentUser)
                 onChange={(e)=>passwordConfirmationSetter(e.target.value)}
               />
             </Grid>
-{/* 
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid> */}
+
           </Grid>
           
           <button
@@ -265,9 +195,6 @@ console.log(currentUser)
           </Grid>
         </form>
       </div>
-      {/* <Box mt={5}>
-        <Copyright />
-      </Box> */}
     </Container>
   );
 }

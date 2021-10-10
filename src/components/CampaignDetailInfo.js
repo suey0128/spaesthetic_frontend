@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 
 export default function CampaignDetailInfo({ campaign }) {
 
-    console.log(campaign)
 
     return (
         <Grid item xs={12} sm={6}>

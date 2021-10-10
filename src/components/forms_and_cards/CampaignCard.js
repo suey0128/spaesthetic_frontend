@@ -8,9 +8,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +33,7 @@ export default function CampaignCard({ campaign }) {
 
     return (
 
-      <Grid container spacing={1} xs={12}>
+      <Grid container spacing={1} >
         <Paper className={classes.paper} xs={12}>
           <Grid container spacing={1} className="campaign-card">
 

@@ -1,4 +1,3 @@
-import ReactStars from "react-rating-stars-component";
 import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +37,7 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
   const [rating, ratingSetter] = useState(review.rating)
   const [newReview, newReviewSetter] = useState(review.content)
   const [updateDate, updateDateSetter] = useState(review.date.slice(0,10))
+  const reviewList = useSelector((state) => state.reviewReducer.reviewList)
 
   const handleReviewEdit = (e) => {
     e.preventDefault(); 
@@ -49,10 +49,19 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
       });
       if (res.ok) {
         const updatedReview = await res.json();
-        forCancelBtn(false)
-        dispatch({type: "FETCH_VIEWING_BUSINESS" })
-        dispatch({type: "NEED_FETCH_USER" })
-        dispatch({type: "FETCH_VIEWING_CC" })
+        ratingSetter(updatedReview.rating);
+        newReviewSetter(updatedReview.content);
+        forCancelBtn(false);
+        dispatch({type: "FETCH_VIEWING_BUSINESS" });
+        dispatch({type: "NEED_FETCH_USER" });
+        dispatch({type: "FETCH_VIEWING_CC" });
+        dispatch({type: "SET_REVIEW_LIST", playload: reviewList.filter((r) => {
+          if (r.id === updatedReview.id) {
+            return r.rating = updatedReview.rating, r.content = updatedReview.content, r.date = updatedReview.updated_at
+          } else {
+            return r
+          }
+        }) });
       } else {
         const err = await res.json();
         alert(err.errors)
@@ -60,6 +69,7 @@ export default function CollabReviewFormForUpdate({ review, forCancelBtn }) {
     }
     reviewUpdate();
   }
+
 
 
   const handleCancel = () => {

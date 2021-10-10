@@ -12,9 +12,6 @@ import Modal from '@material-ui/core/Modal';
 import Container from '@material-ui/core/Container';
 
 
-import {useSelector, useDispatch} from 'react-redux' 
-
-
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(1),
@@ -29,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CCCard({ cc }) {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+
 
   const handleOpen = () => {
     setOpen(true);
@@ -57,10 +54,10 @@ export default function CCCard({ cc }) {
           <Modal
           open={open}
           onClose={handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
+          // aria-labelledby="simple-modal-title"
+          // aria-describedby="simple-modal-description"
           >
-            <InvitationForm cc={cc} handleClose={handleClose}/>
+            <InvitationForm cc={cc} handleClose={handleClose}  />
         </Modal>
         </Paper> 
       </Container>

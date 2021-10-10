@@ -14,7 +14,7 @@ import Switch from '@material-ui/core/Switch';
 
 import React from 'react';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   outer: {
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     color: theme.palette.text.secondary,
     width:"100%",
-    padding: '2px 20px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -77,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   iconButton: {
-    padding: 10,
+    padding: '10',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -89,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
 export default function CCHPSearchAndSort({ handleSearch, handleSort, handleSwitchChangeCompensation, handleSwitchChangeQualification }) {
   const classes = useStyles();
   const [input, inputSetter] = useState("")
-  const [sortValue, sortValueSetter] = useState("")
 
 
 
@@ -97,7 +95,7 @@ export default function CCHPSearchAndSort({ handleSearch, handleSort, handleSwit
 
     <Container component="main" maxWidth="lg" className={classes.outer}>
 
-      <Grid container md={12} component="main" maxWidth="lg" className={classes.searchSortContainer}>
+      <Grid container  className={classes.searchSortContainer}>
         {/* search bar */}
         <Grid item xs={12} md={6} className={classes.gridItem}>
         <Paper component="form" className={classes.searchBar} onSubmit={(e)=>{handleSearch(e, input)}}>
@@ -141,7 +139,7 @@ export default function CCHPSearchAndSort({ handleSearch, handleSort, handleSwit
       </ Grid>
 
       {/* filter */}
-      <Grid container md={12}component="main" maxWidth="lg" className={classes.filterContainer}>
+      <Grid container className={classes.filterContainer}>
         <Grid item xs={12} md={6} className={classes.gridItem}>
             <FormGroup row className={classes.filter}>
               <h4 className='cchp-filter-title' >Compensation Type: </h4>

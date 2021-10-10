@@ -16,13 +16,9 @@ function BusinessHPCCList() {
   //fetch all the cc
   useEffect(() => {
     fetch("http://localhost:3000/content_creators", 
-    // {
-    //   credentials: "include"
-    // }
     ).then((r) => {  
       if (r.ok) {
         r.json().then((cc) => {
-        // console.log(cc)
         dispatch({ type: "SET_CONTENT_CREATOR_ARR", playload: cc})
         });
       } else {

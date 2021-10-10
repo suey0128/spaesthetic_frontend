@@ -33,7 +33,7 @@ export default function HeaderBadge() {
         if (res.ok){
         const data = await res.json()
         dispatch({ type: "SET_NOTIFICATION_ARR", playload:data })
-        dispatch({ type: "SET_UNREAD_NOTIFICATION_NUM", playload: data.filter(n => n.read == false).length })
+        dispatch({ type: "SET_UNREAD_NOTIFICATION_NUM", playload: data.filter(n => n.read === false).length })
         }
     };
     fetchNotification();
@@ -54,7 +54,6 @@ export default function HeaderBadge() {
       body: JSON.stringify()
       });
       if (res.ok) {
-        const data = await res.json();
         dispatch({ type: "SET_UNREAD_NOTIFICATION_NUM", playload: null })
       } else {
         const err = await res.json();

@@ -14,7 +14,7 @@ import { useState, useEffect } from 'react';
 export default function CampaginDetail() {
   const dispatch = useDispatch();
   const params = useParams();
-  // console.log (params) //=>{id:1}
+
 
   const [isLoaded, setIsLoaded] = useState(false)
   const campaign = useSelector((state) => state.campaignReducer.campaign)
@@ -37,7 +37,6 @@ export default function CampaginDetail() {
 
   if (!isLoaded ) return <h2>Loading...</h2>;
   if (!currentUser ) return <h2>Loading...</h2>;
-  console.log(campaign)
 
 
 

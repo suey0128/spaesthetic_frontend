@@ -91,7 +91,6 @@ export default function BusinessProfileEditForm() {
         country
       }
     }
-    // console.log(updatedProfile)
     async function updateProfile() {
       const res = await fetch(`/users/${currentUser.id}`,{
           method: 'PATCH',
@@ -103,7 +102,6 @@ export default function BusinessProfileEditForm() {
       });
       const userData = await res.json();
       if(res.ok){
-          console.log(userData)
           dispatch({ type: "NEED_FETCH_USER" })
           history.push('/businessprofile')
       } else {

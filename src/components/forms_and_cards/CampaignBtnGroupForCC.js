@@ -2,7 +2,6 @@ import Grid from '@material-ui/core/Grid';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react'
 
 
 export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
@@ -34,7 +33,6 @@ export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
     const handleWithdrawClick = () => {
         //find the application instance id
         const applicationId = campaign.applications.find(a=>a.content_creator_id === currentUser.platform_user_id).id
-        console.log(applicationId)
         //destory the application instance, change the state
         async function withdrawApplication () {
             const res = await fetch (`/applications/${applicationId}`, {method: 'DELETE'});
@@ -62,7 +60,6 @@ export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
             });
             if (res.ok) {
                 const data = await res.json(); // application instance
-                console.log('dataFromApply',data)
                 dispatch({ type: "NEED_FETCH_USER"})
                 dispatch({ type: "NEED_FETCH_CAMPAIGN_ARR"})
                 dispatch({ type: "NEED_FETCH_CAMPAIGN"})
@@ -75,12 +72,11 @@ export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
     };
 
 
-    // console.log(campaign)
-
     return (
         <Grid item xs={12} sm={3}>
-            {currentUser.invited_by.find(c=>c.id === campaign.id) ? <p className="invite-msg">you are invited by this campaign❣</p> : null}
-
+            
+            {currentUser.invited_by.find(c=>c.id === campaign.id) ? <p className="invite-msg">you are invited by this campaign❣</p>  : null}
+           
             <div className="buttons-in-Campaign-card">
 
             {new Date(campaign.end_date) > new Date() ? 

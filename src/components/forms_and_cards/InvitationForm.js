@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
 
-import { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux' 
 
 // the fn that position the modal
@@ -58,7 +56,6 @@ export default function InvitationForm({ cc, handleClose }) {
       });
       if (res.ok) {
         const newInvite = await res.json();
-        console.log(newInvite)
         dispatch({ type: 'NEED_FETCH_USER' })
       } else {
         const err = await res.json()

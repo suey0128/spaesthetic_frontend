@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -105,7 +104,6 @@ export default function CCProfileEditForm() {
         website
       }
     }
-    // console.log(updatedProfile)
     async function updateProfile() {
       const res = await fetch(`/users/${currentUser.id}`,{
           method: 'PATCH',
@@ -117,7 +115,6 @@ export default function CCProfileEditForm() {
       });
       const userData = await res.json();
       if(res.ok){
-          console.log(userData)
           dispatch({ type: "SET_CURRENT_USER", playload: userData})
           history.push('/ccprofile')
       } else {
@@ -357,10 +354,6 @@ export default function CCProfileEditForm() {
             <button
               type="submit"
               style={{ width: '100%', marginTop: '15px'}}
-              // fullWidth
-              // variant="contained"
-              // color="primary"
-              // className={classes.submit}
             >
             Save Change
             </button>

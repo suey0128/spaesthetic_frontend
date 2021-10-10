@@ -1,10 +1,7 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -14,7 +11,7 @@ import Container from '@material-ui/core/Container';
 
 import { useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,8 +44,6 @@ export default function Login() {
 
   const [username, usernameSetter] = useState("")
   const [password, passwordSetter] = useState("")
-
-  const currentUser = useSelector((state) => state.userReducer.currentUser);
 
   async function handleSubmit(e){
     e.preventDefault()
@@ -114,18 +109,9 @@ export default function Login() {
             onChange={(e)=>passwordSetter(e.target.value)}
           />
 
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
-
           <button
             type="submit"
             style={{ width: '100%', marginTop: '15px'}}
-            // fullWidth
-            // variant="contained"
-            // color="primary"
-            // className={classes.submit}
           >
             Login
           </button>

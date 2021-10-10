@@ -16,7 +16,6 @@ export default function CollabReviewList() {
     dispatch({type: 'OPEN_REVIEW_FORM', playload: false});
   };
 
-  console.log('openReviewForm', openReviewForm)
 
     return (
       <div className="CollabReviewsWroteByCC">

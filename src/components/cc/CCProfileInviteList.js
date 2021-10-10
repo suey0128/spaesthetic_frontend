@@ -10,7 +10,6 @@ function CCProfileInviteList() {
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   if (currentUser === null) return <h2>Loading...</h2>;
 
-  // console.log(currentUser.invited_by)
   
     return (
       <div className="CCProfileInviteList">

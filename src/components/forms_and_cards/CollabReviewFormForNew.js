@@ -1,4 +1,4 @@
-import ReactStars from "react-rating-stars-component";
+
 import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,7 +70,6 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
 
   const handlePostingReview = (e) => {
     e.preventDefault(); 
-    // console.log(viewingParty, currentUser)
     const postingReview = {
         reviewer_id: currentUser.platform_user_id,
         reviewer_type: currentUser.platform_user_type,
@@ -79,7 +78,7 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
         content: newReview,
         rating,
     }
-    // console.log(postingReview)
+
     async function postNewReview () {
       const res = await fetch(`/reviews`,{
       method: 'POST',
@@ -87,9 +86,7 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
       body: JSON.stringify(postingReview)
       });
       if (res.ok) {
-        const data = await res.json();
         forCancelBtn(false)
-        console.log(data)
         dispatch({type: "FETCH_VIEWING_BUSINESS" })
         dispatch({type: "FETCH_VIEWING_CC" })
         dispatch({type: "NEED_FETCH_USER" })

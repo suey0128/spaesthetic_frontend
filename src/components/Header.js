@@ -6,9 +6,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {  useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
-
-
-
 function Header() {
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);

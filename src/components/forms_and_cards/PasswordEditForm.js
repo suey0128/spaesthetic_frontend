@@ -1,10 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 // the fn that position the modal
 function getModalStyle() {
@@ -45,7 +44,6 @@ export default function NewProfilePicForm({ handleClose }) {
   const [newPassword, setNewPassword] = useState("")
   const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("")
 
-  console.log(newPassword, newPasswordConfirmation)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -57,8 +55,6 @@ export default function NewProfilePicForm({ handleClose }) {
         });
         if (res.ok) {
           const userData = await res.json();
-          console.log("dataBackFromPatch",userData)
-          // useDispatch({ type: "SET_CURRENT_USER", playload: userData})
         } else {
           const error = await res.json()
           alert(error.errors)

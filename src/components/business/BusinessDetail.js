@@ -65,13 +65,11 @@ export default function BusinessDetail() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const params = useParams();
-  // console.log (params) //=>{id:1}
 
   const [isLoaded, setIsLoaded] = useState(false)
   const [value, setValue] = useState(0);
   const isOnProfile = true;
 
-  const viewingBusiness = useSelector((state) => state.businessReducer.viewingBusiness)
   const fetchViewingBusiness = useSelector((state) => state.businessReducer.fetchViewingBusiness)
 
   //fetch campaign base on the id from the params

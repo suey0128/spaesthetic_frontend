@@ -5,12 +5,11 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
 
 export default function BusinessDetailInfo() {
-  const dispatch = useDispatch();
   const viewingBusiness = useSelector((state) => state.businessReducer.viewingBusiness);
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const [isNewReview, isNewReviewSetter] = useState(false); // detemine if it modal the POST or PATCH Form
@@ -39,7 +38,6 @@ export default function BusinessDetailInfo() {
     modalBody =  <CollabReviewFormForNew viewingParty={viewingBusiness} forCancelBtn={handleClose}/> : 
     modalBody = <CollabReviewFormForUpdate review={review} forCancelBtn={handleClose}/>
 
-    console.log(viewingBusiness, currentUser)
  
   return (
 

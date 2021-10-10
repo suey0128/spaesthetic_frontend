@@ -10,7 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -53,8 +53,6 @@ export default function HeaderNotificationPopover() {
   const unreadNotificationNum = useSelector((state) => state.otherReducer.unreadNotificationNum);
 
   if (!notificationArr ) return <h2>Loading...</h2>;
-
-  console.log(unreadNotificationNum)
 
   return (
     <React.Fragment >

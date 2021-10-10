@@ -7,8 +7,7 @@ function CCProfileApplied() {
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   if (currentUser === null) return <h2>Loading...</h2>;
-  // console.log(currentUser.applied_campaigns)
-  console.log('1',currentUser.applied_campaigns)
+
 
     return (
       <div className="CCProfileApplied">

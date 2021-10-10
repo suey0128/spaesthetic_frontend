@@ -1,5 +1,4 @@
 
-import ReactStars from "react-rating-stars-component";
 import CollabReviewFormForEdit from "./CollabReviewFormForEdit";
 import React from "react";
 
@@ -8,8 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 
-import {useSelector, useDispatch} from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useDispatch} from 'react-redux';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // MUI
@@ -56,7 +55,6 @@ export default function CollabReviewCard({ review, showBtn }) {
   }
 
   const handleDelete = () => {
-    console.log(review)
     //delete the review instance base on id
     async function deleteReview() {
         const res = await fetch(`reviews/${review.id}`,{
