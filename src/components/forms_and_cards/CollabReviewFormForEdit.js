@@ -1,4 +1,3 @@
-import ReactStars from "react-rating-stars-component";
 import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 
 import { useState } from 'react'
-import {useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 // MUI
 import { styled } from '@mui/material/styles';
@@ -63,7 +62,6 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn, setRatin
     reviewUpdate();
   }
 
-  console.log(rating)
 
   const handleCancel = () => {
     forCancelBtn(false) //CollabReviewCard shows the review

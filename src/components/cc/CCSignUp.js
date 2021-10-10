@@ -1,6 +1,5 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -86,10 +85,8 @@ export default function CCSignUp() {
         website: ""
       }
     }
-    // console.log(signUpUser)
     const res = await fetch(`/users`,{
         method: 'POST',
-        // credentials: "include",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -97,7 +94,6 @@ export default function CCSignUp() {
     });
     const userData = await res.json();
     if(res.ok){
-        console.log(userData)
         dispatch({ type: "SET_CURRENT_USER", playload: userData})
         history.push('/ccprofile')
     } else {
@@ -105,7 +101,6 @@ export default function CCSignUp() {
     }
 };
 
-console.log(currentUser)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -190,19 +185,6 @@ console.log(currentUser)
               />
             </Grid>              
 
-            {/* <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="businessType"
-                label="business Type"
-                type="businessType"
-                id="businessType"
-                autoComplete="businessType"
-              />
-            </Grid> */}
-
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -273,9 +255,6 @@ console.log(currentUser)
           </Grid>
         </form>
       </div>
-      {/* <Box mt={5}>
-        <Copyright />
-      </Box> */}
     </Container>
   );
 }

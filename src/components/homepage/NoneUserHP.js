@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -33,23 +33,13 @@ export default function NoneUserHP() {
 
   const handleBusinessSignUpClick = (e) => {
     e.stopPropagation();
-    console.log('click')
     history.push("/businesssignup")
   }
 
   const handleCCSignUpClick = (e) => {
     e.stopPropagation();
-    console.log('click')
     history.push("/ccsignup")
   }
-
-  //for mobile
-  const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
 
     return (
       <div className="none-user-HP">     

@@ -32,7 +32,6 @@ function BusinessHP() {
 
   
   const handleSort = (e) => {
-    let sortBy = e.target.value
     async function sort(){
       const res = await fetch (`/content_creators?sort=${e.target.value}`)
       const data = await res.json()

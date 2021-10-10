@@ -126,7 +126,6 @@ export default function CampaignForm() {
       content_sent_by: contentSentBy,
       must_post_by: mustPostBy
     }
-    console.log(newCampaign)
 
     async function postCampaign() {
       const res = await fetch(`/campaigns`,{
@@ -139,7 +138,6 @@ export default function CampaignForm() {
       });
       const userData = await res.json();
       if(res.ok){
-          console.log(userData)
           //add the current user state to make the new campaign without refreshing 
           dispatch({ type: "NEED_FETCH_USER" })
           history.push('/businesscurrentcampaign')

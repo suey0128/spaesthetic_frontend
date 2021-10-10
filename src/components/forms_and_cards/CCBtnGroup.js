@@ -1,13 +1,11 @@
 import Grid from '@material-ui/core/Grid';
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { useState,useEffect } from 'react'
 
 
 export default function CCBtnGroup({ cc, handleOpen }) {
     const history = useHistory();
-    const dispatch = useDispatch();
     //states
     const currentUser = useSelector((state) => state.userReducer.currentUser);
 

@@ -2,7 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 
@@ -33,7 +33,6 @@ export default function CampaignRelatedCC ({ campaign }) {
     const history = useHistory();
  
     if (campaign === null) return <h2>Loading campaign</h2>
-  // console.log(campaign)
 
     const handleHireClick =  (contentCreator) => {
       const newCollab = {
@@ -51,7 +50,6 @@ export default function CampaignRelatedCC ({ campaign }) {
         });
         if (res.ok) {
             const data = await res.json(); // collab instance
-            console.log('dataFromHire',data)
             dispatch({ type: "NEED_FETCH_USER"})
             dispatch({ type: "NEED_FETCH_CAMPAIGN_ARR"})
             dispatch({ type: "NEED_FETCH_CAMPAIGN"})

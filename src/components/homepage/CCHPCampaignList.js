@@ -17,7 +17,6 @@ export default function CCHPCampaignList() {
     ).then((r) => {  
       if (r.ok) {
         r.json().then((campaigns) => {
-        // console.log(campaigns)
         dispatch({ type: "SET_CAMPAIGN_ARR", playload: campaigns})
         dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: campaigns})
         });

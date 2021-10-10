@@ -27,7 +27,6 @@ export default function BusinessCurrentCampaignList({isOnProfile}) {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
   },[])
 
-  // if (currentUser === null && viewingBusiness === null) return <h2>Loading...</h2>;
   if (currentUser === null && viewingBusiness === null) return <div className={classes.root}><CircularProgress color="secondary" /></div>;
 
 

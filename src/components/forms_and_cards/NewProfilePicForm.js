@@ -61,7 +61,6 @@ export default function NewProfilePicForm({ handleClose }) {
         body: JSON.stringify({ profile_pic: url })
       });
       if (res.ok) {
-        const data = await res.json();
         dispatch({ type: 'NEED_FETCH_USER' })
       } else {
         const err = await res.json()

@@ -94,7 +94,7 @@ export default function BusinessHPSearchAndSort({ handleSearch, handleSort }) {
   return (
 
     <Container component="main" maxWidth="lg" className={classes.outer}>
-       <Grid container md={12} component="main" maxWidth="lg" className={classes.searchSortContainer}>
+       <Grid container component="main"  className={classes.searchSortContainer}>
         <Grid item xs={12} md={6} className={classes.gridItem}>
           <Paper component="form" className={classes.searchBar} onSubmit={(e)=>{handleSearch(e, input)}}>
           

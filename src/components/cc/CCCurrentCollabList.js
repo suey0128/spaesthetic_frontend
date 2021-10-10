@@ -24,15 +24,14 @@ export default function CCCurrentCollabList({isOnProfile}) {
   } else {
     party = currentUser
   }
-  console.log(isOnProfile)
 
     return (
       <div className={isOnProfile ? null : "cc-current-collab-list"}>
         <Grid container spacing={1}>
           {party.current_campaigns.length > 0 ? 
-          party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>) 
+          party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/> )
           : 
-          <h2>There isn't any current collab going on</h2>
+          (<h2>There isn't any current collab going on</h2>)
           }
         </Grid>
        </div>

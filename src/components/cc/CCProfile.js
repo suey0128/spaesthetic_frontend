@@ -69,7 +69,7 @@ function CCProfile() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
-  const [isOnProfile, isOnProfileSetter] = React.useState(true)
+  const isOnProfile = true;
   
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
@@ -78,8 +78,6 @@ function CCProfile() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  console.log(isOnProfile)
 
   return (
     <div className="cc-profile">
@@ -107,7 +105,7 @@ function CCProfile() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0} >
-          <CCCurrentCollabList isOnProfile={isOnProfile} />
+          <CCCurrentCollabList  isOnProfile={isOnProfile}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <CCPastCollabList />

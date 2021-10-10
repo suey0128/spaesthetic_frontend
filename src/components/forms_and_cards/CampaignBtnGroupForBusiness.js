@@ -2,7 +2,6 @@ import Grid from '@material-ui/core/Grid';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react'
 
 
 export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }) {
@@ -12,7 +11,6 @@ export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }
     const currentUser = useSelector((state) => state.userReducer.currentUser);
 
     if (!campaign) return <h2>Loading...</h2>;
-    console.log(campaign);
 
     const handleCancelCampaign = () => {
 

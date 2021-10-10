@@ -11,7 +11,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PhoneIcon from '@material-ui/icons/Phone';
 import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -65,7 +64,6 @@ export default function CCDetail() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const params = useParams();
-  // console.log (params) //=>{id:1}
 
   const [isLoaded, setIsLoaded] = useState(false)
   const [value, setValue] = useState(0);

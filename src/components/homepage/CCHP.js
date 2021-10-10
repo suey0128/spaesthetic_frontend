@@ -52,7 +52,6 @@ function CCHP() {
   
 
   const handleSort = (e) => {
-    console.log(e.target.value)
     async function sort(){
       const res = await fetch (`/campaigns?sort=${e.target.value}`)
       const data = await res.json()
@@ -65,65 +64,7 @@ function CCHP() {
     sort();
   }
 
-
-
-
   let tempObj = {}
-  //filter using frontend and backend
-  const handleFilterr = (type, e) => {
-    console.log(type, e.target.checked, e.target.value)
-    let filterKeyWord = e.target.value //str
-    //checked => get the arry from back end, store it in obj with its filterKeyWord as key, the actual campaign arry as value
-    if (e.target.checked) {
-      console.log(filterKeyWord)
-      if (type === "compensation") {
-        // fetch based on filterKeyWord
-        async function fetchFilterCompensation(){
-          const res = await fetch (`/campaigns?compensation=${filterKeyWord}`)
-          const data = await res.json() //the ARRAY of campaign that fit the filter
-          if (res.ok){
-            console.log(data)
-            tempObj[filterKeyWord] = data
-            // put the array of campaign that comes back from backend into the filteredCampaignArr and remove duplicates, and set it to filteredCampaignArr's new value
-            filteredCampaignArrSetter([...new Set([...filteredCampaignArr, data].flat())])
-          } else {
-            alert(data.errors)
-          }
-        };
-        fetchFilterCompensation();
-
-      } else if (type === "qualification") {
-        async function fetchFilterQualification(){
-          const res = await fetch (`/campaigns?qualification=${currentUser.platform_user_id}`)
-          const data = await res.json()
-          if (res.ok){
-            console.log(data)
-            tempObj[filterKeyWord] = data
-            // put the array of campaign that comes back from backend into the filteredCampaignArr and remove duplicates, and set it to filteredCampaignArr's new value
-            filteredCampaignArrSetter([...new Set([...filteredCampaignArr, data].flat())])
-            // filteredCampaignArrSetter([...filteredCampaignArr, data].flat())
-          } else {
-            alert(data.errors)
-          }
-        };
-        fetchFilterQualification();
-      }
-      arrWithRepititionSetter([...arrWithRepitition, tempObj])
-      checkBoxSetter(checkedBox+1)
-
-    } else if (!e.target.checked && checkedBox !==1) { //uncheck checkbox but not the last one
-      //cross out the arr in filteredCampaignArrWithRepetition
-      let campaignLeft = arrWithRepitition.filter(a => Object.keys(a)[0] !== filterKeyWord)
-      arrWithRepititionSetter(campaignLeft)
-      // get all the values from filteredCampaignArrWithRepetition after geting rid of that unselected one, 
-      //flat it and get rid of duplicates and display
-      filteredCampaignArrSetter([...new Set(campaignLeft.map(c=>Object.values(c)).flat().flat())])
-
-    } else { //uncheck the last checkbox
-      filteredCampaignArrSetter([])
-      checkBoxSetter(0)
-    }
-  }
 
   //filter everything in the frontend
   const handleFilter = (type, e) => {
@@ -133,39 +74,39 @@ function CCHP() {
         tempObj[filterKeyWord] = campaignArr.filter(c => c.compensation_type.toLowerCase() === e.target.value)
 
       } else if (type==="qualification") {
-        let no_follower_requirement_campaigns = campaignArr.filter(c => c.require_following_minimum == null || c.require_following_minimum == "")
+        let no_follower_requirement_campaigns = campaignArr.filter(c => c.require_following_minimum === null || c.require_following_minimum === "")
         let fitting_follower_requirement_campaigns = campaignArr.filter(c => 
-          typeof(c.require_following_minimum) == "number" ? 
+          typeof(c.require_following_minimum) === "number" ? 
           currentUser.platform_user.instagram_follower >= c.require_following_minimum : null
         )
         let followerNumberFiltered = [...new Set([...no_follower_requirement_campaigns, ...fitting_follower_requirement_campaigns])]
-        // console.log("1",followerNumberFiltered)
+
         
 
         let femaleRatioFiltered = [];
         if (currentUser.platform_user.instagram_female_follower_ratio && currentUser.platform_user.instagram_female_follower_ratio !== "") {
           let no_female_ratio_requirement_campaigns = followerNumberFiltered.filter(c => c.require_following_female_ratio === null || c.require_following_female_ratio === "")
           let fitting_female_ratio_requirement_campaigns = followerNumberFiltered.filter(c => 
-            typeof(c.require_following_female_ratio) == "number" ? 
+            typeof(c.require_following_female_ratio) === "number" ? 
             currentUser.platform_user.instagram_female_follower_ratio >= c.require_following_female_ratio : null
           )
           femaleRatioFiltered = [...new Set([...no_female_ratio_requirement_campaigns, ...fitting_female_ratio_requirement_campaigns])]
         } else {
           femaleRatioFiltered = followerNumberFiltered
         }
-        // console.log("2",femaleRatioFiltered)
+
 
         let qualified = [];
         let genderArr = ['female', 'male', 'lgbtq and others']
         if (genderArr.includes(currentUser.platform_user.gender.toLowerCase())) {
-          let no_gender_requirement_campaigns = femaleRatioFiltered.filter(c => genderArr.includes(c.require_gender.toLowerCase()) == false)
+          let no_gender_requirement_campaigns = femaleRatioFiltered.filter(c => genderArr.includes(c.require_gender.toLowerCase()) === false)
           let fitting_gender_requirement_campaigns = femaleRatioFiltered.filter(c => c.require_gender.toLowerCase() === currentUser.platform_user.gender.toLowerCase())
           qualified = [...new Set([...no_gender_requirement_campaigns, ...fitting_gender_requirement_campaigns])]
         } else {
           qualified = femaleRatioFiltered
         }
 
-        // console.log("3",qualified)
+ 
         tempObj[filterKeyWord] = qualified
       } 
       arrWithRepititionSetter([...arrWithRepitition, tempObj])
@@ -197,11 +138,6 @@ function CCHP() {
   const handleSwitchChangeQualification = (e) => {
     handleFilter("qualification", e)
   }
-
-  // console.log(arrWithRepitition)
-
-
-
 
 
     return (

@@ -66,7 +66,7 @@ export default function BusinessProfile() {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [isOnProfile, isOnProfileSetter] = React.useState(true)
+  const isOnProfile = true;
 
 
   const handleChange = (event, newValue) => {

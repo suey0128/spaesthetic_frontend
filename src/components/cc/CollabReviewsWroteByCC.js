@@ -1,11 +1,9 @@
 import CollabReviewCard from '../forms_and_cards/CollabReviewCard'
 import Grid from '@material-ui/core/Grid';
 
-import {useSelector, useDispatch} from 'react-redux' 
+import { useSelector } from 'react-redux' 
 
 export default function CollabReviewsWroteByCC() {
-  const dispatch = useDispatch();
-  const openReviewForm = useSelector((state) => state.reviewReducer.openReviewForm)
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   if (currentUser === null) return <h2>Loading...</h2>;
 
