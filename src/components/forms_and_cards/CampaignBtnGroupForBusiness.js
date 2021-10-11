@@ -15,7 +15,10 @@ export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }
     const handleCancelCampaign = () => {
 
         async function cancelCampaign () {
-            const res = await fetch (`/campaigns/${campaign.id}`, {method: 'DELETE'});
+            // const res = await fetch (`https://spaesthetic.herokuapp.com/campaigns/${campaign.id}`, {
+                const res = await fetch (`/campaigns/${campaign.id}`, {
+                method: 'DELETE'
+            });
             if(res.ok){
                 dispatch({ type: "NEED_FETCH_USER" })
             };

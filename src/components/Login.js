@@ -51,7 +51,8 @@ export default function Login() {
         username:username,
         password:password
     }
-    const res = await fetch(`http://localhost:3000/login`,{ //=>'sessions#create'
+    // const res = await fetch(`https://spaesthetic.herokuapp.com/login`,{ //=>'sessions#create'
+    const res = await fetch(`/login`,{ //=>'sessions#create'
         method: 'POST',
         credentials: "include",
         headers: {
@@ -61,7 +62,6 @@ export default function Login() {
     });
     const userData = await res.json();
     if(userData.id){
-        console.log(userData)
         dispatch({ type: "SET_CURRENT_USER", playload: userData})
         history.push('/')
     } else {

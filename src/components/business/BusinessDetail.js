@@ -76,6 +76,7 @@ export default function BusinessDetail() {
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     async function fetchBusiness(){
+      // const res = await fetch (`https://spaesthetic.herokuapp.com/businesses/${params.id}`)
       const res = await fetch (`/businesses/${params.id}`)
       if (res.ok){
         const data = await res.json()

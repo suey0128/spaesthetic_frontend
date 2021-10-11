@@ -42,7 +42,8 @@ export default function CollabReviewFormForEdit({ review, forCancelBtn, setRatin
   const handleReviewEdit = (e) => {
     e.preventDefault(); 
     async function reviewUpdate () {
-      const res = await fetch(`/reviews/${review.id}`,{
+      // const res = await fetch(`https://spaesthetic.herokuapp.com/reviews/${review.id}`,{
+        const res = await fetch(`/reviews/${review.id}`,{
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ rating: rating, content: newReview})

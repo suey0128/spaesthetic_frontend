@@ -22,7 +22,10 @@ export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
         const collabId = campaign.collabs.find(cl=>cl.content_creator_id === currentUser.platform_user_id ).id
         //destory the collab & application instance, change the state
         async function cancelCollab () {
-            const res = await fetch (`/collabs/${collabId}`, {method: 'DELETE'});
+            // const res = await fetch (`https://spaesthetic.herokuapp.com/collabs/${collabId}`, {
+                const res = await fetch (`/collabs/${collabId}`, {
+                method: 'DELETE'
+            });
             if(res.ok){
                 dispatch({ type: "NEED_FETCH_USER" })
             };
@@ -35,7 +38,10 @@ export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
         const applicationId = campaign.applications.find(a=>a.content_creator_id === currentUser.platform_user_id).id
         //destory the application instance, change the state
         async function withdrawApplication () {
-            const res = await fetch (`/applications/${applicationId}`, {method: 'DELETE'});
+            // const res = await fetch (`https://spaesthetic.herokuapp.com/applications/${applicationId}`, {
+                const res = await fetch (`/applications/${applicationId}`, {
+                method: 'DELETE'
+            });
             if (res.ok) {
                 dispatch({ type: "NEED_FETCH_USER" })
             };
@@ -51,6 +57,7 @@ export default function CampaignBtnGroupForCC({ campaign, showDetailsBtn }) {
             campaign_id: campaign.id
         }
         async function apply() {
+            // const res = await fetch(`https://spaesthetic.herokuapp.com/applications`, {
             const res = await fetch(`/applications`, {
                 method: 'POST',
                 headers: {

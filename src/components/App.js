@@ -36,7 +36,9 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch("http://localhost:3000/me", 
+    // fetch("https://spaesthetic.herokuapp.com/me", 
+    fetch("/me", 
+    // fetch("/me", 
     {
       credentials: "include"
     }

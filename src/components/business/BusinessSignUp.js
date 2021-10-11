@@ -75,7 +75,8 @@ export default function BusinessSignUp() {
         website: ""
       }
     }
-    const res = await fetch(`/users`,{
+    // const res = await fetch(`https://spaesthetic.herokuapp.com/users`,{
+      const res = await fetch(`/users`,{
         method: 'POST',
         // credentials: "include",
         headers: {

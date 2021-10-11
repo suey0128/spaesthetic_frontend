@@ -128,7 +128,8 @@ export default function CampaignForm() {
     }
 
     async function postCampaign() {
-      const res = await fetch(`/campaigns`,{
+      // const res = await fetch(`https://spaesthetic.herokuapp.com/campaigns`,{
+        const res = await fetch(`/campaigns`,{
           method: 'POST',
           // credentials: "include",
           headers: {

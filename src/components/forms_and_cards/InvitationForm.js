@@ -47,7 +47,8 @@ export default function InvitationForm({ cc, handleClose }) {
   const handleInviteClick = (campaign) => {
     //POST a new invitation
     async function createNewInvite () {
-      const res = await fetch(`/invitations`, {
+      // const res = await fetch(`https://spaesthetic.herokuapp.com/invitations`, {
+        const res = await fetch(`/invitations`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

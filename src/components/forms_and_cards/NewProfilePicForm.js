@@ -53,7 +53,8 @@ export default function NewProfilePicForm({ handleClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     async function updateProfilePic () {
-      const res = await fetch(`/${userType}/${currentUser.platform_user_id}`, {
+      // const res = await fetch(`https://spaesthetic.herokuapp.com/${userType}/${currentUser.platform_user_id}`, {
+        const res = await fetch(`/${userType}/${currentUser.platform_user_id}`, {
         method: 'PATCH',
         headers: {
           "Content-Type": "application/json",
