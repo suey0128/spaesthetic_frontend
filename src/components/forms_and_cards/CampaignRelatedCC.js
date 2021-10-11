@@ -38,34 +38,38 @@ export default function CampaignRelatedCC ({ campaign }) {
       const newCollab = {
         content_creator_id: contentCreator.id,
         campaign_id: campaign.id
-    }
+      }
 
-    async function hire() {
-        const res = await fetch(`/collabs`, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(newCollab)
-        });
-        if (res.ok) {
-            const data = await res.json(); // collab instance
-            dispatch({ type: "NEED_FETCH_USER"})
-            dispatch({ type: "NEED_FETCH_CAMPAIGN_ARR"})
-            dispatch({ type: "NEED_FETCH_CAMPAIGN"})
-        } else {
-            const err = await res.json();
-            alert(err.errors)
-        };
-    }
-    hire();
+      async function hire() {
+          // const res = await fetch(`https://spaesthetic.herokuapp.com/collabs`, {
+            const res = await fetch(`/collabs`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type':'application/json'
+              },
+              body: JSON.stringify(newCollab)
+          });
+          if (res.ok) {
+              const data = await res.json(); // collab instance
+              dispatch({ type: "NEED_FETCH_USER"})
+              dispatch({ type: "NEED_FETCH_CAMPAIGN_ARR"})
+              dispatch({ type: "NEED_FETCH_CAMPAIGN"})
+          } else {
+              const err = await res.json();
+              alert(err.errors)
+          };
+      }
+      hire();
     }
 
 
     const handleCancelClick = (contentCreator)=> {
       const collabId = campaign.collabs.find(cl=>cl.content_creator_id === contentCreator.id).id
       async function cancelCollab () {
-        const res = await fetch (`/collabs/${collabId}`, {method: 'DELETE'});
+        // const res = await fetch (`https://spaesthetic.herokuapp.com/collabs/${collabId}`, {
+          const res = await fetch (`/collabs/${collabId}`, {
+          method: 'DELETE'
+        });
         if(res.ok){
             dispatch({ type: "NEED_FETCH_USER" })
         };

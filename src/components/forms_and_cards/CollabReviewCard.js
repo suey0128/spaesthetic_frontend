@@ -57,7 +57,8 @@ export default function CollabReviewCard({ review, showBtn }) {
   const handleDelete = () => {
     //delete the review instance base on id
     async function deleteReview() {
-        const res = await fetch(`reviews/${review.id}`,{
+        // const res = await fetch(`https://spaesthetic.herokuapp.com/reviews/${review.id}`,{
+          const res = await fetch(`/reviews/${review.id}`,{
             method: 'DELETE'
         })
         if (res.ok) {

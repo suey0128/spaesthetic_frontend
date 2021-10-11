@@ -105,6 +105,7 @@ export default function CCProfileEditForm() {
       }
     }
     async function updateProfile() {
+      // const res = await fetch(`https://spaesthetic.herokuapp.com/users/${currentUser.id}`,{
       const res = await fetch(`/users/${currentUser.id}`,{
           method: 'PATCH',
           // credentials: "include",

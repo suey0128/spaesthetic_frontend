@@ -48,7 +48,8 @@ export default function NewProfilePicForm({ handleClose }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     async function changePD() {
-        const res = await fetch(`/users/${currentUser.id}`, {
+        // const res = await fetch(`https://spaesthetic.herokuapp.com/users/${currentUser.id}`, {
+          const res = await fetch(`/users/${currentUser.id}`, {
           method: "PATCH",
           headers: { 'Content-Type': 'application/json'},
           body: JSON.stringify({ password: newPassword, password_confirmation: newPasswordConfirmation})

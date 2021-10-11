@@ -75,6 +75,7 @@ export default function CCDetail() {
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     async function fetchCC(){
+      // const res = await fetch (`https://spaesthetic.herokuapp.com/content_creators/${params.id}`)
       const res = await fetch (`/content_creators/${params.id}`)
       if (res.ok){
         const data = await res.json()

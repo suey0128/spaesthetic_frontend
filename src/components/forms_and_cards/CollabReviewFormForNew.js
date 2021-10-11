@@ -80,7 +80,8 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
     }
 
     async function postNewReview () {
-      const res = await fetch(`/reviews`,{
+      // const res = await fetch(`https://spaesthetic.herokuapp.com/reviews`,{
+        const res = await fetch(`/reviews`,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postingReview)

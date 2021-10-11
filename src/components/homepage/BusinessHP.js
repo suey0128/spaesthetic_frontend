@@ -17,6 +17,7 @@ function BusinessHP() {
     let convertedInput = input.toLowerCase().replace(" ","_");
 
     async function fetchCCWithSearch(){
+      // const res = await fetch (`https://spaesthetic.herokuapp.com/content_creators?search=${convertedInput}`)
       const res = await fetch (`/content_creators?search=${convertedInput}`)
       const data = await res.json()
       if (res.ok){
@@ -33,6 +34,7 @@ function BusinessHP() {
   
   const handleSort = (e) => {
     async function sort(){
+      // const res = await fetch (`https://spaesthetic.herokuapp.com/content_creators?sort=${e.target.value}`)
       const res = await fetch (`/content_creators?sort=${e.target.value}`)
       const data = await res.json()
       if (res.ok){

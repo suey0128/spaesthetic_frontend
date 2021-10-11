@@ -85,7 +85,8 @@ export default function CCSignUp() {
         website: ""
       }
     }
-    const res = await fetch(`/users`,{
+    // const res = await fetch(`https://spaesthetic.herokuapp.com/users`,{
+      const res = await fetch(`/users`,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

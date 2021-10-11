@@ -15,7 +15,8 @@ function BusinessHPCCList() {
 
   //fetch all the cc
   useEffect(() => {
-    fetch("http://localhost:3000/content_creators", 
+    // fetch("https://spaesthetic.herokuapp.com/content_creators", 
+    fetch("/content_creators", 
     ).then((r) => {  
       if (r.ok) {
         r.json().then((cc) => {

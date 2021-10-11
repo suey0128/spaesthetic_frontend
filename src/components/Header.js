@@ -13,7 +13,8 @@ function Header() {
   const history = useHistory();
 
   function handleLogout() {
-    fetch("/logout", {
+    // fetch("https://spaesthetic.herokuapp.com/logout", {
+      fetch("/logout", {
       method: "DELETE",
     }).then(() => {
       history.push('/')

@@ -13,7 +13,8 @@ export default function CCHPCampaignList() {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/campaigns", 
+    // fetch("https://spaesthetic.herokuapp.com/campaigns", 
+    fetch("/campaigns", 
     ).then((r) => {  
       if (r.ok) {
         r.json().then((campaigns) => {

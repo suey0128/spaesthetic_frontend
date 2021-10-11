@@ -25,6 +25,7 @@ export default function CampaginDetail() {
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false});
     async function fetchCampaign(){
+      // const res = await fetch (`https://spaesthetic.herokuapp.com/campaigns/${params.id}`)
       const res = await fetch (`/campaigns/${params.id}`)
       if (res.ok){
         const data = await res.json()
