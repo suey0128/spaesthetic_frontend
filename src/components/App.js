@@ -84,48 +84,105 @@ function App() {
           </Route>
 
         {currentUser ? 
-        <>
-              <Route path="/businessdetail/:id">
-                  <BusinessDetail />
-                </Route>
+          (currentUser.platform_user_type === "Business" ? 
+          <>
+            <Route path="/cccurrentcollab">
+              <CCCurrentCollabList />
+            </Route>
 
-                <Route path="/cccurrentcollab">
-                  <CCCurrentCollabList />
-                </Route>
+            <Route path="/ccdetail/:id">
+              <CCDetail />
+            </Route>
 
-                <Route path="/ccprofile">
-                  <CCProfile />
-                </Route>
+            <Route path="/businesscurrentcampaign">
+              <BusinessCurrentCampaignList />
+            </Route>
 
-                <Route path="/ccprofileedit">
-                  <CCProfileEditForm />
-                </Route>
+            <Route path="/businessprofile">
+              <BusinessProfile />
+            </Route>
 
-                <Route path="/ccdetail/:id">
-                  <CCDetail />
-                </Route>
+            <Route path="/campaignform">
+              <CampaignForm />
+            </Route>
 
-                <Route path="/businesscurrentcampaign">
-                  <BusinessCurrentCampaignList />
-                </Route>
-
-                <Route path="/businessprofile">
-                  <BusinessProfile />
-                </Route>
-
-                <Route path="/campaignform">
-                  <CampaignForm />
-                </Route>
-
-                <Route path="/businessprofileedit">
-                  <BusinessProfileEditForm />
-                </Route>
+            <Route path="/businessprofileedit">
+              <BusinessProfileEditForm />
+            </Route>
 
             <Route path="/campaigndetail/:id">
               <CampaginDetail />
             </Route>
-            </>
-           : <><p>Please Login or Sign Up</p> </>
+          </>
+          :
+          <>
+            <Route path="/businessdetail/:id">
+              <BusinessDetail />
+            </Route>
+
+            <Route path="/cccurrentcollab">
+              <CCCurrentCollabList />
+            </Route>
+
+            <Route path="/ccprofile">
+              <CCProfile />
+            </Route>
+
+            <Route path="/ccprofileedit">
+              <CCProfileEditForm />
+            </Route>
+
+            <Route path="/businesscurrentcampaign">
+              <BusinessCurrentCampaignList />
+            </Route>
+
+            <Route path="/campaigndetail/:id">
+              <CampaginDetail />
+            </Route>
+
+          </>)
+        // <>
+        //       <Route path="/businessdetail/:id">
+        //           <BusinessDetail />
+        //         </Route>
+
+        //         <Route path="/cccurrentcollab">
+        //           <CCCurrentCollabList />
+        //         </Route>
+
+        //         <Route path="/ccprofile">
+        //           <CCProfile />
+        //         </Route>
+
+        //         <Route path="/ccprofileedit">
+        //           <CCProfileEditForm />
+        //         </Route>
+
+        //         <Route path="/ccdetail/:id">
+        //           <CCDetail />
+        //         </Route>
+
+        //         <Route path="/businesscurrentcampaign">
+        //           <BusinessCurrentCampaignList />
+        //         </Route>
+
+        //         <Route path="/businessprofile">
+        //           <BusinessProfile />
+        //         </Route>
+
+        //         <Route path="/campaignform">
+        //           <CampaignForm />
+        //         </Route>
+
+        //         <Route path="/businessprofileedit">
+        //           <BusinessProfileEditForm />
+        //         </Route>
+
+        //     <Route path="/campaigndetail/:id">
+        //       <CampaginDetail />
+        //     </Route>
+        //     </>
+        : (<><p>Please Login or Sign Up</p> </>)
         }
         </Switch>
         </div>

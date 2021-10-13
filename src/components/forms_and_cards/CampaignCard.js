@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CampaignCard({ campaign }) {
+export default function CampaignCard({ campaign, isOnCCdeatilPageViewingByBusiness, isOnProfile }) {
   const classes = useStyles();
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const viewingCC = useSelector((state) => state.ccReducer.viewingCC);
@@ -39,7 +39,10 @@ export default function CampaignCard({ campaign }) {
 
               <CampaignImg campaign={campaign} />
 
-              <CampaignInfo campaign={campaign} />
+              <CampaignInfo campaign={campaign} 
+                            isOnCCdeatilPageViewingByBusiness={isOnCCdeatilPageViewingByBusiness}
+                            isOnProfile={isOnProfile}
+                            />
 
               {currentUser.platform_user_type === "ContentCreator" ?
               <CampaignBtnGroupForCC campaign={campaign} 
@@ -49,7 +52,7 @@ export default function CampaignCard({ campaign }) {
 
               {currentUser.platform_user_type === "Business" ?
               <CampaignBtnGroupForBusiness campaign={campaign}
-                                            showDetailsBtn={true} 
+                                            showDetailsBtn={false} 
                                             /> : null
               }
 

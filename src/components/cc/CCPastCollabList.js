@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { useSelector } from 'react-redux'
 
-export default function CCPastCollabList() {
+export default function CCPastCollabList({ isOnCCdeatilPageViewingByBusiness }) {
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const viewingCC = useSelector((state) => state.ccReducer.viewingCC);
@@ -22,7 +22,10 @@ export default function CCPastCollabList() {
       <div className="CCPastCollabList">
         <Grid container spacing={1}>
           {party.past_campaigns.length > 0 ? 
-          party.past_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>)
+          party.past_campaigns.map(c=> <CampaignCard key={c.id} 
+                                                      campaign={c} 
+                                                      isOnCCdeatilPageViewingByBusiness={isOnCCdeatilPageViewingByBusiness}
+                                                      />)
           : 
           <h2>There isn't any past collab</h2>
           }

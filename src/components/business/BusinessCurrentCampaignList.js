@@ -39,9 +39,10 @@ export default function BusinessCurrentCampaignList({isOnProfile}) {
 
   return (
     <div className={isOnProfile ? null : "business-curren-campaign-list"}>
+      {isOnProfile ? null : <h1 style={{ "textAlign" : "center" }}>Current Campaign</h1> }
       <Grid container spacing={1}>
         {party.current_campaigns.length > 0 ? 
-        party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/>) 
+        party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c} isOnProfile={isOnProfile}/>) 
         : 
         <h2>No current campaign going on</h2>
         }

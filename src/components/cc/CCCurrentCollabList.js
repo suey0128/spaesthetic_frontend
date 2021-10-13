@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect} from 'react'
 
 
-export default function CCCurrentCollabList({isOnProfile}) {
+export default function CCCurrentCollabList({isOnProfile, isOnCCdeatilPageViewingByBusiness}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,9 +27,13 @@ export default function CCCurrentCollabList({isOnProfile}) {
 
     return (
       <div className={isOnProfile ? null : "cc-current-collab-list"}>
+        {isOnProfile ? null : <h1 style={{ "textAlign" : "center" }}>Current Collab</h1> }
         <Grid container spacing={1}>
           {party.current_campaigns.length > 0 ? 
-          party.current_campaigns.map(c=> <CampaignCard key={c.id} campaign={c}/> )
+          party.current_campaigns.map(c=> <CampaignCard key={c.id} 
+                                                        campaign={c} 
+                                                        isOnCCdeatilPageViewingByBusiness={isOnCCdeatilPageViewingByBusiness}
+                                                        /> )
           : 
           (<h2>There isn't any current collab going on</h2>)
           }
