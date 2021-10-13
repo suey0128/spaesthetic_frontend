@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function CollabReviewCard({ review, showBtn }) {
+export default function CollabReviewCard({ review, showBtn, isOnCCdeatilPageViewingByBusiness }) {
 
   const classes = useStyles();
   const history = useHistory();
@@ -85,6 +85,9 @@ export default function CollabReviewCard({ review, showBtn }) {
   }
 
   const handleAcatarClick = () => {
+    if ( isOnCCdeatilPageViewingByBusiness ) {
+      return null
+    }
     if (review.reviewer) {
       if (review.reviewer.name) {
         return (history.push(`/businessdetail/${review.reviewer.id}`))
@@ -133,6 +136,7 @@ export default function CollabReviewCard({ review, showBtn }) {
                 </div>
 
                 <div className={classes.root}>
+                
                 {review.reviewer ? 
                 <Avatar alt={review.reviewer.name} src={review.reviewer.profile_pic} onClick={handleAcatarClick}/> 
                 : <Avatar alt={review.reviewee.name} src={review.reviewee.profile_pic} onClick={handleAcatarClick}/> 

@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-export default function CollabReviewsOnCC() {
+export default function CollabReviewsOnCC({ isOnCCdeatilPageViewingByBusiness }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.userReducer.currentUser);
   const viewingCC = useSelector((state) => state.ccReducer.viewingCC);
@@ -30,7 +30,7 @@ export default function CollabReviewsOnCC() {
     <div className="CollabReviewsOnCC">
       <Grid container spacing={1}>
         {reviewList.length > 0 ? 
-        reviewList.map(r=> <CollabReviewCard key={r.id} review={r} showBtn={false} />) 
+        reviewList.map(r=> <CollabReviewCard key={r.id} review={r} showBtn={false} isOnCCdeatilPageViewingByBusiness={isOnCCdeatilPageViewingByBusiness}/>) 
         : 
         <h2>There isn't any review</h2>
         }

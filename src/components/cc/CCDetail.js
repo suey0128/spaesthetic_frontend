@@ -68,6 +68,7 @@ export default function CCDetail() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [value, setValue] = useState(0);
   const isOnProfile = true;
+  const isOnCCdeatilPageViewingByBusiness = true;
 
   const fetchViewingCC = useSelector((state) => state.ccReducer.fetchViewingCC)
 
@@ -116,13 +117,13 @@ export default function CCDetail() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <CCCurrentCollabList isOnProfile={isOnProfile}/>
+          <CCCurrentCollabList isOnProfile={isOnProfile} isOnCCdeatilPageViewingByBusiness={isOnCCdeatilPageViewingByBusiness}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <CCPastCollabList />
+          <CCPastCollabList isOnCCdeatilPageViewingByBusiness={isOnCCdeatilPageViewingByBusiness}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <CollabReviewsOnCC />
+          <CollabReviewsOnCC isOnCCdeatilPageViewingByBusiness={isOnCCdeatilPageViewingByBusiness}/>
         </TabPanel>
       </div>
 

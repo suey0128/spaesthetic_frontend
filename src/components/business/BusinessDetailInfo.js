@@ -37,7 +37,6 @@ export default function BusinessDetailInfo() {
   isNewReview ? 
     modalBody =  <CollabReviewFormForNew viewingParty={viewingBusiness} forCancelBtn={handleClose}/> : 
     modalBody = <CollabReviewFormForUpdate review={review} forCancelBtn={handleClose}/>
-
  
   return (
 

@@ -77,7 +77,6 @@ export default function BusinessProfile() {
     dispatch({ type: "SET_VIEWING_CC", playload: null})
   },[])
 
-  
 
     return (
       <div className="business-profile">
@@ -106,7 +105,7 @@ export default function BusinessProfile() {
           <BusinessCurrentCampaignList isOnProfile={isOnProfile}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <BusinessPastCampaignList />
+          <BusinessPastCampaignList isOnProfile={isOnProfile}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <CollabReviewsOnBusiness />

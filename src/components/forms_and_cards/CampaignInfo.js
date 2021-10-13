@@ -1,12 +1,15 @@
 import Grid from '@material-ui/core/Grid';
 
-export default function CampaignInfo({ campaign }) {
+export default function CampaignInfo({ campaign, isOnCCdeatilPageViewingByBusiness, isOnProfile }) {
 
     return (
         <Grid item xs={12} sm={6}>
             <div className="info-list">
-
+                { isOnCCdeatilPageViewingByBusiness || isOnProfile ? 
+                <p>Hosted by: {campaign.business.name}</p> 
+                :
                 <p>Hosted by: <a href={`/businessdetail/${campaign.business_id}`} >{campaign.business.name}</a></p>
+                }
                 <h2>{campaign.name}</h2>
                 <br></br>
 

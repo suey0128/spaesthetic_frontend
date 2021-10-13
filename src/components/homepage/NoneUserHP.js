@@ -42,7 +42,8 @@ export default function NoneUserHP() {
   }
 
     return (
-      <div className="none-user-HP">     
+      <div className="none-user-HP">    
+
         <div className="none-user-HP-container">
           
           <p className="none-user-HP-login" onClick={handleLoginClick}>Login</p>
@@ -52,7 +53,7 @@ export default function NoneUserHP() {
           <h3 className="none-user-HP-subtitle">Connecting Local Business to Local Influencers</h3>
 
 
-
+          {/* BIG SCREEN */}
           <>
             <div className="none-user-HP-column" onMouseEnter={()=>{hovered1Setter(true)}} onMouseLeave={()=>{hovered1Setter(false)}}>
               
@@ -123,8 +124,10 @@ export default function NoneUserHP() {
             <button onClick={handleCCSignUpClick}>Sign Up as Influencer</button>
           </div>
         
+        {/* MOBILE SCREEN */}
           <div className="none-user-HP-mobile-grid-container">
           <Grid container spacing={2}  >
+
             {content.map(c => 
               <Grid item xs={12} sm={6} key={c.h}>
                 <div className="none-user-HP-mobile-grid">
@@ -142,6 +145,7 @@ export default function NoneUserHP() {
           </div>
 
         </div>
+
 
       </div>
  
