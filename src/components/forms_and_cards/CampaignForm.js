@@ -19,10 +19,11 @@ import Select from '@material-ui/core/Select';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-
 import { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
+import fetchPort from '../fetchPort';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -128,8 +129,7 @@ export default function CampaignForm() {
     }
 
     async function postCampaign() {
-      // const res = await fetch(`https://spaesthetic.herokuapp.com/campaigns`,{
-        const res = await fetch(`/campaigns`,{
+        const res = await fetch(`${fetchPort}/campaigns`,{
           method: 'POST',
           // credentials: "include",
           headers: {

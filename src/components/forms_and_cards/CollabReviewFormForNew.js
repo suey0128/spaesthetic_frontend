@@ -13,6 +13,9 @@ import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+import fetchPort from '../fetchPort';
+
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
     color: '#c40405',
@@ -80,8 +83,7 @@ export default function CollabReviewFormForNew({ viewingParty, forCancelBtn }) {
     }
 
     async function postNewReview () {
-      // const res = await fetch(`https://spaesthetic.herokuapp.com/reviews`,{
-        const res = await fetch(`/reviews`,{
+        const res = await fetch(`${fetchPort}/reviews`,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postingReview)

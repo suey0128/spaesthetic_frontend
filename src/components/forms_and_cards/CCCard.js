@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import Container from '@material-ui/core/Container';
 
+import fetchPort from '../fetchPort';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -54,8 +56,6 @@ export default function CCCard({ cc }) {
           <Modal
           open={open}
           onClose={handleClose}
-          // aria-labelledby="simple-modal-title"
-          // aria-describedby="simple-modal-description"
           >
             <InvitationForm cc={cc} handleClose={handleClose}  />
         </Modal>

@@ -4,6 +4,8 @@ import CCHPCampaignList from "./CCHPCampaignList";
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
+import fetchPort from '../fetchPort';
+
 
 function CCHP() {
   const dispatch = useDispatch();
@@ -36,8 +38,7 @@ function CCHP() {
     let convertedInput = input.toLowerCase().replace(" ","_");
 
     async function fetchCCWithSearch(){
-      // const res = await fetch (`https://spaesthetic.herokuapp.com/campaigns?search=${convertedInput}`)
-      const res = await fetch (`/campaigns?search=${convertedInput}`)
+      const res = await fetch (`${fetchPort}/campaigns?search=${convertedInput}`)
       const data = await res.json()
       if (res.ok){
 
@@ -54,8 +55,7 @@ function CCHP() {
 
   const handleSort = (e) => {
     async function sort(){
-      // const res = await fetch (`https://spaesthetic.herokuapp.com/campaigns?sort=${e.target.value}`)
-      const res = await fetch (`/campaigns?sort=${e.target.value}`)
+      const res = await fetch (`${fetchPort}/campaigns?sort=${e.target.value}`)
       const data = await res.json()
       if (res.ok){
           dispatch({ type: "SET_CAMPAIGN_ON_DISPLAY", playload: data}) 

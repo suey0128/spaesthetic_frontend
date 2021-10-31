@@ -11,9 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import fetchPort from '../fetchPort';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,8 +87,7 @@ export default function CCSignUp() {
         website: ""
       }
     }
-    // const res = await fetch(`https://spaesthetic.herokuapp.com/users`,{
-      const res = await fetch(`/users`,{
+      const res = await fetch(`${fetchPort}/users`,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

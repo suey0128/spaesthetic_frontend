@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import {useSelector, useDispatch} from 'react-redux' 
+import {useSelector, useDispatch} from 'react-redux' ;
+import fetchPort from '../fetchPort';
 
 // the fn that position the modal
 function getModalStyle() {
@@ -47,8 +48,7 @@ export default function InvitationForm({ cc, handleClose }) {
   const handleInviteClick = (campaign) => {
     //POST a new invitation
     async function createNewInvite () {
-      // const res = await fetch(`https://spaesthetic.herokuapp.com/invitations`, {
-        const res = await fetch(`/invitations`, {
+        const res = await fetch(`${fetchPort}/invitations`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

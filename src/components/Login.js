@@ -13,6 +13,8 @@ import { useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import fetchPort from './fetchPort';
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -51,8 +53,7 @@ export default function Login() {
         username:username,
         password:password
     }
-    // const res = await fetch(`https://spaesthetic.herokuapp.com/login`,{ //=>'sessions#create'
-    const res = await fetch(`/login`,{ //=>'sessions#create'
+    const res = await fetch(`${fetchPort}/login`,{ //=>'sessions#create'
         method: 'POST',
         credentials: "include",
         headers: {

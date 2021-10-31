@@ -9,6 +9,8 @@ import Popover from '@material-ui/core/Popover';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
+import fetchPort from './fetchPort';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -29,8 +31,7 @@ export default function HeaderBadge() {
   //fetch campaign base on the id from the params
   useEffect(() => {
     async function fetchNotification(){
-        // const res = await fetch (`https://spaesthetic.herokuapp.com/notifications?userId=${currentUser.id}`)
-        const res = await fetch (`/notifications?userId=${currentUser.id}`)
+        const res = await fetch (`${fetchPort}/notifications?userId=${currentUser.id}`)
         if (res.ok){
         const data = await res.json()
         dispatch({ type: "SET_NOTIFICATION_ARR", playload:data })
@@ -49,8 +50,7 @@ export default function HeaderBadge() {
 
   const handleClose = () => {
     async function notificationRead () {
-      // const res = await fetch(`https://spaesthetic.herokuapp.com/notifications/${currentUser.id}`,{
-        const res = await fetch(`/notifications/${currentUser.id}`,{
+        const res = await fetch(`${fetchPort}/notifications/${currentUser.id}`,{
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify()

@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import fetchPort from '../fetchPort';
+
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -41,8 +43,7 @@ export default function CampaignRelatedCC ({ campaign }) {
       }
 
       async function hire() {
-          // const res = await fetch(`https://spaesthetic.herokuapp.com/collabs`, {
-            const res = await fetch(`/collabs`, {
+            const res = await fetch(`${fetchPort}/collabs`, {
               method: 'POST',
               headers: {
                   'Content-Type':'application/json'
@@ -66,8 +67,7 @@ export default function CampaignRelatedCC ({ campaign }) {
     const handleCancelClick = (contentCreator)=> {
       const collabId = campaign.collabs.find(cl=>cl.content_creator_id === contentCreator.id).id
       async function cancelCollab () {
-        // const res = await fetch (`https://spaesthetic.herokuapp.com/collabs/${collabId}`, {
-          const res = await fetch (`/collabs/${collabId}`, {
+          const res = await fetch (`${fetchPort}/collabs/${collabId}`, {
           method: 'DELETE'
         });
         if(res.ok){

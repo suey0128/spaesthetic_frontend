@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 
+import fetchPort from '../fetchPort';
+
 
 export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }) {
     const history = useHistory();
@@ -15,8 +17,7 @@ export default function CampaignBtnGroupForBusiness({ campaign, showDetailsBtn }
     const handleCancelCampaign = () => {
 
         async function cancelCampaign () {
-            // const res = await fetch (`https://spaesthetic.herokuapp.com/campaigns/${campaign.id}`, {
-                const res = await fetch (`/campaigns/${campaign.id}`, {
+                const res = await fetch (`${fetchPort}/campaigns/${campaign.id}`, {
                 method: 'DELETE'
             });
             if(res.ok){

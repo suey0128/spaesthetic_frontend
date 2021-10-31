@@ -2,8 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import fetchPort from '../fetchPort';
 
 // the fn that position the modal
 function getModalStyle() {
@@ -53,8 +55,7 @@ export default function NewProfilePicForm({ handleClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     async function updateProfilePic () {
-      // const res = await fetch(`https://spaesthetic.herokuapp.com/${userType}/${currentUser.platform_user_id}`, {
-        const res = await fetch(`/${userType}/${currentUser.platform_user_id}`, {
+        const res = await fetch(`${fetchPort}/${userType}/${currentUser.platform_user_id}`, {
         method: 'PATCH',
         headers: {
           "Content-Type": "application/json",
