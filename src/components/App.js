@@ -24,6 +24,7 @@ import {
 } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import React, { useEffect } from "react";
+import fetchPort from './fetchPort';
 
 
 function App() {
@@ -36,9 +37,7 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    // fetch("https://spaesthetic.herokuapp.com/me", 
-    fetch("/me", 
-    // fetch("/me", 
+    fetch(`${fetchPort}/me`, 
     {
       credentials: "include"
     }

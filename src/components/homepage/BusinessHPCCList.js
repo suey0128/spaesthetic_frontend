@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
+import fetchPort from '../fetchPort';
+
 
 function BusinessHPCCList() {
 
@@ -15,8 +17,7 @@ function BusinessHPCCList() {
 
   //fetch all the cc
   useEffect(() => {
-    // fetch("https://spaesthetic.herokuapp.com/content_creators", 
-    fetch("/content_creators", 
+    fetch(`${fetchPort}/content_creators`, 
     ).then((r) => {  
       if (r.ok) {
         r.json().then((cc) => {

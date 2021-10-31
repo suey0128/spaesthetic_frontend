@@ -18,6 +18,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import fetchPort from '../fetchPort';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -76,8 +78,7 @@ export default function CCDetail() {
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false})
     async function fetchCC(){
-      // const res = await fetch (`https://spaesthetic.herokuapp.com/content_creators/${params.id}`)
-      const res = await fetch (`/content_creators/${params.id}`)
+      const res = await fetch (`${fetchPort}/content_creators/${params.id}`)
       if (res.ok){
         const data = await res.json()
         dispatch({ type: "SET_VIEWING_CC", playload:data })

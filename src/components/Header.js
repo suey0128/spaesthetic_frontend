@@ -6,6 +6,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {  useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
+import fetchPort from './fetchPort';
+
 function Header() {
 
   const currentUser = useSelector((state) => state.userReducer.currentUser);
@@ -13,8 +15,7 @@ function Header() {
   const history = useHistory();
 
   function handleLogout() {
-    // fetch("https://spaesthetic.herokuapp.com/logout", {
-      fetch("/logout", {
+      fetch(`${fetchPort}/logout`, {
       method: "DELETE",
     }).then(() => {
       history.push('/')

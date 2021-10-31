@@ -11,6 +11,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import fetchPort from './fetchPort';
+
 export default function CampaginDetail() {
   const dispatch = useDispatch();
   const params = useParams();
@@ -25,8 +27,7 @@ export default function CampaginDetail() {
   useEffect(() => {
     dispatch({ type: "SET_IS_ON_LANDING_PAGE", playload: false});
     async function fetchCampaign(){
-      // const res = await fetch (`https://spaesthetic.herokuapp.com/campaigns/${params.id}`)
-      const res = await fetch (`/campaigns/${params.id}`)
+      const res = await fetch (`${fetchPort}/campaigns/${params.id}`)
       if (res.ok){
         const data = await res.json()
         dispatch({ type: "SET_CAMPAIGN", playload:data })

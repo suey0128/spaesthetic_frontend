@@ -3,7 +3,9 @@ import CampaignCard from "../forms_and_cards/CampaignCard";
 import Grid from '@material-ui/core/Grid';
 
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+
+import fetchPort from '../fetchPort';
 
 export default function CCHPCampaignList() {
   const dispatch = useDispatch();
@@ -13,8 +15,7 @@ export default function CCHPCampaignList() {
 
 
   useEffect(() => {
-    // fetch("https://spaesthetic.herokuapp.com/campaigns", 
-    fetch("/campaigns", 
+    fetch(`${fetchPort}/campaigns`, 
     ).then((r) => {  
       if (r.ok) {
         r.json().then((campaigns) => {

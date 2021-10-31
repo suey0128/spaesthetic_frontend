@@ -4,6 +4,8 @@ import BusinessHPCCList from "./BusinessHPCCList";
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
+import fetchPort from '../fetchPort';
+
 function BusinessHP() {
   const dispatch = useDispatch();
 
@@ -17,8 +19,7 @@ function BusinessHP() {
     let convertedInput = input.toLowerCase().replace(" ","_");
 
     async function fetchCCWithSearch(){
-      // const res = await fetch (`https://spaesthetic.herokuapp.com/content_creators?search=${convertedInput}`)
-      const res = await fetch (`/content_creators?search=${convertedInput}`)
+      const res = await fetch (`${fetchPort}/content_creators?search=${convertedInput}`)
       const data = await res.json()
       if (res.ok){
 
@@ -34,8 +35,7 @@ function BusinessHP() {
   
   const handleSort = (e) => {
     async function sort(){
-      // const res = await fetch (`https://spaesthetic.herokuapp.com/content_creators?sort=${e.target.value}`)
-      const res = await fetch (`/content_creators?sort=${e.target.value}`)
+      const res = await fetch (`${fetchPort}/content_creators?sort=${e.target.value}`)
       const data = await res.json()
       if (res.ok){
           dispatch({ type: "SET_CONTENT_CREATOR_ARR", playload: data}) 

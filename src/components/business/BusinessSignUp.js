@@ -13,6 +13,8 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
+import fetchPort from '../fetchPort';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -75,8 +77,7 @@ export default function BusinessSignUp() {
         website: ""
       }
     }
-    // const res = await fetch(`https://spaesthetic.herokuapp.com/users`,{
-      const res = await fetch(`/users`,{
+      const res = await fetch(`${fetchPort}/users`,{
         method: 'POST',
         // credentials: "include",
         headers: {

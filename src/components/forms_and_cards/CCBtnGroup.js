@@ -1,4 +1,5 @@
 import Grid from '@material-ui/core/Grid';
+import fetchPort from '../fetchPort';
 
 import { useSelector } from 'react-redux'
 // import { useHistory } from 'react-router-dom';
@@ -18,8 +19,6 @@ export default function CCBtnGroup({ cc, handleOpen }) {
 
     return (
         <Grid item xs={12} sm={3}>
-
-            {/* <button onClick={()=>{history.push(`/ccdetail/${cc.id}`)}} className="cc-btn-group-btns" */}
             <button onClick={handleOnClick} className="cc-btn-group-btns"
             >See Details</button>
             {   currentUser.current_campaigns.map(campaign => 

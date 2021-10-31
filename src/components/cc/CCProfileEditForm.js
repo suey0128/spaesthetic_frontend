@@ -8,9 +8,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import EditIcon from '@material-ui/icons/Edit';
 import Container from '@material-ui/core/Container';
 
-import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import fetchPort from '../fetchPort';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -105,8 +107,7 @@ export default function CCProfileEditForm() {
       }
     }
     async function updateProfile() {
-      // const res = await fetch(`https://spaesthetic.herokuapp.com/users/${currentUser.id}`,{
-      const res = await fetch(`/users/${currentUser.id}`,{
+      const res = await fetch(`${fetchPort}/users/${currentUser.id}`,{
           method: 'PATCH',
           // credentials: "include",
           headers: {

@@ -13,6 +13,8 @@ import { useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
+import fetchPort from '../fetchPort';
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -92,8 +94,7 @@ export default function BusinessProfileEditForm() {
       }
     }
     async function updateProfile() {
-      // const res = await fetch(`https://spaesthetic.herokuapp.com/users/${currentUser.id}`,{
-        const res = await fetch(`users/${currentUser.id}`,{
+        const res = await fetch(`${fetchPort}/users/${currentUser.id}`,{
           method: 'PATCH',
           // credentials: "include",
           headers: {

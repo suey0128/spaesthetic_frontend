@@ -16,6 +16,10 @@ import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+import fetchPort from '../fetchPort';
+
+
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
     color: '#c40405',
@@ -57,8 +61,7 @@ export default function CollabReviewCard({ review, showBtn, isOnCCdeatilPageView
   const handleDelete = () => {
     //delete the review instance base on id
     async function deleteReview() {
-        // const res = await fetch(`https://spaesthetic.herokuapp.com/reviews/${review.id}`,{
-          const res = await fetch(`/reviews/${review.id}`,{
+          const res = await fetch(`${fetchPort}/reviews/${review.id}`,{
             method: 'DELETE'
         })
         if (res.ok) {

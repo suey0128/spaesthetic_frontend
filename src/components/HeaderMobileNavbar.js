@@ -3,6 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 
 import {useDispatch, useSelector} from 'react-redux';
+import fetchPort from './fetchPort';
 
 const HeaderMobileNavbar = () => {
     const dispatch = useDispatch();
@@ -11,8 +12,7 @@ const HeaderMobileNavbar = () => {
     const currentUser = useSelector((state) => state.userReducer.currentUser);
 
     function handleLogout() {
-        // fetch("https://spaesthetic.herokuapp.com/logout", {
-            fetch("/logout", {
+            fetch(`${fetchPort}/logout`, {
           method: "DELETE",
         }).then(() => {
           history.push('/')
